@@ -7,7 +7,7 @@ module.exports = news_govhk;
  * {keyword: string,delay: number,pageLoadDelay: number}
  */
 function news_govhk(options) {
-  this.location = "HK";
+  this.locale = "HK";
   this.keyword = options.keyword;
   this.delay = options.delay;
   this.pageLoadDelay = options.pageLoadDelay;
