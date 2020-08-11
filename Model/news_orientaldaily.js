@@ -1,15 +1,15 @@
 const Scraper = require("../web_scraper");
 
-module.exports = news_people_cn;
+module.exports = news_orientaldaily;
 
-function news_people_cn(options) {
-  this.locale = "CN";
+function news_orientaldaily(options) {
+  this.locale = "MY";
   this.keyword = options.keyword;
   this.delay = options.delay;
   this.pageLoaddelay = options.pageLoaddelay;
-  this.baseurl = "https://duckduckgo.com/?q=site%3Apeople.com.cn+" + encodeURI(this.keyword) + "&t=hk&ia=web"
+  this.baseurl = "https://duckduckgo.com/?q=site%3Awww.orientaldaily.com.my%2Fnews+" + encodeURI(this.keyword) + "&t=hk&ia=web"
   this.news_sitemap = {
-    "_id": "news_people_cn",
+    "_id": "news_orientaldaily",
     "startUrl": [this.baseurl],
     "selectors": [{
       "id": "scroll",
@@ -17,7 +17,7 @@ function news_people_cn(options) {
       "parentSelectors": ["_root"],
       "selector": "div.results",
       "multiple": false,
-      "delay": "600",
+      "delay": "1000",
       "clickElementSelector": "a.result--more__btn",
       "clickType": "clickMore",
       "discardInitialElements": "do-not-discard",
@@ -30,7 +30,7 @@ function news_people_cn(options) {
       "multiple": true,
       "delay": 0
     }, {
-      "id": "nxt",
+      "id": "link",
       "type": "SelectorLink",
       "parentSelectors": ["ele"],
       "selector": "a.result__a",
@@ -39,31 +39,31 @@ function news_people_cn(options) {
     }, {
       "id": "title",
       "type": "SelectorText",
-      "parentSelectors": ["nxt"],
-      "selector": "h2,h1",
+      "parentSelectors": ["link"],
+      "selector": "h1",
       "multiple": false,
       "regex": "",
       "delay": 0
     }, {
       "id": "date",
       "type": "SelectorText",
-      "parentSelectors": ["nxt"],
-      "selector": "span.mT10,div.lai,.box01 div.fl,div.artOri",
+      "parentSelectors": ["link"],
+      "selector": ".meta span,#story-stream-block-356856 .meta span",
       "multiple": false,
       "regex": "",
       "delay": 0
     }, {
       "id": "content",
       "type": "SelectorText",
-      "parentSelectors": ["nxt"],
-      "selector": "div.article,#ozoom,div.box_con",
+      "parentSelectors": ["link"],
+      "selector": "div.article,div#\\\"article_story_1\\\"",
       "multiple": false,
       "regex": "",
       "delay": 0
     }]
   };
   this.run = async function () {
-    console.info("fetching news_people_cn");
+    console.info("fetching news_orientaldaily");
     try {
       let result = await Scraper(this.news_sitemap, {
         delay: this.delay,
@@ -72,7 +72,7 @@ function news_people_cn(options) {
       });
       return result;
     } catch (error) {
-      console.error("Error Occured when fetching news_people_cn");
+      console.error("Occured Error when fetching news_orientaldaily");
       console.error(error);
       return undefined;
     }

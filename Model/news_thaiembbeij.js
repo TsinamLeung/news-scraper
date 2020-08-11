@@ -1,54 +1,50 @@
 const Scraper = require("../web_scraper");
 
-module.exports = news_tkb;
+module.exports = news_thaiembbeij;
 
-function news_tkb(options) {
-  this.locale = "HK";
+function news_thaiembbeij(options) {
+  this.locale = "TH";
   this.keyword = options.keyword;
   this.delay = options.delay;
   this.pageLoaddelay = options.pageLoaddelay;
-  this.baseurl = "https://duckduckgo.com/?q=site%3Ahttp%3A%2F%2Fwww.takungpao.com.hk+" + encodeURI(this.keyword )+ "&ia=web"
+  this.baseurl = "https://thaiembbeij.org/?s=" + encodeURI(this.keyword);
   this.news_sitemap = {
-    "_id": "site_daigongbau",
+    "_id": "news_thaiembbeij",
     "startUrl": [this.baseurl],
     "selectors": [{
-      "id": "news",
+      "id": "each",
       "type": "SelectorElement",
-      "parentSelectors": ["more_result"],
-      "selector": "div.result__body",
+      "parentSelectors": ["_root", "nxt"],
+      "selector": "div.elementor-post__text",
       "multiple": true,
       "delay": 0
     }, {
-      "id": "more_result",
-      "type": "SelectorElementClick",
-      "parentSelectors": ["_root"],
-      "selector": "div.results",
-      "multiple": false,
-      "delay": "1000",
-      "clickElementSelector": "a.result--more__btn",
-      "clickType": "clickMore",
-      "discardInitialElements": "do-not-discard",
-      "clickElementUniquenessType": "uniqueHTML"
-    }, {
       "id": "link",
       "type": "SelectorLink",
-      "parentSelectors": ["news"],
-      "selector": "a.result__a",
+      "parentSelectors": ["each"],
+      "selector": "a",
       "multiple": false,
+      "delay": 0
+    }, {
+      "id": "nxt",
+      "type": "SelectorLink",
+      "parentSelectors": ["_root", "nxt"],
+      "selector": "a.next",
+      "multiple": true,
       "delay": 0
     }, {
       "id": "title",
       "type": "SelectorText",
       "parentSelectors": ["link"],
-      "selector": "h1.tkp_con_title",
+      "selector": "h1",
       "multiple": false,
       "regex": "",
       "delay": 0
     }, {
-      "id": "time",
+      "id": "date",
       "type": "SelectorText",
       "parentSelectors": ["link"],
-      "selector": "h2.tkp_con_author span",
+      "selector": "span.elementor-post-info__item--type-date",
       "multiple": false,
       "regex": "",
       "delay": 0
@@ -56,14 +52,14 @@ function news_tkb(options) {
       "id": "content",
       "type": "SelectorText",
       "parentSelectors": ["link"],
-      "selector": "div.tkp_content",
+      "selector": ".elementor-element-7f15827 div",
       "multiple": false,
       "regex": "",
       "delay": 0
     }]
   };
   this.run = async function () {
-    console.info("fetching news_TaKungPau");
+    console.info("fetching news_thaiembbeij");
     try {
       let result = await Scraper(this.news_sitemap, {
         delay: this.delay,
@@ -72,7 +68,7 @@ function news_tkb(options) {
       });
       return result;
     } catch (error) {
-      console.error("Occured Error when fetching news_TaKungPau");
+      console.error("Occured Error when fetching news_thaiembbeij");
       console.error(error);
       return undefined;
     }

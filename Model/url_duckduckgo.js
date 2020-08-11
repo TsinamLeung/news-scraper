@@ -3,7 +3,7 @@ const Scraper = require("../web_scraper");
 module.exports = url_duckduckgo;
 
 function url_duckduckgo(options) {
-  this.locale = "SG";
+  this.locale = "None";
   this.keyword = options.keyword;
   this.delay = options.delay;
   this.pageLoaddelay = options.pageLoaddelay;

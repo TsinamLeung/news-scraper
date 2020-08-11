@@ -1,4 +1,4 @@
-const Scraper = require("web-scraper-headless");
+const Scraper = require("../web_scraper");
 
 module.exports = news_sanwah;
 

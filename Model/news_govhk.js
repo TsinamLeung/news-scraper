@@ -1,4 +1,4 @@
-const scraper = require('web-scraper-headless')
+const scraper = require('../web_scraper')
 const debug = require('debug')('app:fetcher')
 module.exports = news_govhk;
 /**

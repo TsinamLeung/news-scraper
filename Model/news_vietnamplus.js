@@ -1,39 +1,35 @@
 const Scraper = require("../web_scraper");
 
-module.exports = news_udn;
+module.exports = news_vietnamplus;
 
-function news_udn(options) {
-  this.locale = "TW";
+function news_vietnamplus(options) {
+  this.locale = "VN";
   this.keyword = options.keyword;
   this.delay = options.delay;
   this.pageLoaddelay = options.pageLoaddelay;
-  this.baseurl = "https://duckduckgo.com/?q=site%3Audn.com+" + encodeURI(this.keyword) + "&t=hk&ia=web";
+  this.baseurl = "https://zh.vietnamplus.vn/timkiem/" + encodeURI(this.keyword) + ".vnp"
   this.news_sitemap = {
-    "_id": "news_udn",
+    "_id": "news_vietnamplus",
     "startUrl": [this.baseurl],
     "selectors": [{
-      "id": "scrol",
-      "type": "SelectorElementClick",
-      "parentSelectors": ["_root"],
-      "selector": "div.results",
-      "multiple": false,
-      "delay": "500",
-      "clickElementSelector": "a.result--more__btn",
-      "clickType": "clickMore",
-      "discardInitialElements": "do-not-discard",
-      "clickElementUniquenessType": "uniqueHTMLText"
+      "id": "nxt",
+      "type": "SelectorLink",
+      "parentSelectors": ["_root", "nxt"],
+      "selector": "#ctl00_mainContent_ContentList1_pager a",
+      "multiple": true,
+      "delay": 0
     }, {
       "id": "each",
       "type": "SelectorElement",
-      "parentSelectors": ["scrol"],
-      "selector": "div.result__body",
+      "parentSelectors": ["_root", "nxt"],
+      "selector": ".zone--timeline article",
       "multiple": true,
       "delay": 0
     }, {
       "id": "detail",
       "type": "SelectorLink",
       "parentSelectors": ["each"],
-      "selector": "h2 a",
+      "selector": "a.story__title",
       "multiple": false,
       "delay": 0
     }, {
@@ -48,7 +44,7 @@ function news_udn(options) {
       "id": "date",
       "type": "SelectorText",
       "parentSelectors": ["detail"],
-      "selector": ".shareBar__info--author span,time.article-content__time",
+      "selector": ".source time",
       "multiple": false,
       "regex": "",
       "delay": 0
@@ -56,14 +52,14 @@ function news_udn(options) {
       "id": "content",
       "type": "SelectorText",
       "parentSelectors": ["detail"],
-      "selector": "div.article,section.article-content__editor",
+      "selector": "div.content",
       "multiple": false,
       "regex": "",
       "delay": 0
     }]
   };
   this.run = async function () {
-    console.info("fetching news_udn");
+    console.info("fetching news_vietnamplus");
     try {
       let result = await Scraper(this.news_sitemap, {
         delay: this.delay,
@@ -72,7 +68,7 @@ function news_udn(options) {
       });
       return result;
     } catch (error) {
-      console.error("Occured Error when fetching news_udn");
+      console.error("Error Occured when fetching news_vietnamplus");
       console.error(error);
       return undefined;
     }

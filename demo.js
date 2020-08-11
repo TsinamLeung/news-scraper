@@ -29,10 +29,10 @@ let debug = require('debug');
 debug.enable('app:fetcher,web-scraper-headless:job,web-scraper-headless:scraper,web-scraper-headless:index,web-scraper-headless:chrome-headless-browser')
 
 async function run() {
-    const news = require('./Model/news_udn')({
-        keyword: "肺炎",
+    const news = require('./Model/news_khmer')({
+        keyword: "人",
         delay: 200,
-        pageLoadDelay: 800
+        pageLoadDelay: 2000
     });
     let result  = await news.run();
     console.log(result);
@@ -42,4 +42,4 @@ run();
 //     console.log(ret);
 // }).catch(function (err) {
 //     console.log(err);
-// });
+// }); 

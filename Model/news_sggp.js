@@ -1,23 +1,23 @@
 const Scraper = require("../web_scraper");
 
-module.exports = news_people_cn;
+module.exports = news_sggp;
 
-function news_people_cn(options) {
-  this.locale = "CN";
+function news_sggp(options) {
+  this.locale = "VN";
   this.keyword = options.keyword;
   this.delay = options.delay;
   this.pageLoaddelay = options.pageLoaddelay;
-  this.baseurl = "https://duckduckgo.com/?q=site%3Apeople.com.cn+" + encodeURI(this.keyword) + "&t=hk&ia=web"
+  this.baseurl = "https://duckduckgo.com/?q=site%3Acn.sggp.org.vn+" + encodeURI(this.keyword) + "&t=hk&ia=web"
   this.news_sitemap = {
-    "_id": "news_people_cn",
+    "_id": "news_sggp",
     "startUrl": [this.baseurl],
     "selectors": [{
-      "id": "scroll",
+      "id": "more",
       "type": "SelectorElementClick",
       "parentSelectors": ["_root"],
       "selector": "div.results",
       "multiple": false,
-      "delay": "600",
+      "delay": "500",
       "clickElementSelector": "a.result--more__btn",
       "clickType": "clickMore",
       "discardInitialElements": "do-not-discard",
@@ -25,12 +25,12 @@ function news_people_cn(options) {
     }, {
       "id": "ele",
       "type": "SelectorElement",
-      "parentSelectors": ["scroll"],
+      "parentSelectors": ["more"],
       "selector": "div.result__body",
       "multiple": true,
       "delay": 0
     }, {
-      "id": "nxt",
+      "id": "link",
       "type": "SelectorLink",
       "parentSelectors": ["ele"],
       "selector": "a.result__a",
@@ -39,31 +39,31 @@ function news_people_cn(options) {
     }, {
       "id": "title",
       "type": "SelectorText",
-      "parentSelectors": ["nxt"],
-      "selector": "h2,h1",
+      "parentSelectors": ["link"],
+      "selector": "h1.article-title",
       "multiple": false,
       "regex": "",
       "delay": 0
     }, {
       "id": "date",
       "type": "SelectorText",
-      "parentSelectors": ["nxt"],
-      "selector": "span.mT10,div.lai,.box01 div.fl,div.artOri",
+      "parentSelectors": ["link"],
+      "selector": ".meta-info time",
       "multiple": false,
       "regex": "",
       "delay": 0
     }, {
       "id": "content",
       "type": "SelectorText",
-      "parentSelectors": ["nxt"],
-      "selector": "div.article,#ozoom,div.box_con",
+      "parentSelectors": ["link"],
+      "selector": "div.content",
       "multiple": false,
       "regex": "",
       "delay": 0
     }]
   };
   this.run = async function () {
-    console.info("fetching news_people_cn");
+    console.info("fetching news_sggp");
     try {
       let result = await Scraper(this.news_sitemap, {
         delay: this.delay,
@@ -72,7 +72,7 @@ function news_people_cn(options) {
       });
       return result;
     } catch (error) {
-      console.error("Error Occured when fetching news_people_cn");
+      console.error("Occured Error when fetching news_sggp");
       console.error(error);
       return undefined;
     }
