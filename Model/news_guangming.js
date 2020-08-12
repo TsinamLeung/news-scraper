@@ -1,10 +1,9 @@
 const fetcher = require('./fetcher_news_via_search_engine');
 
-
-class news_udnbkk extends fetcher {
+class news_guangming extends fetcher {
   constructor(delay, pageLoaddelay) {
     super({
-        "_id": "news_udnbkk",
+        "_id": "news_guangming",
         "startUrl": [],
         "selectors": [{
           "id": "title",
@@ -15,18 +14,18 @@ class news_udnbkk extends fetcher {
           "regex": "",
           "delay": 0
         }, {
-          "id": "content",
+          "id": "date",
           "type": "SelectorText",
           "parentSelectors": ["_root"],
-          "selector": "td#article_content",
+          "selector": ".clearfix span.date",
           "multiple": false,
           "regex": "",
           "delay": 0
         }, {
-          "id": "date",
+          "id": "content",
           "type": "SelectorText",
           "parentSelectors": ["_root"],
-          "selector": "p.xg1",
+          "selector": "div.entry-content",
           "multiple": false,
           "regex": "",
           "delay": 0
@@ -34,11 +33,11 @@ class news_udnbkk extends fetcher {
       },
       delay,
       pageLoaddelay,
-      'news_udnbkk',
-      'TH',
-      'www.udnbkk.com',
+      'news_guangming',
+      'MY',
+      'guangming.com.my',
       'duckduckgo');
   }
 
 }
-module.exports = news_udnbkk;
+module.exports = news_guangming;

@@ -15,7 +15,37 @@ const page_getter_govhk_sitemap = {
         "delay": 0
     }]
 }
-const sitemap = {"_id":"test","startUrl":["https://duckduckgo.com/?q=site%3Ahttp%3A%2F%2Fwww.people.com.cn%2F+炎&t=hk&ia=web"],"selectors":[{"id":"scr","type":"SelectorElementClick","parentSelectors":["_root"],"selector":"div.results","multiple":true,"delay":2000,"clickElementSelector":"a.result--more__btn","clickType":"clickMore","discardInitialElements":"do-not-discard","clickElementUniquenessType":"uniqueText"},{"id":"each","type":"SelectorElement","parentSelectors":["scr"],"selector":"div.result__body","multiple":true,"delay":0},{"id":"text","type":"SelectorText","parentSelectors":["each"],"selector":"a.result__a","multiple":false,"regex":"","delay":0}]};
+const sitemap = {
+    "_id": "test",
+    "startUrl": ["https://duckduckgo.com/?q=site%3Ahttp%3A%2F%2Fwww.people.com.cn%2F+炎&t=hk&ia=web"],
+    "selectors": [{
+        "id": "scr",
+        "type": "SelectorElementClick",
+        "parentSelectors": ["_root"],
+        "selector": "div.results",
+        "multiple": true,
+        "delay": 2000,
+        "clickElementSelector": "a.result--more__btn",
+        "clickType": "clickMore",
+        "discardInitialElements": "do-not-discard",
+        "clickElementUniquenessType": "uniqueText"
+    }, {
+        "id": "each",
+        "type": "SelectorElement",
+        "parentSelectors": ["scr"],
+        "selector": "div.result__body",
+        "multiple": true,
+        "delay": 0
+    }, {
+        "id": "text",
+        "type": "SelectorText",
+        "parentSelectors": ["each"],
+        "selector": "a.result__a",
+        "multiple": false,
+        "regex": "",
+        "delay": 0
+    }]
+};
 const options = {
     delay: 3000,
     pageLoadDelay: 3000,
@@ -29,12 +59,10 @@ let debug = require('debug');
 debug.enable('app:fetcher,web-scraper-headless:job,web-scraper-headless:scraper,web-scraper-headless:index,web-scraper-headless:chrome-headless-browser')
 
 async function run() {
-    const news = require('./Model/news_khmer')({
-        keyword: "人",
-        delay: 200,
-        pageLoadDelay: 2000
-    });
-    let result  = await news.run();
+    const apple = require('./Model/news_guangming');
+    fetcher = new apple(20, 2000);
+    fetcher.setKeyword('狗');
+    let result = await fetcher.run();
     console.log(result);
 }
 run();

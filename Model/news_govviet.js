@@ -1,81 +1,42 @@
-const Scraper = require("../web_scraper");
+const fetcher = require('./fetcher_news_via_search_engine');
 
-module.exports = news_govviet;
-
-function news_govviet(options) {
-  this.locale = "VN";
-  this.keyword = options.keyword;
-  this.delay = options.delay;
-  this.pageLoaddelay = options.pageLoaddelay;
-  this.baseurl = "https://duckduckgo.com/?q=site%3Ahttp%3A%2F%2Fcn.news.chinhphu.vn%2F+" + encodeURI(this.keyword) + "&t=hk&ia=web"
-  this.news_sitemap = {
-    "_id": "news_chinhphu",
-    "startUrl": [this.baseurl],
-    "selectors": [{
-      "id": "more",
-      "type": "SelectorElementClick",
-      "parentSelectors": ["_root"],
-      "selector": "div.results",
-      "multiple": false,
-      "delay": "500",
-      "clickElementSelector": "a.result--more__btn",
-      "clickType": "clickMore",
-      "discardInitialElements": "do-not-discard",
-      "clickElementUniquenessType": "uniqueHTMLText"
-    }, {
-      "id": "ele",
-      "type": "SelectorElement",
-      "parentSelectors": ["more"],
-      "selector": "div.result__body",
-      "multiple": true,
-      "delay": 0
-    }, {
-      "id": "link",
-      "type": "SelectorLink",
-      "parentSelectors": ["ele"],
-      "selector": "a.result__a",
-      "multiple": false,
-      "delay": 0
-    }, {
-      "id": "title",
-      "type": "SelectorText",
-      "parentSelectors": ["link"],
-      "selector": "span#ctl00_mainContent_bodyContent_lbHeadline",
-      "multiple": false,
-      "regex": "",
-      "delay": 0
-    }, {
-      "id": "date",
-      "type": "SelectorText",
-      "parentSelectors": ["link"],
-      "selector": "span#ctl00_mainContent_bodyContent_lbDate",
-      "multiple": false,
-      "regex": "",
-      "delay": 0
-    }, {
-      "id": "content",
-      "type": "SelectorText",
-      "parentSelectors": ["link"],
-      "selector": "span#ctl00_mainContent_bodyContent_lbBody",
-      "multiple": false,
-      "regex": "",
-      "delay": 0
-    }]
-  };
-  this.run = async function () {
-    console.info("fetching news_govviet");
-    try {
-      let result = await Scraper(this.news_sitemap, {
-        delay: this.delay,
-        pageLoaddelay: this.pageLoaddelay,
-        browser: 'headless'
-      });
-      return result;
-    } catch (error) {
-      console.error("Error Occured when fetching news_govviet");
-      console.error(error);
-      return undefined;
-    }
+class news_govviet extends fetcher {
+  constructor(delay, pageLoaddelay) {
+    super({
+        "_id": "news_chinhphu",
+        "startUrl": [],
+        "selectors": [{
+          "id": "title",
+          "type": "SelectorText",
+          "parentSelectors": ["_root"],
+          "selector": "span#ctl00_mainContent_bodyContent_lbHeadline",
+          "multiple": false,
+          "regex": "",
+          "delay": 0
+        }, {
+          "id": "date",
+          "type": "SelectorText",
+          "parentSelectors": ["_root"],
+          "selector": "span#ctl00_mainContent_bodyContent_lbDate",
+          "multiple": false,
+          "regex": "",
+          "delay": 0
+        }, {
+          "id": "content",
+          "type": "SelectorText",
+          "parentSelectors": ["_root"],
+          "selector": "span#ctl00_mainContent_bodyContent_lbBody",
+          "multiple": false,
+          "regex": "",
+          "delay": 0
+        }]
+      },
+      delay,
+      pageLoaddelay,
+      'news_govviet',
+      'VN',
+      'cn.news.chinphu.cn',
+      'duckduckgo');
   }
-  return this;
 }
+module.exports = news_govviet;

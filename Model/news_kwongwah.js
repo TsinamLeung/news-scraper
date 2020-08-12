@@ -1,81 +1,43 @@
-const Scraper = require("../web_scraper");
+const fetcher = require('./fetcher_news_via_search_engine');
 
-module.exports = news_kwongwah;
 
-function news_kwongwah(options) {
-  this.locale = "MY";
-  this.keyword = options.keyword;
-  this.delay = options.delay;
-  this.pageLoaddelay = options.pageLoaddelay;
-  this.baseurl = "https://duckduckgo.com/?q=site%3Awww.kwongwah.com.my+" + encodeURI(this.keyword) + "&t=hk&ia=web"
-  this.news_sitemap = {
-    "_id": "news_kwongwah",
-    "startUrl": [this.baseurl],
-    "selectors": [{
-      "id": "scroll",
-      "type": "SelectorElementClick",
-      "parentSelectors": ["_root"],
-      "selector": "div.results",
-      "multiple": false,
-      "delay": "1000",
-      "clickElementSelector": "a.result--more__btn",
-      "clickType": "clickMore",
-      "discardInitialElements": "do-not-discard",
-      "clickElementUniquenessType": "uniqueHTMLText"
-    }, {
-      "id": "ele",
-      "type": "SelectorElement",
-      "parentSelectors": ["scroll"],
-      "selector": "div.result__body",
-      "multiple": true,
-      "delay": 0
-    }, {
-      "id": "link",
-      "type": "SelectorLink",
-      "parentSelectors": ["ele"],
-      "selector": "a.result__a",
-      "multiple": false,
-      "delay": 0
-    }, {
-      "id": "title",
-      "type": "SelectorText",
-      "parentSelectors": ["link"],
-      "selector": "h1.entry-title",
-      "multiple": false,
-      "regex": "",
-      "delay": 0
-    }, {
-      "id": "date",
-      "type": "SelectorText",
-      "parentSelectors": ["link"],
-      "selector": ".entry-date span",
-      "multiple": false,
-      "regex": "",
-      "delay": 0
-    }, {
-      "id": "content",
-      "type": "SelectorText",
-      "parentSelectors": ["link"],
-      "selector": "div.td-post-content",
-      "multiple": false,
-      "regex": "",
-      "delay": 0
-    }]
-  };
-  this.run = async function () {
-    console.info("fetching news_kwongwah");
-    try {
-      let result = await Scraper(this.news_sitemap, {
-        delay: this.delay,
-        pageLoaddelay: this.pageLoaddelay,
-        browser: 'headless'
-      });
-      return result;
-    } catch (error) {
-      console.error("Occured Error when fetching news_kwongwah");
-      console.error(error);
-      return undefined;
-    }
+class news_kwongwah extends fetcher {
+  constructor(delay, pageLoaddelay) {
+    super({
+        "_id": "news_kwongwah",
+        "startUrl": [],
+        "selectors": [{
+          "id": "title",
+          "type": "SelectorText",
+          "parentSelectors": ["_root"],
+          "selector": "h1.entry-title",
+          "multiple": false,
+          "regex": "",
+          "delay": 0
+        }, {
+          "id": "date",
+          "type": "SelectorText",
+          "parentSelectors": ["_root"],
+          "selector": ".entry-date span",
+          "multiple": false,
+          "regex": "",
+          "delay": 0
+        }, {
+          "id": "content",
+          "type": "SelectorText",
+          "parentSelectors": ["_root"],
+          "selector": "div.td-post-content",
+          "multiple": false,
+          "regex": "",
+          "delay": 0
+        }]
+      },
+      delay,
+      pageLoaddelay,
+      'news_kwongwah',
+      'MY',
+      'www.kwongwah.com.my',
+      'duckduckgo');
   }
-  return this;
 }
+module.exports = news_kwongwah;

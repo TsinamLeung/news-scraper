@@ -30,7 +30,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
    */
   setKeyword(keyword) {
     this.keyword = keyword;
-    this.engine.updateStartURL("https://duckduckgo.com/?q=site%3A" + encodeURI(this.site) + "+" + encodeURI(keyword) + "&t=hk&ia=web")
+    this.engine.setSite(this.site, keyword);
   }
   async run() {
     if (this.keyword == '' || this.keyword == undefined) {
@@ -38,26 +38,26 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     }
     console.info("fetching " + this.name + " via " + this.engine.name);
     try {
-      let lists = await ddg.run();
-    } catch (error) {
-      console.error("Error Occured when fetching lists of " + this.name + " via " + this.engine.name);
-      console.error(error);
-      return undefined;
-    }
-    let results = [];
-    for (i in lists) {
-      try {
-        this.updateStartURL(lists[i]['link-href']);
-        let result = await Scraper(this.sitemap, {
-          delay: this.delay,
-          pageLoaddelay: this.pageLoaddelay,
-          browser: 'headless'
-        });
-        results.push(result);
-      } catch (error) {
-        console.error("Error Occured when fetching " + list[i]['link-href'])
-        console.error(error);
+      let lists = await this.engine.run();
+      let results = [];
+      for (let i in lists) {
+        try {
+          this.updateStartURL(lists[i]['link-href']);
+          let result = await super.run();
+          results.push({
+            data: result,
+            url: lists[i]['link-href']
+          });
+        } catch (error) {
+          console.error("Error Occured when fetching " + list[i]['link-href']);
+          console.error(error);
+        }
       }
+      return results;
+    } catch (error_eng) {
+      console.error("Error Occured when fetching lists of " + this.name + " via " + this.engine.name);
+      console.error(error_eng);
+      return undefined;
     }
   }
 }

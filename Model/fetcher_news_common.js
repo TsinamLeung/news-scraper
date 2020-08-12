@@ -15,7 +15,8 @@ class fetcher_news_common extends fetcher_common {
   }
   /**
    * 
-   * @param {String} keyword 
+   * @param {String} keyword
+   * Every child class should rewrite thisfunction  
    */
   setKeyword(keyword) {
     
