@@ -10,7 +10,7 @@ class news_sggp extends fetcher {
         "selectors": [{
           "id": "title",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": "h1.article-title",
           "multiple": false,
           "regex": "",
@@ -18,7 +18,7 @@ class news_sggp extends fetcher {
         }, {
           "id": "date",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": ".meta-info time",
           "multiple": false,
           "regex": "",
@@ -26,7 +26,7 @@ class news_sggp extends fetcher {
         }, {
           "id": "content",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": "div.content",
           "multiple": false,
           "regex": "",

@@ -1,35 +1,14 @@
-const fetcher_news_common = require("./fetcher_news_common");
+const fetcher = require("./fetcher_news_via_search_engine");
 
-class news_apple_daily extends fetcher_news_common {
+class news_apple_daily extends fetcher {
   constructor(delay, pageLoaddelay) {
     super({
         "_id": "news_apple",
         "startUrl": [],
         "selectors": [{
-          "id": "detail",
-          "type": "SelectorElement",
-          "parentSelectors": ["nxt_pge"],
-          "selector": "div.gsc-result",
-          "multiple": true,
-          "delay": 0
-        }, {
-          "id": "nxt_pge",
-          "type": "SelectorElement",
-          "parentSelectors": ["_root"],
-          "selector": "div.gsc-results",
-          "multiple": false,
-          "delay": 0
-        }, {
-          "id": "link",
-          "type": "SelectorLink",
-          "parentSelectors": ["detail"],
-          "selector": ".gsc-thumbnail-inside a",
-          "multiple": false,
-          "delay": 0
-        }, {
           "id": "title",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": ".text_medium span",
           "multiple": false,
           "regex": "",
@@ -37,7 +16,7 @@ class news_apple_daily extends fetcher_news_common {
         }, {
           "id": "date",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": ".timestamp-container div",
           "multiple": false,
           "regex": "",
@@ -45,7 +24,7 @@ class news_apple_daily extends fetcher_news_common {
         }, {
           "id": "content",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": ".article_body section",
           "multiple": false,
           "regex": "",
@@ -55,16 +34,10 @@ class news_apple_daily extends fetcher_news_common {
       delay,
       pageLoaddelay,
       'news_apple',
-      'HK');
+      'HK',
+      "hk.appledaily.com",
+      'duckduckgo');
   }
 
-
-  /**
-   * 
-   * @param {String} keyword 
-   */
-  setKeyword(keyword) {
-    this.updateStartURL("https://hk.appledaily.com/search/" + encodeURI(keyword) + "?q=" + encodeURI(keyword));
-  }
 }
 module.exports = news_apple_daily;

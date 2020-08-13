@@ -4,11 +4,8 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "chalk": "^4.1.0",
-    "clear": "^0.1.0",
-    "clui": "^0.3.6",
-    "inquirer": "^7.3.3",
-    "minimist": "^1.2.5",
+    "json-2-csv": "^3.7.6",
+    "moment": "^2.27.0",
     "web-scraper-headless": "^1.0.7"
   },
   "devDependencies": {},

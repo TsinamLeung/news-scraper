@@ -4,7 +4,7 @@ class news_cna extends fetcher {
   constructor(delay, pageLoaddelay) {
     super({
         "_id": "cna",
-        "startUrl": [this.baseurl],
+        "startUrl": [],
         "selectors": [{
           "id": "each",
           "type": "SelectorElement",

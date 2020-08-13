@@ -36,7 +36,7 @@ class news_singtao extends fetcher {
       pageLoaddelay,
       'news_singtao',
       'HK',
-      'std.stheadline.com',
+      'std.stheadline.com article',
       'duckduckgo');
   }
 }

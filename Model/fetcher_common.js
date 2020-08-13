@@ -1,5 +1,5 @@
 const Scraper = require("../web_scraper");
-
+const debug = require('debug')('fetcher:index')
 
 class fetcher_common {
   /**
@@ -19,12 +19,12 @@ class fetcher_common {
    * 
    * @param {String} url 
    */
-  updateStartURL(url){
+  updateStartURL(url) {
     this.sitemap["startUrl"] = url;
   }
   async run() {
-    if(this.sitemap["startUrl"] == []) {
-      throw('Empty URL!');
+    if (this.sitemap["startUrl"] == []) {
+      throw ('Empty URL!');
     }
     console.info("fetching " + this.name);
     try {
@@ -33,6 +33,7 @@ class fetcher_common {
         pageLoaddelay: this.pageLoaddelay,
         browser: 'headless'
       });
+      debug("Fetcher_common result: " + JSON.stringify(results));
       return results;
     } catch (error) {
       console.error("Occured Error when fetching " + this.name);

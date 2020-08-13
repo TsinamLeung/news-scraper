@@ -1,5 +1,5 @@
 let fetcher_common = require('./fetcher_common');
-
+const debug = require('debug')('fetcher:index')
 class fetcher_news_common extends fetcher_common {
   /**
    * 

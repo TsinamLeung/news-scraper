@@ -24,7 +24,7 @@ class news_shinmin extends fetcher {
           "regex": "",
           "delay": 0
         }, {
-          "id": "conttent",
+          "id": "content",
           "type": "SelectorText",
           "parentSelectors": ["_root"],
           "selector": "div.group-content-body",

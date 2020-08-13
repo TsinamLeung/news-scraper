@@ -35,7 +35,7 @@ class news_govviet extends fetcher {
       pageLoaddelay,
       'news_govviet',
       'VN',
-      'cn.news.chinphu.cn',
+      'cn.news.chinhphu.vn/Home',
       'duckduckgo');
   }
 }

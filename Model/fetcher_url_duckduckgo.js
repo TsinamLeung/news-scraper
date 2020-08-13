@@ -1,4 +1,5 @@
 let fetcher_common = require('./fetcher_common');
+const debug = require('debug')('fetcher:index');
 class fetcher_url_duckduckgo extends fetcher_common {
 
   /**
@@ -47,7 +48,7 @@ class fetcher_url_duckduckgo extends fetcher_common {
    * @param {string} keyword 
    */
   setSite(siteurl, keyword) {
-    this.updateStartURL("https://duckduckgo.com/?q=" + encodeURI("site:") + encodeURI(siteurl) + "+" + encodeURI(keyword) + "&t=hk&ia=web");
+    this.updateStartURL("https://duckduckgo.com/?q=" + encodeURI('site:') + encodeURI(siteurl) + "+" + encodeURI(keyword));
   }
 }
 module.exports = fetcher_url_duckduckgo;

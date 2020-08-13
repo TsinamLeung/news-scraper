@@ -19,7 +19,7 @@ class news_udn extends fetcher {
           "id": "date",
           "type": "SelectorText",
           "parentSelectors": ["_root"],
-          "selector": ".shareBar__info--author span,time.article-content__time",
+          "selector": ".shareBar__info--author span,time.article-content__time,time",
           "multiple": false,
           "regex": "",
           "delay": 0
@@ -27,7 +27,7 @@ class news_udn extends fetcher {
           "id": "content",
           "type": "SelectorText",
           "parentSelectors": ["_root"],
-          "selector": "div.article,section.article-content__editor",
+          "selector": "div.article,section.article-content__editor,main,div#story_body_content",
           "multiple": false,
           "regex": "",
           "delay": 0

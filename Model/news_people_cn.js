@@ -36,7 +36,7 @@ class news_people_cn extends fetcher {
       pageLoaddelay,
       'news_people_cn',
       'CN',
-      'people.com.cn',
+      'people.com.cn/n1',
       'duckduckgo');
   }
 }

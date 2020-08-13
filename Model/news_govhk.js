@@ -14,38 +14,38 @@ class news_govhk extends fetcher {
           "multiple": true,
           "delay": 0
         }, {
-          "id": "details",
+          "id": "link",
           "type": "SelectorLink",
           "parentSelectors": ["news"],
           "selector": ".d-inline a",
           "multiple": false,
           "delay": 0
         }, {
-          "id": "news_title",
+          "id": "title",
           "type": "SelectorText",
-          "parentSelectors": ["details"],
+          "parentSelectors": ["link"],
           "selector": "h1.news-title",
           "multiple": false,
           "regex": "",
           "delay": 0
         }, {
-          "id": "news_date",
+          "id": "date",
           "type": "SelectorText",
-          "parentSelectors": ["details"],
+          "parentSelectors": ["link"],
           "selector": "span.news-date",
           "multiple": false,
           "regex": "",
           "delay": 0
         }, {
-          "id": "news_content",
+          "id": "content",
           "type": "SelectorText",
-          "parentSelectors": ["details"],
+          "parentSelectors": ["link"],
           "selector": ".newsdetail-content",
           "multiple": false,
           "regex": "",
           "delay": 0
         }, {
-          "id": "date",
+          "id": "search_date",
           "type": "SelectorText",
           "parentSelectors": ["news"],
           "selector": ".d-flex div span.mx-2",
@@ -53,7 +53,7 @@ class news_govhk extends fetcher {
           "regex": "",
           "delay": 0
         }, {
-          "id": "title",
+          "id": "search_title",
           "type": "SelectorText",
           "parentSelectors": ["news"],
           "selector": ".d-inline a",

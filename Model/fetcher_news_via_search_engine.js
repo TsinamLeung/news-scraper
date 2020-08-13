@@ -44,10 +44,8 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
         try {
           this.updateStartURL(lists[i]['link-href']);
           let result = await super.run();
-          results.push({
-            data: result,
-            url: lists[i]['link-href']
-          });
+          result['link-href'] = lists[i]['link-href'];
+          results.push(result);
         } catch (error) {
           console.error("Error Occured when fetching " + list[i]['link-href']);
           console.error(error);
