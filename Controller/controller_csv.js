@@ -3,7 +3,10 @@ const j2c = require('json-2-csv');
 
 exports.outputCSV = outputCSV;
 
-function outputCSV(data, filename) {
+async function outputCSV(data, filename) {
+  if(!data) {
+    console.log("CSV: Empty Data Won't output");
+  }
   if (!fs.existsSync('../output/')) {
     fs.mkdirSync('../output/')
   }

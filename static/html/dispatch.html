@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispatch</title>
+  <link rel="stylesheet" type="text/css" href="/css/semantic/semantic.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="/css/semantic/semantic.min.js"></script>
+</head>
+
+<body>
+  <div class="ui info message">
+    <i class="close icon"></i>
+    <div class="header">Job Dispatched</div>
+    <div class="header">已分發任務</div>
+    <ul class="list">
+      <li>Please Notice Console Output</li>
+      <li>請留意控制臺輸出</li>
+      <li>Note: All results merged in News_all.csv </li>
+      <li>注意：所有結果合並於News_all.csv中</li>
+      <li>Results would saved on</li>
+      <li>結果將會存儲於</li>
+    </ul>
+    <code class="red" id="outputPath"></code>
+    <br />
+    <div class="ui toggle checkbox" id="feedback">
+      <input type="checkbox" name="public">
+      <label>Enable Result Feedback on Console 在控制臺中啟用結果回饋</label>
+    </div>
+  </div>
+  <script>
+    $('#feedback').click(function () {
+      if ($('#feedback').checkbox('is checked')) {
+        $.ajax({ url: '/function/turnOnResultFeedback', async: true })
+      }
+      else {
+        $.ajax({ url: '/function/turnOnDebugMsg', async: true })
+      }
+    });
+    function getOutputPath() {
+      let ret = "";
+      $.ajax({ url: '/function/outputPath', async: false }).done(function (data) { ret = data['path']; });
+      return ret;
+    }
+    $(document).ready(function () {
+      $('#outputPath').text(getOutputPath());
+    });
+  </script>
+</body>
+
+</html>

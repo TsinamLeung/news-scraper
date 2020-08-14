@@ -33,10 +33,10 @@ class fetcher_common {
         pageLoaddelay: this.pageLoaddelay,
         browser: 'headless'
       });
-      debug("Fetcher_common result: " + JSON.stringify(results));
+      debug("Fetcher_common result: %O", results);
       return results;
     } catch (error) {
-      console.error("Occured Error when fetching " + this.name);
+      console.error("Occured Error when fetching %s", this.name);
       console.error(error);
       return undefined;
     }

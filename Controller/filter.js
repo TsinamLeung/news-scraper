@@ -83,6 +83,7 @@ function nullVerify(result, name) {
 function parseDate(result, name) {
   let date = getDate(result, name);
   let reg = /.*/g;
+  debug("date raw %s" ,date);
   const mNameThai = {
     มกราคม: '01',
     กุมภาพันธ์: '02',
@@ -165,6 +166,7 @@ function parseDate(result, name) {
   }
   try {
     let extract = date.match(reg)[0];
+    debug("date after processing %O " + extract);
     result['date'] = moment(extract, ['MMDDYYYY', 'YYYYMMDD', "DDMMYYYY"]).format('L');
   } catch (error) {
     console.error('Error Occured When parsing date');
@@ -177,4 +179,6 @@ function parseContent(result, name) {
       break;
   }
   result['content'] = getContent(result, name).replace('\n','');
+  //for csv splitling..
+  result['content'] = getContent(result, name).replace(',','');
 }

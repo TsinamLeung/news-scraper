@@ -40,10 +40,13 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     try {
       let lists = await this.engine.run();
       let results = [];
+      console.info("thers're " + lists.length  + " url")
       for (let i in lists) {
         try {
           this.updateStartURL(lists[i]['link-href']);
           let result = await super.run();
+          //extract the first Result
+          result = result[0];
           result['link-href'] = lists[i]['link-href'];
           results.push(result);
         } catch (error) {
