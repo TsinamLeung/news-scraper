@@ -9,8 +9,10 @@ const port = 3000;
 const app = new Koa();
 const router = new Router();
 
-appController.outputPath = function() {
-  return {path: __dirname + '\\output\\'};
+appController.outputPath = function () {
+  return {
+    path: __dirname + '\\output\\'
+  };
 }
 
 router.get('/', async (ctx, next) => {
@@ -47,3 +49,4 @@ router.get('/function/:name', async (ctx, next) => {
 app.use(serve('./static'))
 app.use(router.routes());
 app.listen(port);
+console.log("Starting Server at Port: " + port);
