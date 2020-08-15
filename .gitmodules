@@ -1,9 +1,3 @@
-[submodule "Semantic-UI-CSS"]
-	path = semantic/Semantic-UI-CSS
-	url = git@github.com:Semantic-Org/Semantic-UI-CSS.git
-[submodule "semantic"]
-	path = semantic
-	url = git@github.com:Semantic-Org/Semantic-UI-CSS.git
 [submodule "static/css/semantic"]
 	path = static/css/semantic
 	url = git@github.com:Semantic-Org/Semantic-UI-CSS.git
