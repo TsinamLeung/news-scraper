@@ -3,6 +3,10 @@ const fs = require('fs');
 const parser = require('./filter');
 const csv = require('./controller_csv');
 
+function placeStopFlag() {
+  this.stopFlag = true;
+  
+}
 
 function listAllSource() {
   try {
@@ -26,7 +30,7 @@ async function fetchNews(keyword, name, delay, pageLoaddelay) {
   rawData = rawData.filter(function (value, _index, _array) {
     return parser.nullVerify(value, fetcher.name);
   });
-  
+
   //parsing process
   rawData.forEach(function (value, _index, _arr) {
     parser.parseDate(value, fetcher.name);
@@ -42,7 +46,7 @@ async function fetchNews(keyword, name, delay, pageLoaddelay) {
   })
   console.log("Fetch finished " + name);
   console.log("outputing CSV of " + name);
-  csv.outputCSV(result, name);
+  csv.outputCSV(results, name);
   return results;
 }
 
@@ -52,6 +56,11 @@ async function fetchAllNewsThenOutput(keyword, delay, pageLoaddelay) {
   for (i in fetcher_list) {
     let result = await fetchNews(keyword, fetcher_list[i], delay, pageLoaddelay);
     results = results.concat(result);
+    if (this.stopFlag) {
+      this.stopFlag = false;
+      console.log("Fetching Interrupted [Controller_app fetchAllNews] Current Progress: " + i + " of" + fetcher_list.length);
+      break;
+    }
   }
   console.log("Outputing CSV of All Results");
   csv.outputCSV(results, 'news_All');
@@ -65,6 +74,7 @@ function turnOnDebugMsg() {
 function turnOnResultFeedback() {
   debug.enable('fetcher:index' + ',filter:index,web-scraper-headless:scraper,web-scraper-headless:index,web-scraper-headless:chrome-headless-browser');
 }
+
 function turnOffDebugMsg() {
   debug.disable();
 }
@@ -75,3 +85,5 @@ exports.fetchAllNews = fetchAllNewsThenOutput;
 exports.turnOnDebugMsg = turnOnDebugMsg;
 exports.turnOffDebugMsg = turnOffDebugMsg;
 exports.turnOnResultFeedback = turnOnResultFeedback;
+exports.placeStopFlag = placeStopFlag;
+exports.stopFlag = false;

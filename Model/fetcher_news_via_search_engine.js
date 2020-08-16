@@ -1,6 +1,7 @@
 const fetcher_news_common = require('./fetcher_news_common');
 const ddg = require("./fetcher_url_duckduckgo");
 class fetcher_news_via_search_engine extends fetcher_news_common {
+  stopflag = false;
   /**
    * 
    * @param {Object} sitemap 
@@ -40,9 +41,14 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     try {
       let lists = await this.engine.run();
       let results = [];
-      console.info("thers're " + lists.length  + " url")
+      console.info("thers're " + lists.length + " url")
       for (let i in lists) {
         try {
+          if (this.stopflag) {
+            console.log("Fetching Interrupted [fetcher_news_via_search_engine] Current Progress: " + i + " of" + lists.length);
+            this.stopflag = false;
+            break;
+          }
           this.updateStartURL(lists[i]['link-href']);
           let result = await super.run();
           //extract the first Result

@@ -5,7 +5,7 @@ exports.outputCSV = outputCSV;
 
 async function outputCSV(data, filename) {
   if(!data) {
-    console.log("CSV: Empty Data Won't output");
+    console.log("CSV: Empty Data Won't be output");
   }
   if (!fs.existsSync('../output/')) {
     fs.mkdirSync('../output/')
