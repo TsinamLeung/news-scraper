@@ -92,6 +92,7 @@
     }
     );
     $('#execute').on('click', function (event) {
+      $('#execute').addClass('loading');
       let keyword = $('#keyword').val();
       let delay = $('#delay').val();
       let pageLoadDelay = $('#pageLoadDelay').val();
