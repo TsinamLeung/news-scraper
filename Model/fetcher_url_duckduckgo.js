@@ -36,6 +36,14 @@ class fetcher_url_duckduckgo extends fetcher_common {
           "selector": "a.result__a",
           "multiple": false,
           "delay": 0
+        }, {
+          "id": "snippet",
+          "type": "SelectorText",
+          "parentSelectors": ["ele"],
+          "selector": "div.result__snippet",
+          "multiple": false,
+          "regex": "",
+          "delay": 0
         }]
       },
       delay,
