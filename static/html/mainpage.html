@@ -70,7 +70,7 @@
     </div>
   </div>
   <script>
-    let fetcher = "";
+    let fetcher = "all";
     function getNewsList() {
       let ret;
       $.ajax({ url: '/function/listAllNews', async: false }).done(function (data) { ret = data; })

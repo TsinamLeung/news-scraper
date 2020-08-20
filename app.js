@@ -31,9 +31,10 @@ router.get('/dispatch',
     } else {
       appController.turnOnDebugMsg();
       ctx.response.body = fs.readFileSync(htmlpath);
+      console.log("Fetcher request Recived " + args['fetcher'])
       if (args['fetcher'] == 'all') {
         appController.fetchAllNews(args['keyword'], args['delay'], args['pageLoadDelay'])
-      } else {
+      } else if(!args['fetcher']){
         appController.fetchNews(args['keyword'], args['fetcher'], args['delay'], args['pageLoadDelay'])
       }
     }
