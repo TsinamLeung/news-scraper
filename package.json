@@ -10,6 +10,7 @@
     "koa": "^2.13.0",
     "koa-router": "^9.4.0",
     "koa-static": "^5.0.0",
+    "lowdb": "^1.0.0",
     "moment": "^2.27.0",
     "stdio-capture": "^1.0.0",
     "web-scraper-headless": "^1.0.7"
