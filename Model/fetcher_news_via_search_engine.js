@@ -1,5 +1,8 @@
 const fetcher_news_common = require('./fetcher_news_common');
 const ddg = require("./fetcher_url_duckduckgo");
+const {
+  debug
+} = require('console');
 class fetcher_news_via_search_engine extends fetcher_news_common {
   /**
    * 
@@ -33,27 +36,47 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     this.keyword = keyword;
     this.engine.setSite(this.site, keyword);
   }
-  async run() {
+  async fetchUrlList() {
     if (this.keyword == '' || this.keyword == undefined) {
       throw ('No keyword specfied!');
     }
+    try {
+      let urls = await this.engine.run();
+      console.info("there're " + urls.length + " url");
+      return urls;
+
+    } catch (error) {
+      console.error("Occured Error when fetching urls");
+      console.error(error);
+    }
+  }
+  async fetchResultByUrl(url) {
+    try {
+      this.updateStartURL(url);
+      let result = await super.run();
+      //extract the first Result
+      result = result[0];
+      result['link-href'] = url;
+      debug("%O ", result);
+      return result;
+    } catch (error) {
+      console.error("Occured Error when fetching result via search engine " + url);
+      console.error(error);
+    }
+  }
+  async run() {
     console.info("fetching " + this.name + " via " + this.engine.name);
     try {
-      let lists = await this.engine.run();
       let results = [];
-      console.info("thers're " + lists.length + " url")
-      for (let i in lists) {
+      let list = await this.fetchUrlList();
+      for (let i in list) {
         try {
           if (this.stopflag) {
-            console.log("Fetching Interrupted [fetcher_news_via_search_engine] Current Progress: " + i + " of" + lists.length);
+            console.log("Fetching Interrupted [fetcher_news_via_search_engine] Current Progress: " + i + " of" + list.length);
             this.stopflag = false;
             break;
           }
-          this.updateStartURL(lists[i]['link-href']);
-          let result = await super.run();
-          //extract the first Result
-          result = result[0];
-          result['link-href'] = lists[i]['link-href'];
+          let result = await this.fetchResultByUrl(list[i]['link-href'])
           results.push(result);
         } catch (error) {
           console.error("Error Occured when fetching " + list[i]['link-href']);
