@@ -1,4 +1,4 @@
-const fetcher = require('./fetcher_news_common');
+const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_mmgpmedia extends fetcher {
   constructor(delay, pageLoaddelay) {
@@ -6,23 +6,9 @@ class news_mmgpmedia extends fetcher {
         "_id": "news_mmgpmedia",
         "startUrl": [],
         "selectors": [{
-          "id": "ele",
-          "type": "SelectorElement",
-          "parentSelectors": ["_root"],
-          "selector": "div.result-item",
-          "multiple": true,
-          "delay": 0
-        }, {
-          "id": "link",
-          "type": "SelectorLink",
-          "parentSelectors": ["ele"],
-          "selector": "a",
-          "multiple": false,
-          "delay": 0
-        }, {
           "id": "title",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": "h1",
           "multiple": false,
           "regex": "",
@@ -30,7 +16,7 @@ class news_mmgpmedia extends fetcher {
         }, {
           "id": "date",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": "time",
           "multiple": false,
           "regex": "",
@@ -38,7 +24,7 @@ class news_mmgpmedia extends fetcher {
         }, {
           "id": "content",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": "section[itemprop='articleBody']",
           "multiple": true,
           "regex": "",
@@ -48,15 +34,11 @@ class news_mmgpmedia extends fetcher {
       delay,
       pageLoaddelay,
       'news_mmgpmedia',
-      'MM'
+      'MM',
+      'www.mmgpmedia.com',
+      'duckduckgo'
     );
   }
-  /**
-   * 
-   * @param {String} keyword 
-   */
-  setKeyword(keyword) {
-    this.updateStartURL("http://www.mmgpmedia.com/search?searchword=" + encodeURI(keyword) + "&ordering=newest&searchphrase=all&limit=0")
-  }
+
 }
 module.exports = news_mmgpmedia;

@@ -54,10 +54,13 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     try {
       this.updateStartURL(url);
       let result = await super.run();
+      if(!result) {
+        return [];
+      }
       //extract the first Result
       result = result[0];
       result['link-href'] = url;
-      debug("%O ", result);
+      debug("fetchresultbyurl %O ", result);
       return result;
     } catch (error) {
       console.error("Occured Error when fetching result via search engine " + url);
