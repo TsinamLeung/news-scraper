@@ -14,6 +14,10 @@ const db = Datastore(adapter);
 // initialized lowdb
 if (!db.has('news_data').value()) {
   db.set('news_data', []).write();
+} else {
+  db.unset('news_data')
+    .write();
+  db.set('news_data', []).write();
 }
 
 function placeStopFlag() {
