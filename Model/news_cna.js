@@ -1,4 +1,4 @@
-const fetcher = require("./fetcher_news_common");
+const fetcher = require("./fetcher_news_via_search_engine");
 
 class news_cna extends fetcher {
   constructor(delay, pageLoaddelay) {
@@ -6,39 +6,9 @@ class news_cna extends fetcher {
         "_id": "cna",
         "startUrl": [],
         "selectors": [{
-          "id": "each",
-          "type": "SelectorElement",
-          "parentSelectors": ["_root"],
-          "selector": ".mainList li",
-          "multiple": true,
-          "delay": 0
-        }, {
-          "id": "title_site",
-          "type": "SelectorText",
-          "parentSelectors": ["each"],
-          "selector": "h2",
-          "multiple": false,
-          "regex": "",
-          "delay": 0
-        }, {
-          "id": "date_site",
-          "type": "SelectorText",
-          "parentSelectors": ["each"],
-          "selector": "div",
-          "multiple": false,
-          "regex": "",
-          "delay": 0
-        }, {
-          "id": "detail",
-          "type": "SelectorLink",
-          "parentSelectors": ["each"],
-          "selector": "a",
-          "multiple": false,
-          "delay": 0
-        }, {
           "id": "title",
           "type": "SelectorText",
-          "parentSelectors": ["detail"],
+          "parentSelectors": ["_root"],
           "selector": "h1 span",
           "multiple": false,
           "regex": "",
@@ -46,7 +16,7 @@ class news_cna extends fetcher {
         }, {
           "id": "date",
           "type": "SelectorText",
-          "parentSelectors": ["detail"],
+          "parentSelectors": ["_root"],
           "selector": ".updatetime span",
           "multiple": false,
           "regex": "",
@@ -54,7 +24,7 @@ class news_cna extends fetcher {
         }, {
           "id": "content",
           "type": "SelectorText",
-          "parentSelectors": ["detail"],
+          "parentSelectors": ["_root"],
           "selector": "div.paragraph ",
           "multiple": false,
           "regex": "",
@@ -64,10 +34,9 @@ class news_cna extends fetcher {
       delay,
       pageLoaddelay,
       'news_cna',
-      'TW')
-  }
-  setKeyword(keyword) {
-    this.updateStartURL("https://www.cna.com.tw/search/hysearchws.aspx?q=" + encodeURI(keyword));
+      'TW',
+      'www.cna.com.tw',
+      'duckduckgo')
   }
 }
 module.exports = news_cna;
