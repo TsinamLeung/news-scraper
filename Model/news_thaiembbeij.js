@@ -1,4 +1,4 @@
-const fetcher = require('./fetcher_news_common')
+const fetcher = require('./fetcher_news_via_search_engine')
 
 class news_thaiembbeij extends fetcher {
   constructor(delay, pageLoaddelay) {
@@ -6,30 +6,9 @@ class news_thaiembbeij extends fetcher {
         "_id": "news_thaiembbeij",
         "startUrl": [],
         "selectors": [{
-          "id": "each",
-          "type": "SelectorElement",
-          "parentSelectors": ["_root", "nxt"],
-          "selector": "div.elementor-post__text",
-          "multiple": true,
-          "delay": 0
-        }, {
-          "id": "link",
-          "type": "SelectorLink",
-          "parentSelectors": ["each"],
-          "selector": "a",
-          "multiple": false,
-          "delay": 0
-        }, {
-          "id": "nxt",
-          "type": "SelectorLink",
-          "parentSelectors": ["_root", "nxt"],
-          "selector": "a.next",
-          "multiple": true,
-          "delay": 0
-        }, {
           "id": "title",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": "h1",
           "multiple": false,
           "regex": "",
@@ -37,7 +16,7 @@ class news_thaiembbeij extends fetcher {
         }, {
           "id": "date",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": "span.elementor-post-info__item--type-date",
           "multiple": false,
           "regex": "",
@@ -45,7 +24,7 @@ class news_thaiembbeij extends fetcher {
         }, {
           "id": "content",
           "type": "SelectorText",
-          "parentSelectors": ["link"],
+          "parentSelectors": ["_root"],
           "selector": ".elementor-element-7f15827 div",
           "multiple": false,
           "regex": "",
@@ -55,10 +34,10 @@ class news_thaiembbeij extends fetcher {
       delay,
       pageLoaddelay,
       'news_thaiembbeij',
-      'TH')
+      'TH',
+      'thaiembbeij.org/cn',
+      'duckduckgo')
   }
-  setKeyword(keyword) {
-    this.updateStartURL("https://thaiembbeij.org/?s=" + encodeURI(keyword));
-  }
+
 }
 module.exports = news_thaiembbeij;

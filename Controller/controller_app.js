@@ -11,7 +11,7 @@ function placeStopFlag() {
 function listAllSource() {
   try {
     let results = fs.readdirSync(__dirname + '/../Model/');
-    list = results.filter(function (value, index, array) {
+    let list = results.filter(function (value, index, array) {
       return value.match(/^news_/g);
     });
     return list;
@@ -53,7 +53,7 @@ async function fetchNews(keyword, name, delay, pageLoaddelay) {
 async function fetchAllNewsThenOutput(keyword, delay, pageLoaddelay) {
   let fetcher_list = listAllSource();
   let results = [];
-  for (i in fetcher_list) {
+  for (let i in fetcher_list) {
     let result = await fetchNews(keyword, fetcher_list[i], delay, pageLoaddelay);
     results = results.concat(result);
     if (this.stopFlag) {
