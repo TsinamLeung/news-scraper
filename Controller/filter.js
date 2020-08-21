@@ -143,10 +143,13 @@ function parseDate(result, name) {
   }
   switch (name) {
     case 'news_thaiembbeij':
+      console.log(date)
+      "".
+      date = date.trim('\t');
+      date = date.trim('\b');
+      date = date.trim('\n');
       date = date.replace(',', ' ');
-      date = date.replace(/ +/, ' ');
-      date = date.replace('\b', '');
-      date = date.replace('\t', '');
+      date = date.replace(/ {2,10}/, ' ');
       date = date.split(' ');
       let thaiTranslated =  mNameThai[date[0]];
       if(!(!thaiTranslated)) {
@@ -189,7 +192,6 @@ function parseDate(result, name) {
   try {
     let extract = date.match(reg)[0];
     debug("date after processing %O " + extract);
-    console.log(extract);
     result['date'] = moment(extract, ['MMDDYYYY', 'YYYYMMDD', "DDMMYYYY"]).format('L');
   } catch (error) {
     console.error('Error Occured When parsing date');
