@@ -5,7 +5,6 @@ const csv = require('./controller_csv');
 
 function placeStopFlag() {
   this.stopFlag = true;
-  
 }
 
 function listAllSource() {
@@ -18,6 +17,34 @@ function listAllSource() {
   } catch (error) {
     console.error(error);
   }
+}
+async function fetchUrlList(keyword, newsName) {
+  let newsFetcher = require('../Model/' + newsName);
+  let fetcher = new newsFetcher(20,500);
+  fetcher.setKeyword(keyword);
+  return await fetcher.fetchUrlList();
+}
+async function fetcherSingleResultByUrl(url,newsName) {
+  let newsFetcher = require('../Model/' + newsName);
+  let fetcher = new newsFetcher(20,20);
+  let rawData = fetcher.fetchResultByUrl(url);
+  let results = [];
+  rawData = rawData.filter(function (value, _index, _array) {
+    return parser.nullVerify(value, fetcher.name);
+  });
+  rawData.forEach(function (value, _index, _arr) {
+    parser.parseDate(value, fetcher.name);
+    parser.parseContent(value, fetcher.name);
+    results.push({
+      title: parser.getTitle(value, fetcher.name),
+      date: parser.getDate(value, fetcher.name),
+      content: parser.getContent(value, fetcher.name),
+      name: fetcher.name,
+      locale: fetcher.locale,
+      url: parser.getUrl(value, fetcher.name)
+    });
+  });
+  return results;
 }
 
 async function fetchNews(keyword, name, delay, pageLoaddelay) {
@@ -78,7 +105,8 @@ function turnOnResultFeedback() {
 function turnOffDebugMsg() {
   debug.disable();
 }
-
+exports.fetcherSingleResultByUrl = fetcherSingleResultByUrl;
+exports.fetchUrlList = fetchUrlList;
 exports.listAllNews = listAllSource;
 exports.fetchNews = fetchNews;
 exports.fetchAllNews = fetchAllNewsThenOutput;

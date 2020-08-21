@@ -44,10 +44,10 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
       let urls = await this.engine.run();
       console.info("there're " + urls.length + " url");
       return urls;
-
     } catch (error) {
       console.error("Occured Error when fetching urls");
       console.error(error);
+      return [];
     }
   }
   async fetchResultByUrl(url) {
