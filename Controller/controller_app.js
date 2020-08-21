@@ -12,7 +12,7 @@ const adapter = new FileSync('db/db.json');
 const db = Datastore(adapter);
 
 // initialized lowdb
-if(!db.has('news_data').value()) {
+if (!db.has('news_data').value()) {
   db.set('news_data', []).write();
 }
 
@@ -33,31 +33,31 @@ function listAllSource() {
 }
 async function fetchUrlList(keyword, newsName) {
   let newsFetcher = require('../Model/' + newsName);
-  let fetcher = new newsFetcher(20,500);
+  let fetcher = new newsFetcher(20, 500);
   fetcher.setKeyword(keyword);
-  return await fetcher.fetchUrlList();
-}
-async function fetcherSingleResultByUrl(url,newsName) {
-  let newsFetcher = require('../Model/' + newsName);
-  let fetcher = new newsFetcher(20,20);
-  let rawData = fetcher.fetchResultByUrl(url);
-  let results = [];
-  rawData = rawData.filter(function (value, _index, _array) {
-    return parser.nullVerify(value, fetcher.name);
-  });
-  rawData.forEach(function (value, _index, _arr) {
-    parser.parseDate(value, fetcher.name);
-    parser.parseContent(value, fetcher.name);
-    results.push({
-      title: parser.getTitle(value, fetcher.name),
-      date: parser.getDate(value, fetcher.name),
-      content: parser.getContent(value, fetcher.name),
-      name: fetcher.name,
-      locale: fetcher.locale,
-      url: parser.getUrl(value, fetcher.name)
-    });
-  });
+  let results = await fetcher.fetchUrlList();
   return results;
+}
+async function fetcherSingleResultByUrl(url, newsName) {
+  let newsFetcher = require('../Model/' + newsName);
+  let fetcher = new newsFetcher(20, 20);
+  let rawData = await fetcher.fetchResultByUrl(url);
+
+  if (!parser.nullVerify(rawData, fetcher.name)) {
+    return [];
+  }
+
+  parser.parseDate(rawData, fetcher.name);
+  parser.parseContent(rawData, fetcher.name);
+  let result = {
+    title: parser.getTitle(rawData, fetcher.name),
+    date: parser.getDate(rawData, fetcher.name),
+    content: parser.getContent(rawData, fetcher.name),
+    name: fetcher.name,
+    locale: fetcher.locale,
+    url: parser.getUrl(rawData, fetcher.name)
+  };
+  return result;
 }
 
 async function fetchNews(keyword, name, delay, pageLoaddelay) {
