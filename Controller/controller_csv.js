@@ -15,8 +15,8 @@ async function outputCSV(data, filename) {
       console.error(err);
       return;
     }
-    fs.writeFileSync('../output/' + filename + '.csv', csv, function (err) {
-      console.error(err);
+    fs.writeFileSync('../output/' + filename + '.csv', csv, function (error) {
+      console.error(error);
     })
   })
 }

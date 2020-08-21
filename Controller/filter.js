@@ -83,6 +83,11 @@ function nullVerify(result, name) {
 
 function parseDate(result, name) {
   let date = getDate(result, name);
+  if(!date) {
+    return;
+  }
+  date = date.trim('\t');
+  date = date.trim('\n');
   let reg = /.*/g;
   debug("date raw %s", date);
   const mNameThai = {
@@ -141,7 +146,23 @@ function parseDate(result, name) {
     "November": '11',
     "Desember": '12'
   }
+  const mNameEn = {
+    "January": '01',
+    "February": '02',
+    "March": '03',
+    "April": '04',
+    "May": '05',
+    "June": '06',
+    "July": '07',
+    "August": '08',
+    "September": '09',
+    "October": '10',
+    "November": '11',
+    "December": '12'
+  }
   switch (name) {
+    case 'news_mmgpmedia':
+      break;
     case 'news_thaiembbeij':
       console.log(date)
       "".
