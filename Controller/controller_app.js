@@ -35,9 +35,17 @@ function listAllSource() {
     console.error(error);
   }
 }
-async function fetchUrlList(keyword, newsName) {
+/**
+ * 
+ * @param {string} keyword 
+ * @param {string} newsName 
+ * @param {string} options 
+ * options a json ``{timeLimit :'any' }`` timeLimit could be ``week`` ``day`` ``month`` ``year``
+ */
+async function fetchUrlList(keyword, newsName, options={timeLimit:'any'}) {
   let newsFetcher = require('../Model/' + newsName);
   let fetcher = new newsFetcher(20, 500);
+  fetcher.setOptions(options);
   fetcher.setKeyword(keyword);
   let results = await fetcher.fetchUrlList();
   return results;

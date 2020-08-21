@@ -28,13 +28,17 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     }
     this.stopflag = false;
   }
+  setOptions(options) {
+    this.options = options;
+    this.engine.setSite(this.site, this.keyword , options);
+  }
   /**
    * 
    * @param {String} keyword 
    */
   setKeyword(keyword) {
     this.keyword = keyword;
-    this.engine.setSite(this.site, keyword);
+    this.engine.setSite(this.site, keyword , this.options);
   }
   async fetchUrlList() {
     if (this.keyword == '' || this.keyword == undefined) {

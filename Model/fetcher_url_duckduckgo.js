@@ -55,8 +55,30 @@ class fetcher_url_duckduckgo extends fetcher_common {
    * @param {string} siteurl 
    * @param {string} keyword 
    */
-  setSite(siteurl, keyword) {
-    this.updateStartURL("https://duckduckgo.com/?q=" + encodeURI('site:') + encodeURI(siteurl) + "+" + encodeURI(keyword));
+  setSite(siteurl, keyword, options) {
+    if (!options) {
+      this.updateStartURL("https://duckduckgo.com/?q=" + encodeURI('site:') + encodeURI(siteurl) + "+" + encodeURI(keyword));
+    } else {
+      let timeOption = options['timeLimit'];
+      switch (timeOption) {
+        case 'year':
+          timeOption = '&df=y';
+          break;
+        case 'day':
+          timeOption = '&df=d';
+          break;
+        case 'week':
+          timeOption = '&df=w';
+          break;
+        case 'month':
+          timeOption = '&df=m';
+          break;
+        default:
+          timeOption = '';
+          break;
+      }
+      this.updateStartURL("https://duckduckgo.com/?q=" + encodeURI('site:') + encodeURI(siteurl) + "+" + encodeURI(keyword) + timeOption);
+    }
   }
 }
 module.exports = fetcher_url_duckduckgo;
