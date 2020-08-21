@@ -1,6 +1,5 @@
 const fetcher_news_common = require('./fetcher_news_common');
 const ddg = require("./fetcher_url_duckduckgo");
-const { db } = require('../Controller/controller_app')
 const {
   debug
 } = require('console');
@@ -62,10 +61,6 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
       result = result[0];
       result['link-href'] = url;
       debug("fetchresultbyurl %O ", result);
-      // push into db
-      db.get('news_data')
-        .push(result)
-        .write();
       return result;
     } catch (error) {
       console.error("Occured Error when fetching result via search engine " + url);

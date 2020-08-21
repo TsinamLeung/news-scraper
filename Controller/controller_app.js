@@ -61,6 +61,11 @@ async function fetcherSingleResultByUrl(url, newsName) {
     locale: fetcher.locale,
     url: parser.getUrl(rawData, fetcher.name)
   };
+  
+  // push into db
+  db.get('news_data')
+    .push(result)
+    .write();
   return result;
 }
 
