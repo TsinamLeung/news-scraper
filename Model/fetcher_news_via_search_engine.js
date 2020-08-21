@@ -43,7 +43,6 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
       let results = [];
       console.info("thers're " + lists.length + " url")
       for (let i in lists) {
-        if (i > 1) break;
         try {
           if (this.stopflag) {
             console.log("Fetching Interrupted [fetcher_news_via_search_engine] Current Progress: " + i + " of" + lists.length);
