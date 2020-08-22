@@ -55,8 +55,8 @@ router.get('/get/urlLists', async (ctx, next) => {
     return;
   }
   console.log("get Url list of " + name);
-  let lists = await appController.fetchUrlList(args['keyword'], args['news'], {
-    timeLimit: args['timeLimit']
+  let lists = await appController.fetchUrlList(args['keyword'], args['news'].toLowerCase(), {
+    timeLimit: args['timeLimit'].toLowerCase()
   });
 
   ctx.response.body = JSON.stringify(lists);
