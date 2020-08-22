@@ -135,7 +135,7 @@ function turnOnResultFeedback() {
 function turnOffDebugMsg() {
   debug.disable();
 }
-exports.fetcherSingleResultByUrl = fetcherSingleResultByUrl;
+exports.fetchSingleResultByUrl = fetchSingleResultByUrl;
 exports.fetchUrlList = fetchUrlList;
 exports.listAllNews = listAllSource;
 exports.fetchNews = fetchNews;
