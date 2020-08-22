@@ -34,14 +34,49 @@ router.get('/dispatch',
       console.log("Fetcher request Recived " + args['fetcher'])
       if (args['fetcher'] == 'all') {
         appController.fetchAllNews(args['keyword'], args['delay'], args['pageLoadDelay'])
-      } else if(!(!args['fetcher'])){
+      } else if (!(!args['fetcher'])) {
         appController.fetchNews(args['keyword'], args['fetcher'], args['delay'], args['pageLoadDelay'])
       }
     }
   });
 
+router.get('/get/urlLists', async (ctx, next) => {
+  ctx.type = 'application/json'
+  let args = ctx.request.query;
+  if (!args['timeLimit']) args['timeLimit'] = 'any';
+  if (!args['keyword']) {
+    ctx.response.body = '[]';
+    console.error('no Keyword!')
+    return;
+  }
+  if (!args['news']) {
+    ctx.response.body = '[]';
+    console.error('No news name !');
+    return;
+  }
+  console.log("get Url list of " + name);
+  let lists = await appController.fetchUrlList(args['keyword'], args['news'], {
+    timeLimit: args['timeLimit']
+  });
+
+  ctx.response.body = JSON.stringify(lists);
+});
+
+/**
+ * post request
+ * an json
+ * {url: string,newsName: 'news_aNews.js'}
+ */
+router.post('/post/fetchJob', async (ctx, next) => {
+  let req = ctx.request.body;
+  ctx.response.type = 'application/json'
+  req = JSON.parse(req);
+  appController.fetcherSingleResultByUrl(req['url'],req['newsName']);
+  ctx.response.body = "{status: '" + req['url'] + " dispatched to " + req['newsName'] + "'}";
+});
+
 router.get('/function/:name', async (ctx, next) => {
-  ctx.type = 'javascript/text'
+  ctx.type = 'application/json'
   let name = ctx.params.name;
   console.log("Calling Function " + name);
   ctx.response.body = appController[name]();

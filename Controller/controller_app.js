@@ -50,7 +50,7 @@ async function fetchUrlList(keyword, newsName, options={timeLimit:'any'}) {
   let results = await fetcher.fetchUrlList();
   return results;
 }
-async function fetcherSingleResultByUrl(url, newsName) {
+async function fetchSingleResultByUrl(url, newsName) {
   let newsFetcher = require('../Model/' + newsName);
   let fetcher = new newsFetcher(20, 20);
   let rawData = await fetcher.fetchResultByUrl(url);
