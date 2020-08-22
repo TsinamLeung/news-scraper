@@ -73,7 +73,8 @@ async function fetchSingleResultByUrl(url, newsName) {
     content: parser.getContent(rawData, fetcher.name),
     name: fetcher.name,
     locale: fetcher.locale,
-    url: parser.getUrl(rawData, fetcher.name)
+    url: parser.getUrl(rawData, fetcher.name),
+    description: fetcher.description
   };
   
   // push into db
