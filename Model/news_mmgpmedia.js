@@ -38,6 +38,7 @@ class news_mmgpmedia extends fetcher {
       'www.mmgpmedia.com',
       'duckduckgo'
     );
+    this.description = '金鳳凰網/mmgpmedia'
   }
 
 }

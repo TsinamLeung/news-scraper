@@ -38,6 +38,7 @@ class news_govhk extends fetcher {
       'HK',
       'www.news.gov.hk/chi',
       'duckduckgo')
+      this.description = '香港政府網/Gov HK'
   }
 }
 module.exports = news_govhk;

@@ -38,6 +38,7 @@ class news_udnbkk extends fetcher {
       'TH',
       'www.udnbkk.com',
       'duckduckgo');
+      this.description ='泰國世界日報/thai udnbkk'
   }
 
 }

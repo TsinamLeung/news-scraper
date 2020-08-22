@@ -37,6 +37,7 @@ class news_khmer extends fetcher {
       'KH',
       'khmerdaily.info',
       'duckduckgo');
+      this.description = '高棉日報/khmerdaily'
   }
 }
 module.exports = news_khmer;

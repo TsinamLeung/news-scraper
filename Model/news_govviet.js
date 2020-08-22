@@ -37,6 +37,7 @@ class news_govviet extends fetcher {
       'VN',
       'cn.news.chinhphu.vn/Home',
       'duckduckgo');
+      this.description = '越南政府網/Gov Viet'
   }
 }
 module.exports = news_govviet;

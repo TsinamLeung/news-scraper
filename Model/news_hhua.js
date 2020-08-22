@@ -37,6 +37,7 @@ class news_hhua extends fetcher {
       'ID',
       'koran.harianinhuaonline.com',
       'duckduckgo');
+      this.description = '印華日日報/Harian InHua'
     }
     
   }

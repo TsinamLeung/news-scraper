@@ -37,6 +37,7 @@ class news_cctime extends fetcher {
     'KH',
     'cc-times.com/posts',
     'duckduckgo');
+    this.description = "柬中時報/cc-times"
   }
 }
 module.exports = news_cctime;

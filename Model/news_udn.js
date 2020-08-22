@@ -39,6 +39,7 @@ class news_udn extends fetcher {
       'TW',
       'udn.com',
       'duckduckgo');
+      this.description = '聯合新聞網/udn'
   }
 }
 module.exports = news_udn;

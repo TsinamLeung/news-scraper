@@ -37,6 +37,7 @@ class news_cna extends fetcher {
       'TW',
       'www.cna.com.tw',
       'duckduckgo')
+      this.description = '中央社/CNA'
   }
 }
 module.exports = news_cna;

@@ -37,6 +37,7 @@ class news_01 extends fetcher {
       'HK',
       'www.hk01.com',
       'duckduckgo');
+      this.description = '香港01/Hongkong 01'
   }
 }
 module.exports = news_01;

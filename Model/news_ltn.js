@@ -38,6 +38,7 @@ class news_ltn extends fetcher {
       'TW',
       'news.ltn.com.tw',
       'duckduckgo');
+      this.description = '自由時報/news ltn'
   }
 
 }

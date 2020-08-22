@@ -69,6 +69,7 @@ class news_sanwah extends fetcher {
       pageLoaddelay,
       'news_xinhua',
       'CN')
+      this.updateStartURL = '新華網/news xinhua'
   }
   setKeyword(keyword) {
     this.updateStartURL("http://so.news.cn/#search/0/" + encodeURI(keyword) + "/1/")

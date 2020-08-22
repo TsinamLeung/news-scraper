@@ -37,6 +37,7 @@ class news_apple_daily extends fetcher {
       'HK',
       "hk.appledaily.com",
       'duckduckgo');
+      this.description = '蘋果日報/Apple Daily'
   }
 
 }

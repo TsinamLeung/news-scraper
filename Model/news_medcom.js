@@ -39,6 +39,7 @@ class news_medcom extends fetcher {
       'ID',
       'www.medcom.id/cn',
       'duckduckgo');
+      this.description = 'medcom'
   }
 }
 module.exports = news_medcom;

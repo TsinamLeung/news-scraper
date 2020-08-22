@@ -39,6 +39,7 @@ class news_shinmin extends fetcher {
       'SG',
       'www.shinmin.sg',
       'duckduckgo');
+      this.description = '新民日報/news shinmin'
   }
 }
 module.exports = news_shinmin;

@@ -37,6 +37,7 @@ class news_zaobao extends fetcher_ddg {
       'SG',
       'www.zaobao.com.sg',
       'duckduckgo')
+      this.description = '聯合早報/lianhe zaobao'
   }
 }
 module.exports = news_zaobao;

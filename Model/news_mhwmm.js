@@ -38,6 +38,7 @@ class news_mhwmm extends fetcher {
       'MM',
       'www.mhwmm.com/Ch/NewsView.asp',
       'duckduckgo');
+      this.description = '缅华网/mhwmm'
   };
 }
 module.exports = news_mhwmm;

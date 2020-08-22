@@ -37,6 +37,7 @@ class news_chinapress extends fetcher {
       'MY',
       'www.chinapress.com.my/',
       'duckduckgo');
+      this.description = '中國報/China Press'
   }
 }
 module.exports = news_chinapress;

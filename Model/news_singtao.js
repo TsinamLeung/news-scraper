@@ -38,6 +38,7 @@ class news_singtao extends fetcher {
       'HK',
       'std.stheadline.com article',
       'duckduckgo');
+      this.description = '星島日報/singtao daily'
   }
 }
 module.exports = news_singtao;

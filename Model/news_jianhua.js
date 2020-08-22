@@ -37,6 +37,7 @@ class news_jianhua extends fetcher {
     'KH',
     'jianhuadaily.com',
     'duckduckgo');
+    this.description = '柬華日報/jianhua_daily'
   }
   
 }

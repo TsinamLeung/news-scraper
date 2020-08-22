@@ -31,6 +31,7 @@ class news_thaicn extends fetcher {
       'TH',
       'www.thaicn.net/news',
       'duckduckgo');
+      this.description = '泰華網/thaicn'
     }
   }
   module.exports = news_thaicn;

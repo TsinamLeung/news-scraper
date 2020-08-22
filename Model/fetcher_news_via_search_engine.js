@@ -18,6 +18,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     super(sitemap, delay, pageLoaddedlay, name);
     this.locale = locale;
     this.site = site;
+    this.description = ''
     switch (search_engine) {
       case 'duckduckgo':
         this.engine = new ddg(20, 5000);

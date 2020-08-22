@@ -38,6 +38,7 @@ class news_thaizhonghua extends fetcher {
       'TH',
       'www.thaizhonghua.com',
       'duckduckgo');
+      this.description = '泰國中華網/thai china news'
   }
 }
 module.exports = news_thaizhonghua;

@@ -38,6 +38,7 @@ class news_vietnamplus extends fetcher {
       'VN',
       'zh.vietnamplus.vn',
       'duckduckgo');
+      this.description ='Vietnam Plus'
   }
 }
 module.exports = news_vietnamplus;

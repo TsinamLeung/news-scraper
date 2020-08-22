@@ -38,6 +38,7 @@ class news_people_cn extends fetcher {
       'CN',
       'people.com.cn/n1',
       'duckduckgo');
+      this.description = '人民網/people cn'
   }
 }
 module.exports = news_people_cn;

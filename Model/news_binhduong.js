@@ -38,6 +38,7 @@ class news_binhduong extends fetch {
       "baobinhduong.vn/cn/",
       "duckduckgo"
     );
+    this.description = '平陽報/binhduong News'
   }
 }
 

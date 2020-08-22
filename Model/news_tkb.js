@@ -38,6 +38,7 @@ class news_tkb extends fetcher {
       'HK',
       'www.takungpao.com.hk',
       'duckduckgo');
+      this.description = '大公報/takungpao'
   }
 }
 module.exports = news_tkb;

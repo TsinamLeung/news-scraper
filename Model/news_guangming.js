@@ -37,6 +37,7 @@ class news_guangming extends fetcher {
       'MY',
       'guangming.com.my',
       'duckduckgo');
+      this.description = '光明日報/Guangming'
   }
 
 }

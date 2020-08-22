@@ -7,7 +7,7 @@ const csv = require('./controller_csv');
 const Datastore = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 
-const adapter = new FileSync('db/db.json');
+const adapter = new FileSync('../db/db.json');
 
 const db = Datastore(adapter);
 
@@ -27,9 +27,15 @@ function placeStopFlag() {
 function listAllSource() {
   try {
     let results = fs.readdirSync(__dirname + '/../Model/');
-    let list = results.filter(function (value, index, array) {
+    let filelist = results.filter(function (value, index, array) {
       return value.match(/^news_/g);
     });
+    let list = [];
+    filelist.forEach(function(value,_index,_array) {
+      const F = require('../Model/' + value);
+      let fe = new F(0,0);
+      list.push({label: fe.locale + " " + fe.description,value: value})
+    })
     return list;
   } catch (error) {
     console.error(error);
@@ -146,3 +152,5 @@ exports.turnOnResultFeedback = turnOnResultFeedback;
 exports.placeStopFlag = placeStopFlag;
 exports.stopFlag = false;
 exports.db = db;
+turnOnDebugMsg();
+console.log(listAllSource());

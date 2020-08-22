@@ -38,6 +38,7 @@ class news_wanbao extends fetcher {
     'SG',
     'www.wanbao.com.sg',
     'duckduckgo');
+    this.description = '聯合晚報/lianhe wanbao'
   }
 }
 module.exports = news_wanbao;

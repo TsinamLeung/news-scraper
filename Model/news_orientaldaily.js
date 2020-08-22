@@ -38,6 +38,7 @@ class news_orientaldaily extends fetcher {
       'MY',
       'www.orientaldaily.com.my/news',
       'duckduckgo');
+      this.description ='東方日報/oriental daily'
   }
 
 }

@@ -39,6 +39,7 @@ class news_sggp extends fetcher {
       'VN',
       'cn.sggp.org.vn',
       'duckduckgo');
+      this.description = '西貢解放日報/saigon online'
   }
 }
 module.exports = news_sggp;

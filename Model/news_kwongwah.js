@@ -38,6 +38,7 @@ class news_kwongwah extends fetcher {
       'MY',
       'www.kwongwah.com.my',
       'duckduckgo');
+      this.description = '光華网/kwongwah'
   }
 }
 module.exports = news_kwongwah;
