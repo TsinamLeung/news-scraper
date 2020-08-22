@@ -7,7 +7,7 @@ const csv = require('./controller_csv');
 const Datastore = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 
-const adapter = new FileSync('../db/db.json');
+const adapter = new FileSync('db/db.json');
 
 const db = Datastore(adapter);
 
@@ -152,5 +152,3 @@ exports.turnOnResultFeedback = turnOnResultFeedback;
 exports.placeStopFlag = placeStopFlag;
 exports.stopFlag = false;
 exports.db = db;
-turnOnDebugMsg();
-console.log(listAllSource());
