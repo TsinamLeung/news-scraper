@@ -51,8 +51,12 @@ router.get('/dispatch',
       }
     }
   });
-
-router.get('/get/urlLists', async (ctx, next) => {
+router.get('/news', async (ctx, next) => {
+  ctx.type = 'application/json'
+  let args = ctx.request.query;
+  console.log(args);
+});
+router.get('/urlLists', async (ctx, next) => {
   ctx.type = 'application/json'
   let args = ctx.request.query;
   if (!args['timeLimit']) args['timeLimit'] = 'any';
@@ -79,11 +83,11 @@ router.get('/get/urlLists', async (ctx, next) => {
  * an json
  * {url: string,newsName: 'news_aNews.js'}
  */
-router.post('/post/fetchJob', async (ctx, next) => {
+router.post('/fetchJob', async (ctx, next) => {
   let req = ctx.request.body;
   ctx.response.type = 'application/json'
   req = JSON.parse(req);
-  appController.fetcherSingleResultByUrl(req['url'],req['newsName']);
+  appController.fetcherSingleResultByUrl(req['url'], req['newsName']);
   ctx.response.body = "{status: '" + req['url'] + " dispatched to " + req['newsName'] + "'}";
 });
 
