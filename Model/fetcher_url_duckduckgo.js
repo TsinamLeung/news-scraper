@@ -15,31 +15,24 @@ class fetcher_url_duckduckgo extends fetcher_common {
           "id": "more",
           "type": "SelectorElementClick",
           "parentSelectors": ["_root"],
-          "selector": "div.results",
-          "multiple": false,
+          "selector": "div.result__body",
+          "multiple": true,
           "delay": "500",
           "clickElementSelector": "a.result--more__btn",
           "clickType": "clickMore",
           "discardInitialElements": "do-not-discard",
-          "clickElementUniquenessType": "uniqueHTMLText"
-        }, {
-          "id": "ele",
-          "type": "SelectorElement",
-          "parentSelectors": ["more"],
-          "selector": "div.result__body",
-          "multiple": true,
-          "delay": 0
+          "clickElementUniquenessType": "uniqueHTML"
         }, {
           "id": "link",
           "type": "SelectorLink",
-          "parentSelectors": ["ele"],
+          "parentSelectors": ["more"],
           "selector": "a.result__a",
           "multiple": false,
           "delay": 0
         }, {
           "id": "snippet",
           "type": "SelectorText",
-          "parentSelectors": ["ele"],
+          "parentSelectors": ["more"],
           "selector": "div.result__snippet",
           "multiple": false,
           "regex": "",
