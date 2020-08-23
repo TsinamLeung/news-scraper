@@ -6,10 +6,14 @@ const csv = require('./controller_csv');
 // enable lowdb
 const Datastore = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
+const {
+  trace
+} = require('console');
 
 const adapter = new FileSync('db/db.json');
 
 const db = Datastore(adapter);
+let tracer = {};
 
 // initialized lowdb
 if (!db.has('news_data').value()) {
@@ -62,10 +66,15 @@ async function fetchUrlList(keyword, newsName, options = {
   return results;
 }
 async function fetchSingleResultByUrl(url, newsName) {
+  tracer[url] = 'running';
   let newsFetcher = require('../Model/' + newsName);
   let fetcher = new newsFetcher(20, 20);
   let rawData = await fetcher.fetchResultByUrl(url);
-  if (rawData.length === 0) return rawData;
+  if (rawData.length === 0) 
+  {
+    tracer[url] = 'failed'
+    return rawData;
+  }
   if (!parser.nullVerify(rawData, fetcher.name)) {
     return [];
   }
@@ -81,11 +90,11 @@ async function fetchSingleResultByUrl(url, newsName) {
     url: parser.getUrl(rawData, fetcher.name),
     description: fetcher.description
   };
-
   // push into db
   db.get('news_data')
     .push(result)
     .write();
+  tracer[url] = 'completed'
   return result;
 }
 
@@ -158,3 +167,4 @@ exports.turnOnResultFeedback = turnOnResultFeedback;
 exports.placeStopFlag = placeStopFlag;
 exports.stopFlag = false;
 exports.db = db;
+exports.tracer = tracer;

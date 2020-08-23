@@ -107,7 +107,7 @@ router.get('/urlLists', async (ctx, next) => {
   let args = ctx.request.query;
   if (!args['timeLimit']) args['timeLimit'] = 'any';
   if (!args['keyword']) {
-    ctx.response.body = '[]';
+    ctx.response.body = [];
     console.error('no Keyword!')
     return;
   }
@@ -116,12 +116,12 @@ router.get('/urlLists', async (ctx, next) => {
     console.error('No news name !');
     return;
   }
-  console.log("get Url list of " + args['news']);
-  let lists = await appController.fetchUrlList(args['keyword'], args['news'].toLowerCase(), {
-    timeLimit: args['timeLimit'].toLowerCase()
+  console.log("get Url list of " + args.news);
+  let lists = await appController.fetchUrlList(args.keyword, args.news.toLowerCase(), {
+    timeLimit: args.timeLimit.toLowerCase()
   });
 
-  ctx.response.body = JSON.stringify(lists);
+  ctx.response.body = lists;
 });
 
 /**
@@ -139,8 +139,29 @@ router.post('/fetchJob', async (ctx, next) => {
     return;
   }
   ctx.response.type = 'application/json'
-  ctx.response.body = "{status: '" + req['url'] + " dispatched to " + req['newsName'] + "'}";
-  appController.fetchSingleResultByUrl(req['url'], req['newsName']);
+  ctx.response.body = {
+    "status": req.url + "dispatched to " + req.newsName
+  };
+  appController.fetchSingleResultByUrl(req.url, req.newsName);
+});
+
+router.get('/statusJob', async (ctx) => {
+  console.log(ctx.request.query.url);
+  let url = ctx.request.query.url;
+  if (!url) {
+    ctx.response.status = 404;
+  } else {
+    let ret = appController.tracer[url];
+    if (!ret) {
+      ctx.response.status = 404;
+    } else {
+      ctx.response.status = 200;
+      ctx.response.body = ret;
+      if (appController.tracer[url] === 'completed') {
+        delete appController.tracer[url];
+      }
+    }
+  }
 });
 
 router.get('/function/:name', async (ctx, next) => {
