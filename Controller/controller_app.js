@@ -66,13 +66,16 @@ async function fetchUrlList(keyword, newsName, options = {
   return results;
 }
 async function fetchSingleResultByUrl(url, newsName) {
-  tracer[url] = 'running';
+  tracer[url] = {
+    status: 'running'
+  };
   let newsFetcher = require('../Model/' + newsName);
   let fetcher = new newsFetcher(20, 20);
   let rawData = await fetcher.fetchResultByUrl(url);
-  if (rawData.length === 0) 
-  {
-    tracer[url] = 'failed'
+  if (rawData.length === 0) {
+    tracer[url] = {
+      status: 'failed'
+    }
     return rawData;
   }
   if (!parser.nullVerify(rawData, fetcher.name)) {
@@ -94,7 +97,9 @@ async function fetchSingleResultByUrl(url, newsName) {
   db.get('news_data')
     .push(result)
     .write();
-  tracer[url] = 'completed'
+  tracer[url] = {
+    status: "completed"
+  }
   return result;
 }
 
