@@ -3,11 +3,23 @@ const Router = require('koa-router')
 const fs = require('fs')
 const path = require('path')
 const serve = require('koa-static');
+const logger = require('koa-logger');
 const appController = require('./Controller/controller_app');
 
 const port = 3000;
 const app = new Koa();
 const router = new Router();
+
+app.use(logger())
+// logger
+app.use(async (ctx, next) => {
+  const start = new Date()
+  await next()
+  // allow access
+  ctx.set('Access-Control-Allow-Origin', '*')
+  const ms = new Date() - start
+  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+})
 
 appController.outputPath = function () {
   return {
