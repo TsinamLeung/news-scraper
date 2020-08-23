@@ -31,7 +31,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
   }
   setOptions(options) {
     this.options = options;
-    this.engine.setSite(this.site, this.keyword , options);
+    this.engine.setSite(this.site, this.keyword, options);
   }
   /**
    * 
@@ -39,7 +39,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
    */
   setKeyword(keyword) {
     this.keyword = keyword;
-    this.engine.setSite(this.site, keyword , this.options);
+    this.engine.setSite(this.site, keyword, this.options);
   }
   async fetchUrlList() {
     if (this.keyword == '' || this.keyword == undefined) {
@@ -59,14 +59,15 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     try {
       this.updateStartURL(url);
       let result = await super.run();
-      if(!result) {
-        return [];
+      if (result.length === 0) {
+        return result;
+      } else {
+        //extract the first Result
+        result = result[0];
+        result['link-href'] = url;
+        debug("fetchresultbyurl %O ", result);
+        return result;
       }
-      //extract the first Result
-      result = result[0];
-      result['link-href'] = url;
-      debug("fetchresultbyurl %O ", result);
-      return result;
     } catch (error) {
       console.error("Occured Error when fetching result via search engine " + url);
       console.error(error);

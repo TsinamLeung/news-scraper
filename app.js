@@ -4,7 +4,11 @@ const fs = require('fs')
 const path = require('path')
 const serve = require('koa-static');
 const logger = require('koa-logger');
+const bodyParser = require('koa-bodyparser');
 const appController = require('./Controller/controller_app');
+const {
+  getContent
+} = require('./Controller/filter');
 
 const port = 3000;
 const app = new Koa();
@@ -51,11 +55,53 @@ router.get('/dispatch',
       }
     }
   });
-router.get('/news', async (ctx, next) => {
+router.get('/newsData', async (ctx, next) => {
   ctx.type = 'application/json'
   let args = ctx.request.query;
-  console.log(args);
+  let qName = args.name;
+  let qTitle = args.title;
+  let qContent = args.content;
+  let qLocale = args.locale;
+  if (!(!qTitle)) {
+    qTitle = new RegExp(qTitle, "g");
+  }
+  if (!(!qContent)) {
+    qContent = new RegExp(qContent, "g")
+  }
+
+
+  let ret = appController.db.read()
+    .get('news_data')
+    .filter(function (element) {
+      let judgeName = false;
+      let judgeTitle = false;
+      let judgeContent = false;
+      let judgeLocale = false;
+      if (!qName) {
+        judgeName = true;
+      } else {
+        judgeName = element.name == qName;
+      }
+      if (!qTitle) {
+        judgeTitle = true;
+      } else {
+        judgeTitle = !(!element.title.match(qTitle));
+      }
+      if (!qContent) {
+        judgeContent = true;
+      } else {
+        judgeContent = !(!element.content.match(qContent));
+      }
+      if (!qLocale) {
+        judgeLocale = true;
+      } else {
+        judgeLocale = qLocale == element.locale;
+      }
+      return (judgeName && judgeTitle && judgeContent && judgeLocale)
+    }).value();
+  ctx.response.body = ret;
 });
+
 router.get('/urlLists', async (ctx, next) => {
   ctx.type = 'application/json'
   let args = ctx.request.query;
@@ -70,7 +116,7 @@ router.get('/urlLists', async (ctx, next) => {
     console.error('No news name !');
     return;
   }
-  console.log("get Url list of " + name);
+  console.log("get Url list of " + args['news']);
   let lists = await appController.fetchUrlList(args['keyword'], args['news'].toLowerCase(), {
     timeLimit: args['timeLimit'].toLowerCase()
   });
@@ -85,10 +131,16 @@ router.get('/urlLists', async (ctx, next) => {
  */
 router.post('/fetchJob', async (ctx, next) => {
   let req = ctx.request.body;
+  //koa-bodyParser parsed it to json
+  if (JSON.stringify(req) === '{}') {
+    ctx.response.body = JSON.stringify({
+      status: "Request Null Failed to Dispatch Job"
+    });
+    return;
+  }
   ctx.response.type = 'application/json'
-  req = JSON.parse(req);
-  appController.fetcherSingleResultByUrl(req['url'], req['newsName']);
   ctx.response.body = "{status: '" + req['url'] + " dispatched to " + req['newsName'] + "'}";
+  appController.fetchSingleResultByUrl(req['url'], req['newsName']);
 });
 
 router.get('/function/:name', async (ctx, next) => {
@@ -98,7 +150,8 @@ router.get('/function/:name', async (ctx, next) => {
   ctx.response.body = appController[name]();
 });
 
-app.use(serve('./static'))
+app.use(bodyParser());
+app.use(serve('./static'));
 app.use(router.routes());
 app.listen(port);
 console.log("Starting Server at Port: " + port);

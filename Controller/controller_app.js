@@ -31,10 +31,13 @@ function listAllSource() {
       return value.match(/^news_/g);
     });
     let list = [];
-    filelist.forEach(function(value,_index,_array) {
+    filelist.forEach(function (value, _index, _array) {
       const F = require('../Model/' + value);
-      let fe = new F(0,0);
-      list.push({label: fe.locale + " " + fe.description,value: value})
+      let fe = new F(0, 0);
+      list.push({
+        label: fe.locale + " " + fe.description,
+        value: value
+      })
     })
     return list;
   } catch (error) {
@@ -48,7 +51,9 @@ function listAllSource() {
  * @param {string} options 
  * options a json ``{timeLimit :'any' }`` timeLimit could be ``week`` ``day`` ``month`` ``year``
  */
-async function fetchUrlList(keyword, newsName, options={timeLimit:'any'}) {
+async function fetchUrlList(keyword, newsName, options = {
+  timeLimit: 'any'
+}) {
   let newsFetcher = require('../Model/' + newsName);
   let fetcher = new newsFetcher(20, 500);
   fetcher.setOptions(options);
@@ -60,7 +65,7 @@ async function fetchSingleResultByUrl(url, newsName) {
   let newsFetcher = require('../Model/' + newsName);
   let fetcher = new newsFetcher(20, 20);
   let rawData = await fetcher.fetchResultByUrl(url);
-
+  if (rawData.length === 0) return rawData;
   if (!parser.nullVerify(rawData, fetcher.name)) {
     return [];
   }
@@ -76,7 +81,7 @@ async function fetchSingleResultByUrl(url, newsName) {
     url: parser.getUrl(rawData, fetcher.name),
     description: fetcher.description
   };
-  
+
   // push into db
   db.get('news_data')
     .push(result)
