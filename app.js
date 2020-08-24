@@ -159,7 +159,7 @@ router.get('/statusJob', async (ctx) => {
     } else {
       ctx.response.status = 200;
       ctx.response.body = ret;
-      if (ret.status === 'completed') {
+      if (ret.status === 'completed' || ret.status === 'failed') {
         delete appController.tracer[url];
       }
     }

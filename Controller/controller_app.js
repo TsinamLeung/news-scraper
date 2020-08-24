@@ -69,19 +69,23 @@ async function fetchSingleResultByUrl(url, newsName) {
   tracer[url] = {
     status: 'running'
   };
-  let newsFetcher = require('../Model/' + newsName);
-  let fetcher = new newsFetcher(20, 20);
-  let rawData = await fetcher.fetchResultByUrl(url);
-  if (rawData.length === 0) {
-    tracer[url] = {
+  try {
+    let newsFetcher = require('../Model/' + newsName);
+    let fetcher = new newsFetcher(20, 20);
+    let rawData = await fetcher.fetchResultByUrl(url);
+    if (rawData.length === 0) {
+      tracer[url] = {
       status: 'failed'
     }
     return rawData;
   }
   if (!parser.nullVerify(rawData, fetcher.name)) {
+    tracer[url] = {
+      status: 'failed'
+    }
     return [];
   }
-
+  
   parser.parseDate(rawData, fetcher.name);
   parser.parseContent(rawData, fetcher.name);
   let result = {
@@ -93,10 +97,16 @@ async function fetchSingleResultByUrl(url, newsName) {
     url: parser.getUrl(rawData, fetcher.name),
     description: fetcher.description
   };
+} catch (error) {
+  return [];
+  tracer[url] = {
+    status: 'failed'
+  }
+}
   // push into db
   db.get('news_data')
-    .push(result)
-    .write();
+  .push(result)
+  .write();
   tracer[url] = {
     status: "completed"
   }
