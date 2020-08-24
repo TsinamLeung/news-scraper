@@ -2,6 +2,7 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const fs = require('fs')
 const path = require('path')
+const cors = require('koa-cors')
 const serve = require('koa-static');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
@@ -13,7 +14,7 @@ const {
 const port = 3000;
 const app = new Koa();
 const router = new Router();
-
+app.use(cors())
 app.use(logger())
 // logger
 app.use(async (ctx, next) => {
@@ -131,6 +132,7 @@ router.get('/urlLists', async (ctx, next) => {
  */
 router.post('/fetchJob', async (ctx, next) => {
   let req = ctx.request.body;
+  console.log(ctx.request.body);
   //koa-bodyParser parsed it to json
   if (JSON.stringify(req) === '{}') {
     ctx.response.body = JSON.stringify({
@@ -171,6 +173,7 @@ router.get('/function/:name', async (ctx, next) => {
   ctx.response.body = appController[name]();
 });
 
+appController.turnOnDebugMsg()
 app.use(bodyParser());
 app.use(serve('./static'));
 app.use(router.routes());
