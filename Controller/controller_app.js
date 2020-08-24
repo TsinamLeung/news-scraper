@@ -97,20 +97,20 @@ async function fetchSingleResultByUrl(url, newsName) {
       url: parser.getUrl(rawData, fetcher.name),
       description: fetcher.description
     };
+    // push into db
+    db.get('news_data')
+      .push(result)
+      .write();
+    tracer[url] = {
+      status: "completed"
+    }
+    return result;
   } catch (error) {
-    return [];
     tracer[url] = {
       status: 'failed'
     }
+    return [];
   }
-  // push into db
-  db.get('news_data')
-    .push(result)
-    .write();
-  tracer[url] = {
-    status: "completed"
-  }
-  return result;
 }
 
 async function fetchNews(keyword, name, delay, pageLoaddelay) {
