@@ -75,38 +75,38 @@ async function fetchSingleResultByUrl(url, newsName) {
     let rawData = await fetcher.fetchResultByUrl(url);
     if (rawData.length === 0) {
       tracer[url] = {
-      status: 'failed'
+        status: 'failed'
+      }
+      return rawData;
     }
-    return rawData;
-  }
-  if (!parser.nullVerify(rawData, fetcher.name)) {
+    if (!parser.nullVerify(rawData, fetcher.name)) {
+      tracer[url] = {
+        status: 'failed'
+      }
+      return [];
+    }
+
+    parser.parseDate(rawData, fetcher.name);
+    parser.parseContent(rawData, fetcher.name);
+    let result = {
+      title: parser.getTitle(rawData, fetcher.name),
+      date: parser.getDate(rawData, fetcher.name),
+      content: parser.getContent(rawData, fetcher.name),
+      name: fetcher.name,
+      locale: fetcher.locale,
+      url: parser.getUrl(rawData, fetcher.name),
+      description: fetcher.description
+    };
+  } catch (error) {
+    return [];
     tracer[url] = {
       status: 'failed'
     }
-    return [];
   }
-  
-  parser.parseDate(rawData, fetcher.name);
-  parser.parseContent(rawData, fetcher.name);
-  let result = {
-    title: parser.getTitle(rawData, fetcher.name),
-    date: parser.getDate(rawData, fetcher.name),
-    content: parser.getContent(rawData, fetcher.name),
-    name: fetcher.name,
-    locale: fetcher.locale,
-    url: parser.getUrl(rawData, fetcher.name),
-    description: fetcher.description
-  };
-} catch (error) {
-  return [];
-  tracer[url] = {
-    status: 'failed'
-  }
-}
   // push into db
   db.get('news_data')
-  .push(result)
-  .write();
+    .push(result)
+    .write();
   tracer[url] = {
     status: "completed"
   }
