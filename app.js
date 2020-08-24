@@ -140,7 +140,7 @@ router.post('/fetchJob', async (ctx, next) => {
   }
   ctx.response.type = 'application/json'
   ctx.response.body = {
-    "status": req.url + "dispatched to " + req.newsName
+    status: req.url + "dispatched to " + req.newsName
   };
   appController.fetchSingleResultByUrl(req.url, req.newsName);
 });
