@@ -1,8 +1,6 @@
 const fetcher_news_common = require('./fetcher_news_common');
 const ddg = require("./fetcher_url_duckduckgo");
-const {
-  debug
-} = require('console');
+const debug = require('debug')('fetcher:index');
 class fetcher_news_via_search_engine extends fetcher_news_common {
   /**
    * 

@@ -11,7 +11,7 @@ const {
   getContent
 } = require('./Controller/filter');
 
-const port = 3000;
+const port = 80;
 const app = new Koa();
 const router = new Router();
 app.use(cors())
@@ -34,7 +34,7 @@ appController.outputPath = function () {
 
 router.get('/', async (ctx, next) => {
   ctx.type = 'text/html;charset=utf-8';
-  let htmlpath = path.join(__dirname, 'static', 'html', 'mainpage.html');
+  let htmlpath = path.join(__dirname, 'static', 'html', 'index.html');
   ctx.response.body = fs.readFileSync(htmlpath);
 });
 
@@ -132,7 +132,6 @@ router.get('/urlLists', async (ctx, next) => {
  */
 router.post('/fetchJob', async (ctx, next) => {
   let req = ctx.request.body;
-  console.log(ctx.request.body);
   //koa-bodyParser parsed it to json
   if (JSON.stringify(req) === '{}') {
     ctx.response.body = JSON.stringify({
