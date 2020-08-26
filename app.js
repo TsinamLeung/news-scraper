@@ -73,6 +73,7 @@ router.get('/newsData', async (ctx, next) => {
 
   let ret = appController.db.read()
     .get('news_data')
+    .uniqBy('url')
     .filter(function (element) {
       let judgeName = false;
       let judgeTitle = false;
