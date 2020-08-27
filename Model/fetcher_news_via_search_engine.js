@@ -1,5 +1,4 @@
 const fetcher_news_common = require('./fetcher_news_common');
-const ddg = require("./fetcher_url_duckduckgo");
 const debug = require('debug')('fetcher:index');
 class fetcher_news_via_search_engine extends fetcher_news_common {
   /**
@@ -12,15 +11,19 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
    * @param {String} site 
    * @param {String} search_engine 
    */
-  constructor(sitemap, delay, pageLoaddedlay, name, locale, site, search_engine) {
-    super(sitemap, delay, pageLoaddedlay, name);
-    this.locale = locale;
+  constructor(sitemap, delay, pageLoaddedlay, name, locale, site, search_engine = 'bing', browser = 'jsdom') {
+    super(sitemap, delay, pageLoaddedlay, name, locale, browser);
     this.site = site;
     this.description = ''
     switch (search_engine) {
       case 'duckduckgo':
+        const ddg = require("./fetcher_url_duckduckgo")
         this.engine = new ddg(20, 5000);
         break;
+      case 'bing':
+        const bing = require('./fetcher_url_bing')
+        this.engine = new bing(50, 3000)
+        break
       default:
         this.engine = undefined;
         break;
@@ -29,7 +32,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
   }
   setOptions(options) {
     this.options = options;
-    this.engine.setSite(this.site, this.keyword, options);
+    this.engine.setOptions(options);
   }
   /**
    * 
@@ -37,7 +40,8 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
    */
   setKeyword(keyword) {
     this.keyword = keyword;
-    this.engine.setSite(this.site, keyword, this.options);
+    this.engine.setSite(this.site);
+    this.engine.setQuery(keyword)
   }
   async fetchUrlList() {
     if (this.keyword == '' || this.keyword == undefined) {

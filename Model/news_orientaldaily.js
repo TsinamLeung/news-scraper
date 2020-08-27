@@ -2,7 +2,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 
 class news_orientaldaily extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_orientaldaily",
         "startUrl": [],
@@ -37,7 +37,8 @@ class news_orientaldaily extends fetcher {
       'news_orientaldaily',
       'MY',
       'www.orientaldaily.com.my/news',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description ='東方日報/oriental daily'
   }
 

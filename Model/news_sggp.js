@@ -3,7 +3,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_sggp extends fetcher {
 
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_sggp",
         "startUrl": [],
@@ -38,7 +38,8 @@ class news_sggp extends fetcher {
       'news_sggp',
       'VN',
       'cn.sggp.org.vn',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '西貢解放日報/saigon online'
   }
 }

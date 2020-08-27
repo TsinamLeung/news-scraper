@@ -2,7 +2,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 
 class news_wanbao extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
       "_id": "news_wanbao",
       "startUrl": [],
@@ -37,7 +37,8 @@ class news_wanbao extends fetcher {
     'news_wanbao',
     'SG',
     'www.wanbao.com.sg',
-    'duckduckgo');
+    engine,
+      'jsdom')
     this.description = '聯合晚報/lianhe wanbao'
   }
 }

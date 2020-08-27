@@ -9,18 +9,19 @@ class fetcher_common {
    * @param {number} pageLoaddedlay 
    * @param {String} name 
    */
-  constructor(sitemap, delay, pageLoaddedlay, name) {
+  constructor(sitemap, delay, pageLoaddedlay, name, browser='headless') {
     this.sitemap = sitemap;
     this.delay = delay;
     this.pageLoaddelay = pageLoaddedlay;
     this.name = name;
+    this.browser = browser
   }
   /**
    * 
-   * @param {String} url 
+   *  url 可是string 亦可 array 
    */
   updateStartURL(url) {
-    this.sitemap["startUrl"] = url;
+    this.sitemap.startUrl = url;
   }
   async run() {
     if (this.sitemap["startUrl"] == []) {
@@ -31,7 +32,7 @@ class fetcher_common {
       let results = await Scraper(this.sitemap, {
         delay: this.delay,
         pageLoaddelay: this.pageLoaddelay,
-        browser: 'headless'
+        browser: this.browser
       });
       debug("Fetcher_common result: %O", results);
       return results;

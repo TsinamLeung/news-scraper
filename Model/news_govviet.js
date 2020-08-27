@@ -1,7 +1,7 @@
 const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_govviet extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_chinhphu",
         "startUrl": [],
@@ -36,7 +36,8 @@ class news_govviet extends fetcher {
       'news_govviet',
       'VN',
       'cn.news.chinhphu.vn/Home',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '越南政府網/Gov Viet'
   }
 }

@@ -2,7 +2,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 
 class news_ltn extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_ltn",
         "startUrl": [],
@@ -37,7 +37,8 @@ class news_ltn extends fetcher {
       'news_ltn',
       'TW',
       'news.ltn.com.tw',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '自由時報/news ltn'
   }
 

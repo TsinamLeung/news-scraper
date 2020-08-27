@@ -2,7 +2,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_tkb extends fetcher {
 
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "site_daigongbau",
         "startUrl": [],
@@ -37,7 +37,8 @@ class news_tkb extends fetcher {
       'news_tkb',
       'HK',
       'www.takungpao.com.hk',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '大公報/takungpao'
   }
 }

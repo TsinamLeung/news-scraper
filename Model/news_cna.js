@@ -1,7 +1,7 @@
 const fetcher = require("./fetcher_news_via_search_engine");
 
 class news_cna extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "cna",
         "startUrl": [],

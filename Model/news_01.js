@@ -1,7 +1,7 @@
 const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_01 extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_01",
         "startUrl": ["https://www.hk01.com/search?q=%E4%BA%BA"],
@@ -36,8 +36,9 @@ class news_01 extends fetcher {
       'news_01',
       'HK',
       'www.hk01.com',
-      'duckduckgo');
-      this.description = '香港01/Hongkong 01'
+      engine,
+      'jsdom')
+    this.description = '香港01/Hongkong 01'
   }
 }
 module.exports = news_01;

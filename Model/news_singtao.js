@@ -2,7 +2,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 
 class news_singtao extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_singtao",
         "startUrl": [],
@@ -37,7 +37,8 @@ class news_singtao extends fetcher {
       'news_singtao',
       'HK',
       'std.stheadline.com article',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '星島日報/singtao daily'
   }
 }

@@ -1,7 +1,7 @@
 const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_chinapress extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_chinapress",
         "startUrl": [],
@@ -36,7 +36,8 @@ class news_chinapress extends fetcher {
       'news_chinapress',
       'MY',
       'www.chinapress.com.my/',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '中國報/China Press'
   }
 }

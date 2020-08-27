@@ -1,7 +1,7 @@
 const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_khmer extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_khmer",
         "startUrl": [],
@@ -36,7 +36,8 @@ class news_khmer extends fetcher {
       'news_khmer',
       'KH',
       'khmerdaily.info',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '高棉日報/khmerdaily'
   }
 }

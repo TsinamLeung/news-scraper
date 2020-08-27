@@ -9,8 +9,8 @@ class fetcher_news_common extends fetcher_common {
    * @param {String} name 
    * @param {String} locale 
    */
-  constructor(sitemap, delay, pageLoaddedlay, name ,locale) {
-    super(sitemap,delay,pageLoaddedlay,name);
+  constructor(sitemap, delay, pageLoaddedlay, name, locale, browser = 'jsdom') {
+    super(sitemap, delay, pageLoaddedlay, name, browser);
     this.locale = locale;
   }
   /**
@@ -19,7 +19,7 @@ class fetcher_news_common extends fetcher_common {
    * Every child class should rewrite thisfunction  
    */
   setKeyword(keyword) {
-    
+
   }
 }
 module.exports = fetcher_news_common;

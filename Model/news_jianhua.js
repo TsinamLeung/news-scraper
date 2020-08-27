@@ -1,7 +1,7 @@
 const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_jianhua extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
       "_id": "news_jianhua",
       "startUrl": [],
@@ -36,7 +36,8 @@ class news_jianhua extends fetcher {
     'news_jianhua',
     'KH',
     'jianhuadaily.com',
-    'duckduckgo');
+    engine,
+      'jsdom')
     this.description = '柬華日報/jianhua_daily'
   }
   

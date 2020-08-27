@@ -1,7 +1,7 @@
 const fetcher_ddg = require('./fetcher_news_via_search_engine');
 
 class news_zaobao extends fetcher_ddg {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_zaobao",
         "startUrl": [],

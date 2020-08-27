@@ -2,7 +2,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_mhwmm extends fetcher {
 
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_mhwmm",
         "startUrl": [],
@@ -37,7 +37,8 @@ class news_mhwmm extends fetcher {
       'news_mhwmm',
       'MM',
       'www.mhwmm.com/Ch/NewsView.asp',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '缅华网/mhwmm'
   };
 }

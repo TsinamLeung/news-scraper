@@ -1,7 +1,7 @@
 const fetcher = require("./fetcher_news_via_search_engine");
 
 class news_apple_daily extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_apple",
         "startUrl": [],
@@ -36,8 +36,9 @@ class news_apple_daily extends fetcher {
       'news_apple',
       'HK',
       "hk.appledaily.com",
-      'duckduckgo');
-      this.description = '蘋果日報/Apple Daily'
+      engine,
+      'jsdom')
+    this.description = '蘋果日報/Apple Daily'
   }
 
 }

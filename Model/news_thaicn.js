@@ -3,7 +3,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 
 class news_thaicn extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_thaicn",
         "startUrl": [],
@@ -30,7 +30,8 @@ class news_thaicn extends fetcher {
       'news_thaicn',
       'TH',
       'www.thaicn.net/news',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '泰華網/thaicn'
     }
   }

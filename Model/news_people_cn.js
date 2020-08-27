@@ -2,7 +2,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 
 class news_people_cn extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_people_cn",
         "startUrl": [],
@@ -37,7 +37,8 @@ class news_people_cn extends fetcher {
       'news_people_cn',
       'CN',
       'people.com.cn/n1',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '人民網/people cn'
   }
 }

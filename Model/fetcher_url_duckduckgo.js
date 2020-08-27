@@ -1,6 +1,6 @@
-let fetcher_common = require('./fetcher_common');
+const Fetcher = require('./fetcher_search_engine');
 const debug = require('debug')('fetcher:index');
-class fetcher_url_duckduckgo extends fetcher_common {
+class fetcher_url_duckduckgo extends Fetcher {
 
   /**
    * 
@@ -41,36 +41,26 @@ class fetcher_url_duckduckgo extends fetcher_common {
       },
       delay,
       pageLoaddedlay,
-      "url_duckduckgo")
+      "url_duckduckgo",
+      'headless',
+      'https://duckduckgo.com/?q=')
   }
-  /**
-   * 
-   * @param {string} siteurl 
-   * @param {string} keyword 
-   */
-  setSite(siteurl, keyword, options) {
-    if (!options) {
-      this.updateStartURL("https://duckduckgo.com/?q=" + encodeURI('site:') + encodeURI(siteurl) + "+" + encodeURI(keyword));
-    } else {
-      let timeOption = options['timeLimit'];
-      switch (timeOption) {
-        case 'year':
-          timeOption = '&df=y';
-          break;
-        case 'day':
-          timeOption = '&df=d';
-          break;
-        case 'week':
-          timeOption = '&df=w';
-          break;
-        case 'month':
-          timeOption = '&df=m';
-          break;
-        default:
-          timeOption = '';
-          break;
-      }
-      this.updateStartURL("https://duckduckgo.com/?q=" + encodeURI('site:') + encodeURI(siteurl) + "+" + encodeURI(keyword) + timeOption);
+  setOptions(options) {
+    super.setOptions(options)
+    const timeLimit = options['timeLimit']
+    switch (timeLimit) {
+      case 'year':
+        this.args.push('&df=y')
+        break
+      case 'day':
+        this.args.push('&df=d')
+        break
+      case 'week':
+        this.args.push('&df=w')
+        break
+      case 'month':
+        this.args.push('&df=m')
+        break
     }
   }
 }

@@ -1,7 +1,7 @@
 const fetch = require('./fetcher_news_via_search_engine')
 
 class news_binhduong extends fetch {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_binhduong",
         "startUrl": [],

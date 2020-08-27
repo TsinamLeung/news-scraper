@@ -1,7 +1,7 @@
 const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_hhua extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
       "_id": "news_hhua",
       "startUrl": [],
@@ -36,7 +36,8 @@ class news_hhua extends fetcher {
       'news_hhua',
       'ID',
       'koran.harianinhuaonline.com',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '印華日日報/Harian InHua'
     }
     

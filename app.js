@@ -107,21 +107,23 @@ router.get('/newsData', async (ctx, next) => {
 router.get('/urlLists', async (ctx, next) => {
   ctx.type = 'application/json'
   let args = ctx.request.query;
-  if (!args['timeLimit']) args['timeLimit'] = 'any';
-  if (!args['keyword']) {
+  if (!args.engine) args.engine = 'duckduckgo'
+  if (!args.timeLimit) args.timeLimit = 'any';
+  if (!args.keyword) {
     ctx.response.body = [];
     console.error('no Keyword!')
     return;
   }
-  if (!args['news']) {
+  if (!args.news) {
     ctx.response.body = '[]';
     console.error('No news name !');
     return;
   }
-  console.log("get Url list of " + args.news);
+  console.log("getting url list of " + args.news);
   let lists = await appController.fetchUrlList(args.keyword, args.news.toLowerCase(), {
-    timeLimit: args.timeLimit.toLowerCase()
-  });
+    timeLimit: args.timeLimit.toLowerCase(),
+    resultLimit: args.resutLimit + 0
+  }, args.engine);
 
   ctx.response.body = lists;
 });

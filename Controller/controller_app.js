@@ -57,9 +57,9 @@ function listAllSource() {
  */
 async function fetchUrlList(keyword, newsName, options = {
   timeLimit: 'any'
-}) {
+}, engine = 'duckduckgo') {
   let newsFetcher = require('../Model/' + newsName);
-  let fetcher = new newsFetcher(20, 5000);
+  let fetcher = new newsFetcher(20, 5000, engine);
   fetcher.setOptions(options);
   fetcher.setKeyword(keyword);
   let results = await fetcher.fetchUrlList();

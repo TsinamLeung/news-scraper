@@ -3,7 +3,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 class news_shinmin extends fetcher {
 
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_shinimn",
         "startUrl": [],
@@ -38,7 +38,8 @@ class news_shinmin extends fetcher {
       'news_shinmin',
       'SG',
       'www.shinmin.sg',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '新民日報/news shinmin'
   }
 }

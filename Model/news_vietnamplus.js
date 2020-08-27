@@ -2,7 +2,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 
 class news_vietnamplus extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_vietnamplus",
         "startUrl": [],
@@ -37,7 +37,8 @@ class news_vietnamplus extends fetcher {
       'news_vietnamplus',
       'VN',
       'zh.vietnamplus.vn',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description ='Vietnam Plus'
   }
 }

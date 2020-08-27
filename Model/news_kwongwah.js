@@ -2,7 +2,7 @@ const fetcher = require('./fetcher_news_via_search_engine');
 
 
 class news_kwongwah extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_kwongwah",
         "startUrl": [],
@@ -37,7 +37,8 @@ class news_kwongwah extends fetcher {
       'news_kwongwah',
       'MY',
       'www.kwongwah.com.my',
-      'duckduckgo');
+      engine,
+      'jsdom')
       this.description = '光華网/kwongwah'
   }
 }

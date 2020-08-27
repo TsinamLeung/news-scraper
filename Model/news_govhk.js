@@ -2,7 +2,7 @@ const scraper = require('../web_scraper')
 const fetcher = require('./fetcher_news_via_search_engine')
 
 class news_govhk extends fetcher {
-  constructor(delay, pageLoaddelay) {
+  constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_govhk",
         "startUrl": [""],
