@@ -36,7 +36,8 @@ class news_sanwah extends fetcher {
       'news_xinhua',
       'CN',
       'xinhuanet.com',
-      'duckduckgo')
+      engine,
+      'jsdom')
       this.description = '新華網/news xinhua'
   }
 

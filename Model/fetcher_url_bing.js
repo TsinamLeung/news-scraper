@@ -22,7 +22,7 @@ class fetcher_url_bing extends Fetcher {
           "id": "title",
           "type": "SelectorText",
           "parentSelectors": ["ele"],
-          "selector": "h2 a",
+          "selector": "a",
           "multiple": false,
           "regex": "",
           "delay": 0
@@ -60,6 +60,7 @@ class fetcher_url_bing extends Fetcher {
       },
       delay,
       pageLoaddedlay,
+      'url_bing',
       'jsdom',
       'https://www.bing.com/search?q=')
   }
@@ -82,13 +83,13 @@ class fetcher_url_bing extends Fetcher {
     return ret
   }
   setResultLimit(limit = 0) {
-    this.resultLimit = limit
+    this.resultLimit = +limit
   }
   setOptions(options) {
     const timeLimit = options.timeLimit
     const resultLimit = options.resultLimit
     this.args.push(this.resolveTimeLimit(timeLimit))
-    this.setResultLimit(parseInt(resultLimit))
+    this.setResultLimit(0 + resultLimit)
     super.setOptions(options)
   }
   async run() {
@@ -126,13 +127,13 @@ class fetcher_url_bing extends Fetcher {
       console.info("bing:fetching another page")
       const totalResult = await super.run()
       return firstPage.concat(totalResult).map(it => ({
-        title: it.title,
+        link: it.link,
         snippet: it.snippet,
         'link-href': it['link-href']
       }))
     }
     return firstPage.map(it => ({
-      title: it.title,
+      link: it.link,
       snippet: it.snippet,
       'link-href': it['link-href']
     }))

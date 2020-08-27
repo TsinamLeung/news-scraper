@@ -37,7 +37,8 @@ class news_govhk extends fetcher {
       'news_govhk',
       'HK',
       'www.news.gov.hk/chi',
-      'duckduckgo')
+      engine,
+      'jsdom')
       this.description = '香港政府網/Gov HK'
   }
 }

@@ -4,8 +4,8 @@ const {
   encode
 } = require('punycode')
 class Fetcher_search_engine extends fetcher_common {
-  constructor(sitemap = {}, delay = 20, pageLoadedlay = 3000, browser = 'jsdom', baseUrl = '') {
-    super(sitemap, delay, pageLoadedlay, 'Fetcher_base', browser)
+  constructor(sitemap = {}, delay = 20, pageLoadedlay = 3000, name, browser = 'jsdom', baseUrl = '') {
+    super(sitemap, delay, pageLoadedlay, name, browser)
     this.baseUrl = baseUrl
     this.speficiedSite = ''
     this.options = {}

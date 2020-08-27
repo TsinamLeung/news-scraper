@@ -22,7 +22,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
         break;
       case 'bing':
         const bing = require('./fetcher_url_bing')
-        this.engine = new bing(50, 3000)
+        this.engine = new bing(20, 500)
         break
       default:
         this.engine = undefined;
@@ -48,7 +48,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
       throw ('No keyword specfied!');
     }
     try {
-      let urls = await this.engine.run();
+      const urls = await this.engine.run();
       console.info("there're " + urls.length + " url");
       return urls;
     } catch (error) {

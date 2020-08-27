@@ -36,8 +36,8 @@ class news_mmgpmedia extends fetcher {
       'news_mmgpmedia',
       'MM',
       'www.mmgpmedia.com',
-      'duckduckgo'
-    );
+      engine,
+      'jsdom')
     this.description = '金鳳凰網/mmgpmedia'
   }
 

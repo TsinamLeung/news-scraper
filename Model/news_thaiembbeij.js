@@ -36,7 +36,8 @@ class news_thaiembbeij extends fetcher {
       'news_thaiembbeij',
       'TH',
       'thaiembbeij.org/cn',
-      'duckduckgo')
+      engine,
+      'jsdom')
       this.description = '泰國駐北京大使館/thai embassy in beijing'
   }
 
