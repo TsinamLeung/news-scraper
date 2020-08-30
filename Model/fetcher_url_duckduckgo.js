@@ -15,9 +15,9 @@ class fetcher_url_duckduckgo extends Fetcher {
           "id": "more",
           "type": "SelectorElementClick",
           "parentSelectors": ["_root"],
-          "selector": "div.result__body",
+          "selector": "div.links_main",
           "multiple": true,
-          "delay": "500",
+          "delay": "1200",
           "clickElementSelector": "a.result--more__btn",
           "clickType": "clickMore",
           "discardInitialElements": "do-not-discard",
@@ -37,7 +37,16 @@ class fetcher_url_duckduckgo extends Fetcher {
           "multiple": false,
           "regex": "",
           "delay": 0
+        }, {
+          "id": "title",
+          "type": "SelectorText",
+          "parentSelectors": ["more"],
+          "selector": "a",
+          "multiple": false,
+          "regex": "",
+          "delay": 0
         }]
+
       },
       delay,
       pageLoaddedlay,

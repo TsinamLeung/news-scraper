@@ -135,6 +135,8 @@ router.get('/urlLists', async (ctx, next) => {
  */
 router.post('/fetchJob', async (ctx, next) => {
   let req = ctx.request.body;
+  const jobList = req.jobs
+  ctx.response.status = 200
   //koa-bodyParser parsed it to json
   if (JSON.stringify(req) === '{}') {
     ctx.response.body = JSON.stringify({
@@ -143,28 +145,37 @@ router.post('/fetchJob', async (ctx, next) => {
     return;
   }
   ctx.response.type = 'application/json'
-  ctx.response.body = {
-    status: req.url + "dispatched to " + req.newsName
-  };
-  appController.fetchSingleResultByUrl(req.url, req.newsName);
+  ctx.request.body = {
+    status: 'successed!'
+  }
+  for (const job of jobList) {
+    appController.fetchSingleResultByUrl(job['link-href'], job.newsName)
+  }
 });
 
 router.get('/statusJob', async (ctx) => {
   console.log(ctx.request.query.url);
-  let url = ctx.request.query.url;
+  let url = ctx.request.query.url || ctx.request.query["url[]"];
   if (!url) {
     ctx.response.status = 404;
   } else {
-    let ret = appController.tracer[url];
-    if (!ret) {
-      ctx.response.status = 404;
-    } else {
+    let ret = {}
+    if (typeof (url) === 'string') {
       ctx.response.status = 200;
-      ctx.response.body = ret;
-      if (ret.status === 'completed' || ret.status === 'failed') {
-        delete appController.tracer[url];
+      ctx.response.body = {
+        status: appController.tracer[url].status
+      }
+      return
+    }
+    for (const each of url) {
+      const tracerStatus = appController.tracer[each] || 'undefined';
+      ret[each] = tracerStatus
+      ctx.response.status = 200;
+      if (tracerStatus === 'completed' || tracerStatus === 'failed') {
+        delete appController.tracer[each];
       }
     }
+    ctx.response.body = ret;
   }
 });
 
@@ -174,8 +185,8 @@ router.get('/function/:name', async (ctx, next) => {
   console.log("Calling Function " + name);
   ctx.response.body = appController[name]();
 });
-if(!global.consoleSwitch){
-  console.error = ()=>{}
+if (!global.consoleSwitch) {
+  console.error = () => {}
 }
 appController.turnOnDebugMsg()
 app.use(bodyParser());

@@ -22,7 +22,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
         break;
       case 'bing':
         const bing = require('./fetcher_url_bing')
-        this.engine = new bing(20, 500)
+        this.engine = new bing(20, 100)
         break
       default:
         this.engine = undefined;
