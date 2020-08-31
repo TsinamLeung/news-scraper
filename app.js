@@ -41,24 +41,6 @@ router.get('/', async (ctx, next) => {
   ctx.response.body = fs.readFileSync(htmlpath);
 });
 
-router.get('/dispatch',
-  async (ctx, next) => {
-    ctx.type = 'text/html;charset=utf-8';
-    let htmlpath = path.join(__dirname, 'static', 'html', 'dispatch.html');
-    let args = ctx.request.query;
-    if (!args['keyword'] || !args['delay'] || !args['pageLoadDelay']) {
-      ctx.response.body = '<h1>Empty Keyword!</h1><br /><h2>空關鍵詞！</h2>'
-    } else {
-      appController.turnOnDebugMsg();
-      ctx.response.body = fs.readFileSync(htmlpath);
-      console.log("Fetcher request Recived " + args['fetcher'])
-      if (args['fetcher'] == 'all') {
-        appController.fetchAllNews(args['keyword'], args['delay'], args['pageLoadDelay'])
-      } else if (!(!args['fetcher'])) {
-        appController.fetchNews(args['keyword'], args['fetcher'], args['delay'], args['pageLoadDelay'])
-      }
-    }
-  });
 router.get('/newsData', async (ctx, next) => {
   ctx.type = 'application/json'
   let args = ctx.request.query;
@@ -190,9 +172,9 @@ router.get('/function/:name', async (ctx, next) => {
   console.log("Calling Function " + name);
   ctx.response.body = appController[name]();
 });
-// if (!global.consoleSwitch) {
-//   console.error = () => {}
-// }
+if (!global.consoleSwitch) {
+  console.error = () => {}
+}
 appController.turnOnDebugMsg()
 app.use(bodyParser());
 app.use(serve('./static'));
