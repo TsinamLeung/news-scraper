@@ -18,7 +18,7 @@ class news_singtao extends fetcher {
           "id": "date",
           "type": "SelectorText",
           "parentSelectors": ["_root"],
-          "selector": ".article-md-pl span.date",
+          "selector": "span.date",
           "multiple": false,
           "regex": "",
           "delay": 0
