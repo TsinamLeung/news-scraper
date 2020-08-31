@@ -4,7 +4,7 @@ class news_01 extends fetcher {
   constructor(delay, pageLoaddelay, engine = 'bing') {
     super({
         "_id": "news_01",
-        "startUrl": ["https://www.hk01.com/search?q=%E4%BA%BA"],
+        "startUrl": [],
         "selectors": [{
           "id": "title",
           "type": "SelectorText",

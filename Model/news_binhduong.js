@@ -36,7 +36,8 @@ class news_binhduong extends fetch {
       "news_binhduong",
       "VN",
       "baobinhduong.vn/cn/",
-      "duckduckgo"
+      engine,
+      'jsdom'
     );
     this.description = '平陽報/binhduong News'
   }

@@ -10,6 +10,9 @@ const appController = require('./Controller/controller_app');
 const {
   getContent
 } = require('./Controller/filter');
+const {
+  time
+} = require('console')
 
 const port = 80;
 const app = new Koa();
@@ -149,13 +152,15 @@ router.post('/fetchJob', async (ctx, next) => {
     status: 'successed!'
   }
   for (const job of jobList) {
-    appController.fetchSingleResultByUrl(job['link-href'], job.newsName)
+    setTimeout(() => {
+      appController.fetchSingleResultByUrl(job['link-href'], job.newsName)
+    }, 100)
   }
 });
 
-router.get('/statusJob', async (ctx) => {
-  console.log(ctx.request.query.url);
-  let url = ctx.request.query.url || ctx.request.query["url[]"];
+router.post('/fetchStatus', async (ctx) => {
+  const query = ctx.request.body.params
+  const url = query.url
   if (!url) {
     ctx.response.status = 404;
   } else {
@@ -168,7 +173,7 @@ router.get('/statusJob', async (ctx) => {
       return
     }
     for (const each of url) {
-      const tracerStatus = appController.tracer[each] || 'undefined';
+      const tracerStatus = appController.tracer[each] || 'notExist';
       ret[each] = tracerStatus
       ctx.response.status = 200;
       if (tracerStatus === 'completed' || tracerStatus === 'failed') {
