@@ -1,8 +1,10 @@
+const path = require('path')
 const debug = require('debug');
 const fs = require('fs');
 const parser = require('./filter');
 const csv = require('./controller_csv');
-
+// config loader
+const loader = require('./loader')
 // enable lowdb
 const Datastore = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
@@ -30,20 +32,7 @@ function placeStopFlag() {
 
 function listAllSource() {
   try {
-    let results = fs.readdirSync(__dirname + '/../Model/');
-    let filelist = results.filter(function (value, index, array) {
-      return value.match(/^news_/g);
-    });
-    let list = [];
-    filelist.forEach(function (value, _index, _array) {
-      const F = require('../Model/' + value);
-      let fe = new F(0, 0);
-      list.push({
-        label: fe.locale + " " + fe.description,
-        value: value
-      })
-    })
-    return list;
+    return loader.listAvailbleFetcher()
   } catch (error) {
     console.error(error);
   }
@@ -58,11 +47,10 @@ function listAllSource() {
 async function fetchUrlList(keyword, newsName, options = {
   timeLimit: 'any'
 }, engine = 'duckduckgo') {
-  let newsFetcher = require('../Model/' + newsName);
-  let fetcher = new newsFetcher(20, 5000, engine);
+  const fetcher = loader.getFetcher(newsName, 20, 500, engine)
   fetcher.setOptions(options);
   fetcher.setKeyword(keyword);
-  let results = await fetcher.fetchUrlList();
+  const results = await fetcher.fetchUrlList();
   return results;
 }
 async function fetchSingleResultByUrl(url, newsName) {
@@ -70,8 +58,16 @@ async function fetchSingleResultByUrl(url, newsName) {
     status: 'running'
   };
   try {
-    let newsFetcher = require('../Model/' + newsName);
-    let fetcher = new newsFetcher(20, 1000);
+    const fetcher = loader.getFetcher(newsName, 20, 500)
+    const fetcherInfo = loader.getFetcherInfo(newsName)
+    
+    if (!fetcher || !fetcherInfo) {
+      console.log("no " + newsName + " fetcher loaded!")
+      tracer[url] = {
+        status: 'failed'
+      }
+      return []
+    }
     let rawData = await fetcher.fetchResultByUrl(url);
     if (rawData.length === 0) {
       tracer[url] = {
@@ -79,23 +75,22 @@ async function fetchSingleResultByUrl(url, newsName) {
       }
       return rawData;
     }
-    if (!parser.nullVerify(rawData, fetcher.name)) {
+    if (!parser.nullVerify(rawData, newsName)) {
       tracer[url] = {
         status: 'failed'
       }
-      return [];
+      return rawData
     }
-
-    parser.parseDate(rawData, fetcher.name);
-    parser.parseContent(rawData, fetcher.name);
-    let result = {
-      title: parser.getTitle(rawData, fetcher.name),
-      date: parser.getDate(rawData, fetcher.name),
-      content: parser.getContent(rawData, fetcher.name),
-      name: fetcher.name,
-      locale: fetcher.locale,
-      url: parser.getUrl(rawData, fetcher.name),
-      description: fetcher.description
+    parser.parseDate(rawData, newsName);
+    parser.parseContent(rawData, newsName);
+    const result = {
+      title: parser.getTitle(rawData, newsName),
+      date: parser.getDate(rawData, newsName),
+      content: parser.getContent(rawData, newsName),
+      name: newsName,
+      locale: fetcherInfo.locale,
+      url: parser.getUrl(rawData, newsName),
+      description: fetcherInfo.description
     };
     // push into db
     db.get('news_data')
@@ -106,6 +101,7 @@ async function fetchSingleResultByUrl(url, newsName) {
     }
     return result;
   } catch (error) {
+    console.error(error)
     tracer[url] = {
       status: 'failed'
     }

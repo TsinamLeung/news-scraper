@@ -190,9 +190,9 @@ router.get('/function/:name', async (ctx, next) => {
   console.log("Calling Function " + name);
   ctx.response.body = appController[name]();
 });
-if (!global.consoleSwitch) {
-  console.error = () => {}
-}
+// if (!global.consoleSwitch) {
+//   console.error = () => {}
+// }
 appController.turnOnDebugMsg()
 app.use(bodyParser());
 app.use(serve('./static'));

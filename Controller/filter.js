@@ -17,7 +17,7 @@ exports.parseContent = parseContent;
 function getUrl(result, name) {
   switch (name) {
     default:
-      return result['link-href'];
+      return result['link-href']
       //data via search engine
       break;
   }
@@ -30,7 +30,7 @@ function getUrl(result, name) {
 function getContent(result, name) {
   switch (name) {
     default:
-      return result['content'];
+      return result.content
       break;
   }
 }
@@ -46,7 +46,7 @@ function getDate(result, name) {
       return result['link-href'];
       break;
     default:
-      return result['date'];
+      return result.date
       //data via search engine
       break;
   }
@@ -59,7 +59,7 @@ function getDate(result, name) {
 function getTitle(result, name) {
   switch (name) {
     default:
-      return result['title'];
+      return result.title
       //data via search engine
       break;
   }
