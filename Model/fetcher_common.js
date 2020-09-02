@@ -9,7 +9,7 @@ class fetcher_common {
    * @param {number} pageLoaddedlay 
    * @param {String} name 
    */
-  constructor(sitemap, delay, pageLoaddedlay, name, browser='headless') {
+  constructor(sitemap, delay, pageLoaddedlay, name, browser = 'headless') {
     this.sitemap = sitemap;
     this.delay = delay;
     this.pageLoaddelay = pageLoaddedlay;
@@ -24,7 +24,11 @@ class fetcher_common {
     this.sitemap.startUrl = url;
   }
   async run() {
-    if (this.sitemap["startUrl"] == []) {
+    console.info("Pending Url To Fetcher")
+    console.info("------")
+    console.info('\x1B[32m%s\x1B[0m', this.sitemap.startUrl)
+    console.info("------")
+    if (this.sitemap.startUrl == []) {
       throw ('Empty URL!');
     }
     console.info("fetching " + this.name);
