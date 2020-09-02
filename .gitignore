@@ -3,3 +3,4 @@ output/
 .vscode
 db/*
 *.log
+package-lock.json
