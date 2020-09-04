@@ -27,5 +27,10 @@ class Fetcher_search_engine extends fetcher_common {
   generateUrl() {
     return `${this.baseUrl}${encodeURI('site:')}${encodeURI(this.speficiedSite)}+${encodeURI(this.keyword)}&${this.args.join('&')}`
   }
+  async run() {
+    const result = await super.run()
+    this.pushResult(result)
+    return result
+  }
 }
 module.exports = Fetcher_search_engine

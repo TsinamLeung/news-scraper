@@ -62,7 +62,7 @@ class fetcher_url_bing extends Fetcher {
       pageLoaddedlay,
       'url_bing',
       'jsdom',
-      'https://www.bing.com/search?q=')
+      'https://www.bing.com/search?count=50&q=')
   }
   resolveTimeLimit(timeLimit = 'any') {
     let ret = 'filters='
@@ -92,7 +92,43 @@ class fetcher_url_bing extends Fetcher {
     this.setResultLimit(0 + resultLimit)
     super.setOptions(options)
   }
+  resultFilter(result) {
+    return result.map(it => ({
+      link: it.link,
+      snippet: it.snippet,
+      'link-href': it['link-href']
+    }))
+  }
+  pushResult(res) {
+    this.resultQueue = this.resultQueue.concat(this.resultFilter(res))
+  }
   async run() {
+
+    function generatePagenationUrl(baseURL, resultLength) {
+      // process the other page
+      const nextPage = new URL(baseURL)
+      const rNumPerPage = (nextPage.searchParams.get('first') - 1) || 0
+      const pageNum = Math.floor(resultLength / rNumPerPage)
+      console.info(`there're ${resultLength} result of bing`)
+      console.info(`there're ${pageNum} pages of bing`)
+      if (this.resultLimit == 0) {
+        this.resultLimit = 20000
+        // 先限到2萬 反正太多你都攞唔嗮。
+      }
+
+      let offset = rNumPerPage // first next page should be rNumperpage + 1
+      const urls = []
+      if (offset > 0) {
+        while (offset < this.resultLimit && offset / rNumPerPage <= pageNum) {
+          nextPage.searchParams.set('first', offset + 1)
+          urls.push(nextPage.toString())
+          offset += rNumPerPage
+        }
+      }
+      return urls
+    }
+
+    //first page fetching
     console.info('Fetching url list via bing: Fetchting First Page')
     const firstPage = await super.run()
     if (firstPage.length == 0) {
@@ -105,40 +141,37 @@ class fetcher_url_bing extends Fetcher {
         return []
       }
     }
-    const nextPage = new URL(firstPage[0]['next-href'])
-    const resultLength = firstPage[0].result_num.replace(',', '') + 0
-    const rNumPerPage = (nextPage.searchParams.get('first') - 1) || 0
-    const pageNum = Math.floor(resultLength / rNumPerPage)
-    console.info(`there're ${resultLength} result of bing`)
-    console.info(`there're ${pageNum} pages of bing`)
-    if (this.resultLimit == 0) {
-      this.resultLimit = 20000
-      // 先限到2萬 反正太多你都攞唔嗮。
-    }
-    let offset = rNumPerPage // first next page should be rNumperpage + 1
-    let urls = []
-    if (offset > 0) {
-      while (offset < this.resultLimit && offset / rNumPerPage <= pageNum) {
-        nextPage.searchParams.set('first', offset + 1)
-        urls.push(nextPage.toString())
-        offset += rNumPerPage
-      }
-      this.updateStartURL(urls)
+    const urls = generatePagenationUrl.call(this, firstPage[0]['next-href'], +(firstPage[0].result_num.replace(',', '')))
+    if (urls.length > 0) {
       console.info("bing:fetching another page")
-      const totalResult = await super.run()
-      return firstPage.concat(totalResult).map(it => ({
-        link: it.link,
-        snippet: it.snippet,
-        'link-href': it['link-href']
-      }))
+      let totalResult = []
+      let running = 0
+      while (urls.length > 0 || running > 0) {
+        const url = urls.shift()
+        this.updateStartURL(url)
+        running += 1
+        if (running < 50 && urls.length > 1) {
+          super.run().then(ret => {
+            totalResult = totalResult.concat(ret)
+            running -= 1
+          }).catch(() => {
+            running -= 1
+          })
+        } else {
+          await super.run().then(ret => {
+            totalResult = totalResult.concat(ret)
+            running -= 1
+          }).catch(() => {
+            running -= 1
+          })
+        }
+      }
+      return this.resultFilter(firstPage.concat(totalResult))
     }
-    return firstPage.map(it => ({
-      link: it.link,
-      snippet: it.snippet,
-      'link-href': it['link-href']
-    }))
+    return this.resultFilter(firstPage)
   }
 }
+
 module.exports = fetcher_url_bing;
 
 // function test() {
@@ -147,14 +180,14 @@ module.exports = fetcher_url_bing;
 //   bing.setSite('www.hk01.com')
 //   bing.setQuery("武漢")
 //   bing.setOptions({
-//     resultLimit: 100
+//     resultLimit: 50
 //   })
 //   // bing.setOptions({
 //   //   timeLimit: 'day'
 //   // })
 //   console.log(bing.generateUrl())
 //   bing.run().then(ret => {
-//     console.log(ret)
-//     console.log(ret.length)
+//     // console.log(ret)
+//     // console.log(ret.length)
 //   })
 // }
