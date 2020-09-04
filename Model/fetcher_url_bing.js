@@ -1,4 +1,7 @@
 let Fetcher = require('./fetcher_search_engine');
+const {
+  prototype
+} = require('web-scraper-headless/extension/scripts/Queue');
 const debug = require('debug')('fetcher:index');
 class fetcher_url_bing extends Fetcher {
 
@@ -146,18 +149,11 @@ class fetcher_url_bing extends Fetcher {
       console.info("bing:fetching another page")
       let totalResult = []
       let running = 0
-      while (urls.length > 0 || running > 0) {
+      while (urls.length > 0) {
         const url = urls.shift()
         this.updateStartURL(url)
         running += 1
-        if (running < 50 && urls.length > 1) {
-          super.run().then(ret => {
-            totalResult = totalResult.concat(ret)
-            running -= 1
-          }).catch(() => {
-            running -= 1
-          })
-        } else {
+        const runFunc = async () => {
           await super.run().then(ret => {
             totalResult = totalResult.concat(ret)
             running -= 1
@@ -165,6 +161,16 @@ class fetcher_url_bing extends Fetcher {
             running -= 1
           })
         }
+        if (running >= 10) {
+          await runFunc()
+        } else {
+          runFunc()
+        }
+      }
+      while (running > 0) {
+        await new Promise(resolve => {
+          setTimeout(resolve, 500)
+        }).then()
       }
       return this.resultFilter(firstPage.concat(totalResult))
     }
@@ -174,20 +180,24 @@ class fetcher_url_bing extends Fetcher {
 
 module.exports = fetcher_url_bing;
 
-// function test() {
+function test() {
 
-//   const bing = new fetcher_url_bing(20, 3000)
-//   bing.setSite('www.hk01.com')
-//   bing.setQuery("武漢")
-//   bing.setOptions({
-//     resultLimit: 50
-//   })
-//   // bing.setOptions({
-//   //   timeLimit: 'day'
-//   // })
-//   console.log(bing.generateUrl())
-//   bing.run().then(ret => {
-//     // console.log(ret)
-//     // console.log(ret.length)
-//   })
-// }
+  const bing = new fetcher_url_bing(20, 3000)
+  bing.setSite('www.hk01.com')
+  bing.setQuery("武漢")
+  bing.setOptions({
+    resultLimit: 800
+  })
+  // bing.setOptions({
+  //   timeLimit: 'day'
+  // })
+  console.log(bing.generateUrl())
+  bing.run().then(ret => {
+    // console.log(ret)
+    // console.log(ret.length)
+    console.log(bing.popResult().length)
+    console.log(bing.isResultEmpty())
+  })
+}
+console.error = () => {}
+test()
