@@ -180,24 +180,24 @@ class fetcher_url_bing extends Fetcher {
 
 module.exports = fetcher_url_bing;
 
-function test() {
+// function test() {
 
-  const bing = new fetcher_url_bing(20, 3000)
-  bing.setSite('www.hk01.com')
-  bing.setQuery("武漢")
-  bing.setOptions({
-    resultLimit: 800
-  })
-  // bing.setOptions({
-  //   timeLimit: 'day'
-  // })
-  console.log(bing.generateUrl())
-  bing.run().then(ret => {
-    // console.log(ret)
-    // console.log(ret.length)
-    console.log(bing.popResult().length)
-    console.log(bing.isResultEmpty())
-  })
-}
-console.error = () => {}
-test()
+//   const bing = new fetcher_url_bing(20, 3000)
+//   bing.setSite('www.hk01.com')
+//   bing.setQuery("武漢")
+//   bing.setOptions({
+//     resultLimit: 800
+//   })
+//   // bing.setOptions({
+//   //   timeLimit: 'day'
+//   // })
+//   console.log(bing.generateUrl())
+//   bing.run().then(ret => {
+//     // console.log(ret)
+//     // console.log(ret.length)
+//     console.log(bing.popResult().length)
+//     console.log(bing.isResultEmpty())
+//   })
+// }
+// console.error = () => {}
+// test()
