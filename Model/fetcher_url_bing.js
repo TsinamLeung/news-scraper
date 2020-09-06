@@ -95,17 +95,14 @@ class fetcher_url_bing extends Fetcher {
     this.setResultLimit(0 + resultLimit)
     super.setOptions(options)
   }
-  resultFilter(result) {
-    return result.map(it => ({
-      link: it.link,
-      snippet: it.snippet,
-      'link-href': it['link-href']
-    }))
-  }
-  pushResult(res) {
-    this.resultQueue = this.resultQueue.concat(this.resultFilter(res))
-  }
   async run() {
+    function resultFilter(result) {
+      return result.map(it => ({
+        link: it.link,
+        snippet: it.snippet,
+        'link-href': it['link-href']
+      }))
+    }
 
     function generatePagenationUrl(baseURL, resultLength) {
       // process the other page
@@ -172,9 +169,9 @@ class fetcher_url_bing extends Fetcher {
           setTimeout(resolve, 500)
         }).then()
       }
-      return this.resultFilter(firstPage.concat(totalResult))
+      return resultFilter(firstPage.concat(totalResult))
     }
-    return this.resultFilter(firstPage)
+    return resultFilter(firstPage)
   }
 }
 
@@ -186,17 +183,15 @@ module.exports = fetcher_url_bing;
 //   bing.setSite('www.hk01.com')
 //   bing.setQuery("武漢")
 //   bing.setOptions({
-//     resultLimit: 800
+//     resultLimit: 50
 //   })
 //   // bing.setOptions({
 //   //   timeLimit: 'day'
 //   // })
 //   console.log(bing.generateUrl())
 //   bing.run().then(ret => {
-//     // console.log(ret)
-//     // console.log(ret.length)
-//     console.log(bing.popResult().length)
-//     console.log(bing.isResultEmpty())
+//     console.log(ret)
+//     console.log(ret.length)
 //   })
 // }
 // console.error = () => {}

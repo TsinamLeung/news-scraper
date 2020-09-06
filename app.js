@@ -7,6 +7,7 @@ const serve = require('koa-static');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const appController = require('./Controller/controller_app');
+const recoder = require('./Controller/controller_result')
 const {
   getContent
 } = require('./Controller/filter');
@@ -89,9 +90,10 @@ router.get('/newsData', async (ctx, next) => {
   ctx.response.body = ret;
 });
 
-router.get('/urlLists', async (ctx, next) => {
+router.post('/urlLists', async (ctx, next) => {
   ctx.type = 'application/json'
-  let args = ctx.request.query;
+  ctx.response.type = 200
+  let args = ctx.request.body.params
   if (!args.engine) args.engine = 'duckduckgo'
   if (!args.timeLimit) args.timeLimit = 'any';
   if (!args.keyword) {
@@ -105,14 +107,21 @@ router.get('/urlLists', async (ctx, next) => {
     return;
   }
   console.log("getting url list of " + args.news);
-  let lists = await appController.fetchUrlList(args.keyword, args.news.toLowerCase(), {
+  ctx.response.body = {
+    status: "success"
+  }
+  appController.fetchUrlList(args.keyword, args.news.toLowerCase(), {
     timeLimit: args.timeLimit.toLowerCase(),
     resultLimit: +args.resultLimit
-  }, args.engine);
-
-  ctx.response.body = lists;
+  }, args.engine).then(res => {
+    recoder.pushSearchResult(res)
+  })
 });
-
+router.get('/urlLists', async (ctx, next) => {
+  ctx.type = 'application/json'
+  const ret = recoder.popSearchResult()
+  ctx.response.body = ret
+})
 /**
  * post request
  * an json

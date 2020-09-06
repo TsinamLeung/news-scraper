@@ -29,7 +29,6 @@ class Fetcher_search_engine extends fetcher_common {
   }
   async run() {
     const result = await super.run()
-    this.pushResult(result)
     return result
   }
 }

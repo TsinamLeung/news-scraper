@@ -24,24 +24,6 @@ class fetcher_common {
   updateStartURL(url) {
     this.sitemap.startUrl = url;
   }
-  pushResult(ele) {
-    this.resultQueue.push(ele)
-  }
-
-  popResult() {
-    let ret = []
-    let timeout = false
-    setTimeout(() => {
-      timeout = true
-    }, 1200)
-    while (this.resultQueue.length > 0 && !timeout) {
-      ret.push(this.resultQueue.shift())
-    }
-    return ret
-  }
-  isResultEmpty() {
-    return !(this.resultQueue.length > 0)
-  }
   async run() {
     console.info("Pending Url To Fetcher")
     console.info("------")

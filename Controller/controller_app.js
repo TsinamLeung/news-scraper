@@ -12,7 +12,7 @@ const {
   trace
 } = require('console');
 
-const adapter = new FileSync('db/db.json');
+const adapter = new FileSync(path.join(__dirname, '..', 'db', 'db.json'));
 
 const db = Datastore(adapter);
 let tracer = {};
@@ -45,9 +45,9 @@ async function fetchUrlList(keyword, newsName, options = {
   timeLimit: 'any'
 }, engine = 'duckduckgo') {
   const fetcher = loader.getFetcher(newsName, 20, 500, engine)
-  fetcher.setOptions(options);
-  fetcher.setKeyword(keyword);
-  const results = await fetcher.fetchUrlList();
+  fetcher.setOptions(options)
+  fetcher.setKeyword(keyword)
+  const results = await fetcher.fetchUrlList()
   return results;
 }
 async function fetchSingleResultByUrl(url, newsName) {
@@ -57,7 +57,7 @@ async function fetchSingleResultByUrl(url, newsName) {
   try {
     const fetcher = loader.getFetcher(newsName, 20, 500)
     const fetcherInfo = loader.getFetcherInfo(newsName)
-    
+
     if (!fetcher || !fetcherInfo) {
       console.log("no " + newsName + " fetcher loaded!")
       tracer[url] = {

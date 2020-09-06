@@ -28,7 +28,6 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
         this.engine = undefined;
         break;
     }
-    this.stopflag = false;
   }
   setOptions(options) {
     this.options = options;
@@ -48,7 +47,11 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
       throw ('No keyword specfied!');
     }
     try {
-      const urls = await this.engine.run();
+      let urls = await this.engine.run()
+      urls = urls.map(it => ({
+        ...it,
+        newsName: this.name
+      }))
       console.info("there're " + urls.length + " url");
       return urls;
     } catch (error) {
@@ -82,11 +85,6 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
       let list = await this.fetchUrlList();
       for (let i in list) {
         try {
-          if (this.stopflag) {
-            console.log("Fetching Interrupted [fetcher_news_via_search_engine] Current Progress: " + i + " of" + list.length);
-            this.stopflag = false;
-            break;
-          }
           let result = await this.fetchResultByUrl(list[i]['link-href'])
           results.push(result);
         } catch (error) {
