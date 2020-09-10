@@ -252,3 +252,13 @@ news_zaobao:
   description: 聯合早報/lianhe zaobao
   browser: jsdom
   sitemap: '{"_id":"news_zaobao","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.datestamp,h4.date-published","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.body-content,div.article-content-container,article-content-rawhtml","multiple":false,"regex":"","delay":0}]}'
+news_whb_hk:
+  base: www.wenweipo.com/a/
+  locale: HK
+  description: 文匯報 香港/wenweipo
+  sitemap: '{"_id":"whb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".post-header h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.publish-date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.post-body","multiple":false,"regex":"","delay":0}]}'
+news_whb_cn:
+  base: www.whb.cn/zhuzhan
+  locale: CN
+  description: 文匯報 大陸/wenhuibao
+  sitemap: '{"_id":"whb_cn","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_title","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_other","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_info","multiple":false,"regex":"","delay":0}]}'
