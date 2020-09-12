@@ -94,28 +94,30 @@ router.post('/urlLists', async (ctx, next) => {
   ctx.type = 'application/json'
   ctx.response.type = 200
   let args = ctx.request.body.params
-  if (!args.engine) args.engine = 'duckduckgo'
-  if (!args.timeLimit) args.timeLimit = 'any';
-  if (!args.keyword) {
-    ctx.response.body = [];
-    console.error('no Keyword!')
-    return;
+  for (each of args) {
+    if (!each.engine) args.engine = 'duckduckgo'
+    if (!each.timeLimit) args.timeLimit = 'any';
+    if (!each.keyword) {
+      ctx.response.body = [];
+      console.info('no Keyword!')
+      return;
+    }
+    if (!each.news) {
+      ctx.response.body = '[]';
+      console.info('No news name !');
+      return;
+    }
+    console.info("getting url list of " + each.news);
+    appController.fetchUrlList(each.keyword, each.news.toLowerCase(), {
+      timeLimit: each.timeLimit.toLowerCase(),
+      resultLimit: +each.resultLimit
+    }, each.engine).then(res => {
+      recoder.pushSearchResult(res)
+    })
   }
-  if (!args.news) {
-    ctx.response.body = '[]';
-    console.error('No news name !');
-    return;
-  }
-  console.log("getting url list of " + args.news);
   ctx.response.body = {
     status: "success"
   }
-  appController.fetchUrlList(args.keyword, args.news.toLowerCase(), {
-    timeLimit: args.timeLimit.toLowerCase(),
-    resultLimit: +args.resultLimit
-  }, args.engine).then(res => {
-    recoder.pushSearchResult(res)
-  })
 });
 router.get('/urlLists', async (ctx, next) => {
   ctx.type = 'application/json'

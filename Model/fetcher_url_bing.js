@@ -1,7 +1,4 @@
 let Fetcher = require('./fetcher_search_engine');
-const {
-  prototype
-} = require('web-scraper-headless/extension/scripts/Queue');
 const debug = require('debug')('fetcher:index');
 class fetcher_url_bing extends Fetcher {
 
@@ -65,7 +62,7 @@ class fetcher_url_bing extends Fetcher {
       pageLoaddedlay,
       'url_bing',
       'jsdom',
-      'https://www.bing.com/search?count=50&q=')
+      'https://www.bing.com/search?q=')
   }
   resolveTimeLimit(timeLimit = 'any') {
     let ret = 'filters='
@@ -87,11 +84,20 @@ class fetcher_url_bing extends Fetcher {
   }
   setResultLimit(limit = 0) {
     this.resultLimit = +limit
+    if (limit < 50) {
+      this.args.push('count=' + limit)
+    } else {
+      this.args.push('count=50')
+    }
   }
   setOptions(options) {
     const timeLimit = options.timeLimit
     const resultLimit = options.resultLimit
-    this.args.push(this.resolveTimeLimit(timeLimit))
+    const tl = this.resolveTimeLimit(timeLimit)
+    if(!(!tl))
+    {
+      this.args.push(tl)
+    }
     this.setResultLimit(0 + resultLimit)
     super.setOptions(options)
   }

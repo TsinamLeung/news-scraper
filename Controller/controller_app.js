@@ -1,29 +1,28 @@
 const path = require('path')
-const debug = require('debug');
-const fs = require('fs');
-const parser = require('./filter');
-const csv = require('./controller_csv');
+const debug = require('debug')
+const parser = require('./filter')
 // config loader
 const loader = require('./loader')
 // enable lowdb
-const Datastore = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const {
-  trace
-} = require('console');
+const Datastore = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+const adapter = new FileSync(path.join(__dirname, '..', 'db', 'db.json'))
 
-const adapter = new FileSync(path.join(__dirname, '..', 'db', 'db.json'));
+const ParallelJobManager = require('./controller_parallel')
+const manager = require('./controller_parallel')
+const listFetcherManager = new ParallelJobManager(2)
 
-const db = Datastore(adapter);
-let tracer = {};
+const db = Datastore(adapter)
+
+let tracer = {}
 
 // initialized lowdb
 if (!db.has('news_data').value()) {
-  db.set('news_data', []).write();
+  db.set('news_data', []).write()
 } else {
   db.unset('news_data')
-    .write();
-  db.set('news_data', []).write();
+    .write()
+  db.set('news_data', []).write()
 }
 
 
@@ -31,7 +30,7 @@ function listAllSource() {
   try {
     return loader.listAvailbleFetcher()
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
 /**
@@ -45,15 +44,18 @@ async function fetchUrlList(keyword, newsName, options = {
   timeLimit: 'any'
 }, engine = 'duckduckgo') {
   const fetcher = loader.getFetcher(newsName, 20, 500, engine)
+  await listFetcherManager.getResource(3000, 100)
   fetcher.setOptions(options)
   fetcher.setKeyword(keyword)
   const results = await fetcher.fetchUrlList()
-  return results;
+  console.log(newsName + " Fetching Over")
+  listFetcherManager.releaseResource()
+  return results
 }
 async function fetchSingleResultByUrl(url, newsName) {
   tracer[url] = {
     status: 'running'
-  };
+  }
   try {
     const fetcher = loader.getFetcher(newsName, 20, 500)
     const fetcherInfo = loader.getFetcherInfo(newsName)
@@ -65,12 +67,12 @@ async function fetchSingleResultByUrl(url, newsName) {
       }
       return []
     }
-    let rawData = await fetcher.fetchResultByUrl(url);
+    let rawData = await fetcher.fetchResultByUrl(url)
     if (rawData.length === 0) {
       tracer[url] = {
         status: 'failed'
       }
-      return rawData;
+      return rawData
     }
     if (!parser.nullVerify(rawData, newsName)) {
       tracer[url] = {
@@ -78,8 +80,8 @@ async function fetchSingleResultByUrl(url, newsName) {
       }
       return rawData
     }
-    parser.parseDate(rawData, newsName);
-    parser.parseContent(rawData, newsName);
+    parser.parseDate(rawData, newsName)
+    parser.parseContent(rawData, newsName)
     const result = {
       title: parser.getTitle(rawData, newsName),
       date: parser.getDate(rawData, newsName),
@@ -88,42 +90,42 @@ async function fetchSingleResultByUrl(url, newsName) {
       locale: fetcherInfo.locale,
       url: parser.getUrl(rawData, newsName),
       description: fetcherInfo.description
-    };
+    }
     // push into db
     db.get('news_data')
       .push(result)
-      .write();
+      .write()
     tracer[url] = {
       status: "completed"
     }
-    return result;
+    return result
   } catch (error) {
     console.error(error)
     tracer[url] = {
       status: 'failed'
     }
-    return [];
+    return []
   }
 }
 
 
 
 function turnOnDebugMsg() {
-  debug.enable('filter:index,web-scraper-headless:scraper,web-scraper-headless:index,web-scraper-headless:chrome-headless-browser');
+  debug.enable('filter:index,web-scraper-headless:scraper,web-scraper-headless:index,web-scraper-headless:chrome-headless-browser')
 }
 
 function turnOnResultFeedback() {
-  debug.enable('fetcher:index' + ',filter:index,web-scraper-headless:scraper,web-scraper-headless:index,web-scraper-headless:chrome-headless-browser');
+  debug.enable('fetcher:index' + ',filter:index,web-scraper-headless:scraper,web-scraper-headless:index,web-scraper-headless:chrome-headless-browser')
 }
 
 function turnOffDebugMsg() {
-  debug.disable();
+  debug.disable()
 }
-exports.fetchSingleResultByUrl = fetchSingleResultByUrl;
-exports.fetchUrlList = fetchUrlList;
-exports.listAllNews = listAllSource;
-exports.turnOnDebugMsg = turnOnDebugMsg;
-exports.turnOffDebugMsg = turnOffDebugMsg;
-exports.turnOnResultFeedback = turnOnResultFeedback;
-exports.db = db;
-exports.tracer = tracer;
+exports.fetchSingleResultByUrl = fetchSingleResultByUrl
+exports.fetchUrlList = fetchUrlList
+exports.listAllNews = listAllSource
+exports.turnOnDebugMsg = turnOnDebugMsg
+exports.turnOffDebugMsg = turnOffDebugMsg
+exports.turnOnResultFeedback = turnOnResultFeedback
+exports.db = db
+exports.tracer = tracer
