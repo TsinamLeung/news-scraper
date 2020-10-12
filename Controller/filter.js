@@ -44,7 +44,10 @@ function getDate(result, name) {
   switch (name) {
     case 'news_thaicn':
       return result['link-href'];
-      break;
+      break
+    case 'umagazine':
+      return new Date(Date.now()).toISOString()
+      break
     default:
       return result.date
       //data via search engine

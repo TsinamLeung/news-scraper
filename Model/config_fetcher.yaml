@@ -269,6 +269,11 @@ weekendhk:
   sitemap: '{"_id":"weekenduk","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div._content_","multiple":false,"regex":"","delay":0}]}'
 ulifestyle:
   base: ulifestyle.com.hk
-  locale: hk
+  locale: HK
   description: U港生活/U lifeStyle HK
   sitemap: '{"_id":"ulifestyle","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"div.publish-time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.lazy","multiple":false,"regex":"","delay":0}]}'
+umagazine:
+  base: umagazine.com.hk +article 
+  locale: HK
+  description: U周刑/Umagazine
+  sitemap: '{"_id":"umagazine","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.container","multiple":false,"regex":"","delay":0}]}'
