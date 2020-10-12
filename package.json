@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "generic-pool": "^3.7.1",
     "json-2-csv": "^3.7.6",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",

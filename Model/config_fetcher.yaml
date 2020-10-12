@@ -262,3 +262,13 @@ news_whb_cn:
   locale: CN
   description: 文匯報 大陸/wenhuibao
   sitemap: '{"_id":"whb_cn","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_title","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_other","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_info","multiple":false,"regex":"","delay":0}]}'
+weekendhk:
+  base: www.weekendhk.com
+  locale: HK
+  description: 新假期/weekendWeekly
+  sitemap: '{"_id":"weekenduk","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div._content_","multiple":false,"regex":"","delay":0}]}'
+ulifestyle:
+  base: ulifestyle.com.hk
+  locale: hk
+  description: U港生活/U lifeStyle HK
+  sitemap: '{"_id":"ulifestyle","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"div.publish-time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.lazy","multiple":false,"regex":"","delay":0}]}'

@@ -9,7 +9,6 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync(path.join(__dirname, '..', 'db', 'db.json'))
 
 const ParallelJobManager = require('./controller_parallel')
-const manager = require('./controller_parallel')
 const listFetcherManager = new ParallelJobManager(2)
 
 const db = Datastore(adapter)
