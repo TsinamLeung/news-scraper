@@ -45,6 +45,7 @@ function getDate(result, name) {
     case 'news_thaicn':
       return result['link-href'];
       break
+    case 'opentour':
     case 'umagazine':
       return new Date(Date.now()).toISOString()
       break

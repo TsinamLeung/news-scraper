@@ -282,3 +282,8 @@ erpiceHK:
   locale: HK
   description: ePrice HongKong
   sitemap: '{"_id":"epricehk","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"span.publish","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
+opentour:
+  base: opentour.com.hk
+  locale: HK
+  description: opentour開團
+  sitemap: '{"_id":"opentour","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"#title","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"#mainContent","multiple":false,"regex":"","delay":0}]}'
