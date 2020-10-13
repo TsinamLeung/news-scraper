@@ -302,3 +302,8 @@ gov_cso:
   locale: HK
   description: 政務司長網誌/Blogs of Chief Secretary of Administration
   sitemap: '{"_id":"gov_cso","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.blog","multiple":false,"regex":"","delay":0}]}'
+gov_fso:
+  base: fso.gov.hk
+  locale: HK
+  description: 財政局局長網誌/Blogs of financial Secretary
+  sitemap: '{"_id":"gov_fso","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"main","multiple":false,"regex":"","delay":0}]}'
