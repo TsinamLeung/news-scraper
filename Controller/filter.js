@@ -49,6 +49,9 @@ function getDate(result, name) {
     case 'umagazine':
       return new Date(Date.now()).toISOString()
       break
+    case 'gov_ceo':
+      return result['content'].split('\n').pop();
+      break
     default:
       return result.date
       //data via search engine
