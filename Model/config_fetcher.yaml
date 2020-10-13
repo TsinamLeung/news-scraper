@@ -295,5 +295,10 @@ hket:
 gov_ceo:
   base: ceo.gov.hk
   locale: HK
-  description: 行政長官網誌/Chief Executive
+  description: 行政長官網誌/Blogs of Chief Executive
   sitemap: '{"_id":"ceo","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"td[valign][bgcolor]","multiple":false,"regex":"","delay":0}]}'
+gov_cso:
+  base: cso.gov.hk
+  locale: HK
+  description: 政務司長網誌/Blogs of Chief Secretary of Administration
+  sitemap: '{"_id":"gov_cso","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.blog","multiple":false,"regex":"","delay":0}]}'
