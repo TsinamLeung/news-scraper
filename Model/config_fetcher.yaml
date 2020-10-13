@@ -277,3 +277,8 @@ umagazine:
   locale: HK
   description: U周刑/Umagazine
   sitemap: '{"_id":"umagazine","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.container","multiple":false,"regex":"","delay":0}]}'
+erpiceHK:
+  base: www.eprice.com.hk +talk
+  locale: HK
+  description: ePrice HongKong
+  sitemap: '{"_id":"epricehk","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"span.publish","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
