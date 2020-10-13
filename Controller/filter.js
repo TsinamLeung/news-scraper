@@ -56,7 +56,8 @@ function getDate(result, name) {
       return result['content'].split('\n').pop()
       break
     case 'gov_fso':
-      return result['link-href'].match(/\d+/g).pop()
+    case 'gov_doj':
+      return result['link-href'].match(/\d+/g).shift()
       break
     default:
       return result.date

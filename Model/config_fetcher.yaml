@@ -307,3 +307,8 @@ gov_fso:
   locale: HK
   description: 財政局局長網誌/Blogs of financial Secretary
   sitemap: '{"_id":"gov_fso","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"main","multiple":false,"regex":"","delay":0}]}'
+gov_doj:
+  base: doj.gov.hk
+  locale: HK
+  description: 律政局局長網誌/Blogs of Department of Justice
+  sitemap: '{"_id":"gov_doj","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div#listing-format","multiple":false,"regex":"","delay":0}]}'
