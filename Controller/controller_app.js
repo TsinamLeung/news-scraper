@@ -68,12 +68,14 @@ async function fetchSingleResultByUrl(url, newsName) {
     }
     let rawData = await fetcher.fetchResultByUrl(url)
     if (rawData.length === 0) {
+      console.log('[No result]failed Fetching: '+ url)
       tracer[url] = {
         status: 'failed'
       }
       return rawData
     }
     if (!parser.nullVerify(rawData, newsName)) {
+      console.log('[Null Verify Not passed]failed Fetching: '+ url)
       tracer[url] = {
         status: 'failed'
       }

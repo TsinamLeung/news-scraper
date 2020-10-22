@@ -166,7 +166,7 @@ router.post('/fetchStatus', async (ctx) => {
       return
     }
     for (const each of url) {
-      const tracerStatus = appController.tracer[each] || 'notExist';
+      const tracerStatus = appController.tracer[each] || 'null';
       ret[each] = tracerStatus
       ctx.response.status = 200;
       if (tracerStatus === 'completed' || tracerStatus === 'failed') {
