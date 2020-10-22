@@ -45,8 +45,19 @@ function getDate(result, name) {
     case 'news_thaicn':
       return result['link-href'];
       break
+    case 'opentour':
     case 'umagazine':
       return new Date(Date.now()).toISOString()
+      break
+    case 'gov_cso':
+      return result['content'].split('\n').shift()
+      break
+    case 'gov_ceo':
+      return result['content'].split('\n').pop()
+      break
+    case 'gov_fso':
+    case 'gov_doj':
+      return result['link-href'].match(/\d+/g).shift()
       break
     default:
       return result.date

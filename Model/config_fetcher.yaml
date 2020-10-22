@@ -277,3 +277,38 @@ umagazine:
   locale: HK
   description: U周刑/Umagazine
   sitemap: '{"_id":"umagazine","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.container","multiple":false,"regex":"","delay":0}]}'
+erpiceHK:
+  base: www.eprice.com.hk +talk
+  locale: HK
+  description: ePrice HongKong
+  sitemap: '{"_id":"epricehk","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"span.publish","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
+opentour:
+  base: opentour.com.hk
+  locale: HK
+  description: opentour開團
+  sitemap: '{"_id":"opentour","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"#title","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"#mainContent","multiple":false,"regex":"","delay":0}]}'
+hket:
+  base: hket.com/article/
+  locale: HK
+  description: 香港經清日報/HongKong Economic Time
+  sitemap: '{"_id":"hket","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"span.article-details-info-container_date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":".print div.article-detail-body-container","multiple":false,"regex":"","delay":0}]}'
+gov_ceo:
+  base: ceo.gov.hk +blog
+  locale: HK
+  description: 行政長官網誌/Blogs of Chief Executive
+  sitemap: '{"_id":"ceo","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"td[valign][bgcolor]","multiple":false,"regex":"","delay":0}]}'
+gov_cso:
+  base: cso.gov.hk + blog
+  locale: HK
+  description: 政務司長網誌/Blogs of Chief Secretary of Administration
+  sitemap: '{"_id":"gov_cso","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.blog","multiple":false,"regex":"","delay":0}]}'
+gov_fso:
+  base: fso.gov.hk + blog
+  locale: HK
+  description: 財政局局長網誌/Blogs of financial Secretary
+  sitemap: '{"_id":"gov_fso","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"main","multiple":false,"regex":"","delay":0}]}'
+gov_doj:
+  base: doj.gov.hk + blog
+  locale: HK
+  description: 律政局局長網誌/Blogs of Department of Justice
+  sitemap: '{"_id":"gov_doj","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div#listing-format","multiple":false,"regex":"","delay":0}]}'
