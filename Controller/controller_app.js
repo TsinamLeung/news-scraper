@@ -68,14 +68,14 @@ async function fetchSingleResultByUrl(url, newsName) {
     }
     let rawData = await fetcher.fetchResultByUrl(url)
     if (rawData.length === 0) {
-      console.log('[No result]failed Fetching: '+ url)
+      console.log('[No result]failed Fetching: \x1B[31m'+ url + '\x1B[0m')
       tracer[url] = {
         status: 'failed'
       }
       return rawData
     }
     if (!parser.nullVerify(rawData, newsName)) {
-      console.log('[Null Verify Not passed]failed Fetching: '+ url)
+      console.log('[Null Verify Not passed]failed Fetching: \x1B[31m'+ url + '\x1B[0m')
       tracer[url] = {
         status: 'failed'
       }
@@ -92,6 +92,7 @@ async function fetchSingleResultByUrl(url, newsName) {
       url: parser.getUrl(rawData, newsName),
       description: fetcherInfo.description
     }
+    console.info("Pushing " + result.title + " to Database")
     // push into db
     db.get('news_data')
       .push(result)

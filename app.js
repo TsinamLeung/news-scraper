@@ -8,28 +8,26 @@ const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const appController = require('./Controller/controller_app');
 const recoder = require('./Controller/controller_result')
-const {
-  getContent
-} = require('./Controller/filter');
-const {
-  time
-} = require('console')
+
+
 
 const port = 80;
 const app = new Koa();
 const router = new Router();
 app.use(cors())
+/**
 app.use(logger())
 // logger
-app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  // allow access
-  ctx.set('Access-Control-Allow-Origin', '*')
-  const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-})
-
+ app.use(async (ctx, next) => {
+   const start = new Date()
+   await next()
+   // allow access
+   ctx.set('Access-Control-Allow-Origin', '*')
+   const ms = new Date() - start
+   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+  })
+*/
+  
 appController.outputPath = function () {
   return {
     path: __dirname + '\\output\\'

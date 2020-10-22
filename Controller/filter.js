@@ -178,8 +178,6 @@ function parseDate(result, name) {
     case 'news_mmgpmedia':
       break;
     case 'news_thaiembbeij':
-      console.log(date)
-      "".
       date = date.trim('\t');
       date = date.trim('\b');
       date = date.trim('\n');
@@ -226,7 +224,7 @@ function parseDate(result, name) {
   }
   try {
     let extract = date.match(reg)[0];
-    debug("date after processing %O " + extract);
+    debug("date after processing %O ", extract);
     result['date'] = moment(extract, ['MMDDYYYY', 'YYYYMMDD', "DDMMYYYY"]).format('L');
   } catch (error) {
     console.error('Error Occured When parsing date');
