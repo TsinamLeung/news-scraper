@@ -26,9 +26,7 @@ class fetcher_common {
   }
   async run() {
     console.info("Pending Url To Fetcher")
-    console.info("------")
-    console.info('\x1B[32m%s\x1B[0m', this.sitemap.startUrl)
-    console.info("------")
+    console.info('\x1B[32m%s\x1B[0m', this.sitemap.startUrl + "\n")
     if (this.sitemap.startUrl == []) {
       throw ('Empty URL!');
     }

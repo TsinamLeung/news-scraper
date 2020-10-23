@@ -27,7 +27,7 @@ app.use(logger())
    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
   })
 */
-  
+
 appController.outputPath = function () {
   return {
     path: __dirname + '\\output\\'
@@ -42,7 +42,7 @@ router.get('/', async (ctx, next) => {
 
 router.get('/newsData', async (ctx, next) => {
   ctx.type = 'application/json'
-  let args = ctx.request.query;
+  const args = ctx.request.query;
   let qName = args.name;
   let qTitle = args.title;
   let qContent = args.content;
@@ -54,38 +54,7 @@ router.get('/newsData', async (ctx, next) => {
     qContent = new RegExp(qContent, "g")
   }
 
-
-  let ret = appController.db.read()
-    .get('news_data')
-    .uniqBy('url')
-    .filter(function (element) {
-      let judgeName = false;
-      let judgeTitle = false;
-      let judgeContent = false;
-      let judgeLocale = false;
-      if (!qName) {
-        judgeName = true;
-      } else {
-        judgeName = element.name == qName;
-      }
-      if (!qTitle) {
-        judgeTitle = true;
-      } else {
-        judgeTitle = !(!element.title.match(qTitle));
-      }
-      if (!qContent) {
-        judgeContent = true;
-      } else {
-        judgeContent = !(!element.content.match(qContent));
-      }
-      if (!qLocale) {
-        judgeLocale = true;
-      } else {
-        judgeLocale = qLocale == element.locale;
-      }
-      return (judgeName && judgeTitle && judgeContent && judgeLocale)
-    }).value();
-  ctx.response.body = ret;
+  ctx.response.body = appController.getNewsDataFromDB(qName, qTitle, qContent, qLocale);
 });
 
 router.post('/urlLists', async (ctx, next) => {
@@ -181,10 +150,11 @@ router.get('/function/:name', async (ctx, next) => {
   console.log("Calling Function " + name);
   ctx.response.body = appController[name]();
 });
+
 if (!global.consoleSwitch) {
   console.error = () => {}
 }
-appController.turnOnDebugMsg()
+// appController.turnOnDebugMsg()
 app.use(bodyParser());
 app.use(serve('./static'));
 app.use(router.routes());
