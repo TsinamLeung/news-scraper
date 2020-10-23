@@ -66,16 +66,17 @@ async function fetchSingleResultByUrl(url, newsName) {
       }
       return []
     }
-    let rawData = await fetcher.fetchResultByUrl(url)
+    // retry time is 3
+    let rawData = await fetcher.fetchResultByUrl(url, 3)
     if (rawData.length === 0) {
-      console.log('[No result]failed Fetching: \x1B[31m'+ url + '\x1B[0m')
+      console.log('[No result]failed Fetching: \x1B[31m' + url + '\x1B[0m')
       tracer[url] = {
         status: 'failed'
       }
       return rawData
     }
     if (!parser.nullVerify(rawData, newsName)) {
-      console.log('[Null Verify Not passed]failed Fetching: \x1B[31m'+ url + '\x1B[0m')
+      console.log('[Null Verify Not passed]failed Fetching: \x1B[31m' + url + '\x1B[0m')
       tracer[url] = {
         status: 'failed'
       }

@@ -60,22 +60,25 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
       return [];
     }
   }
-  async fetchResultByUrl(url) {
-    try {
-      this.updateStartURL(url);
-      let result = await super.run();
-      if (result.length === 0) {
-        return result;
-      } else {
-        //extract the first Result
-        result = result[0];
-        result['link-href'] = url;
-        debug("fetchresultbyurl %O ", result);
-        return result;
+  async fetchResultByUrl(url, retrytime = 0) {
+    if (retrytime >= 0) {
+      if( retrytime > 0) console.log("Retring [" + retrytime + "] " + url)
+      try {
+        this.updateStartURL(url);
+        let result = await super.run();
+        if (result.length === 0) {
+          return await this.fetchResultByUrl(url, retrytime - 1);
+        } else {
+          //extract the first Result
+          result = result[0];
+          result['link-href'] = url;
+          debug("fetchresultbyurl %O ", result);
+          return result;
+        }
+      } catch (error) {
+        console.error("Occured Error when fetching result via search engine " + url);
+        console.error(error);
       }
-    } catch (error) {
-      console.error("Occured Error when fetching result via search engine " + url);
-      console.error(error);
     }
   }
   async run() {
