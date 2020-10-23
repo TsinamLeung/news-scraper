@@ -62,7 +62,6 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
   }
   async fetchResultByUrl(url, retrytime = 0) {
     if (retrytime >= 0) {
-      if( retrytime > 0) console.log("Retring [" + retrytime + "] " + url)
       try {
         this.updateStartURL(url);
         let result = await super.run();

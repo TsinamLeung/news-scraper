@@ -45,11 +45,9 @@ async function fetchUrlList(keyword, newsName, options = {
   fetcher.setOptions(options)
   fetcher.setKeyword(keyword)
   const results = await fetcher.fetchUrlList()
-  // remove duplicate
-  const sResults = new Set(results)
   console.log(newsName + " Fetching Over")
   listFetcherManager.releaseResource()
-  return [...sResults]
+  return results.filter((each, index, self) => self.findIndex(t => t['link-href'] === each['link-href']) === index)
 }
 async function fetchSingleResultByUrl(url, newsName) {
   tracer[url] = {
