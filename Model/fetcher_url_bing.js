@@ -118,8 +118,8 @@ class fetcher_url_bing extends Fetcher {
       console.info(`there're ${resultLength} result of bing`)
       console.info(`there're ${pageNum} pages of bing`)
       if (this.resultLimit == 0) {
-        this.resultLimit = 20000
-        // 先限到2萬 反正太多你都攞唔嗮。
+        this.resultLimit = 2500
+        // bing網頁似乎限到1000
       }
 
       let offset = rNumPerPage // first next page should be rNumperpage + 1
