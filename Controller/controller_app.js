@@ -47,9 +47,11 @@ async function fetchUrlList(keyword, newsName, options = {
   fetcher.setOptions(options)
   fetcher.setKeyword(keyword)
   const results = await fetcher.fetchUrlList()
+  // remove duplicate
+  const sResults = new Set(results)
   console.log(newsName + " Fetching Over")
   listFetcherManager.releaseResource()
-  return results
+  return [...sResults]
 }
 async function fetchSingleResultByUrl(url, newsName) {
   tracer[url] = {
