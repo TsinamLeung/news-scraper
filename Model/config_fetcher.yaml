@@ -332,3 +332,18 @@ news_gz:
   locale: GZ
   description: 廣州日報/Guangzhou Daily
   sitemap: '{"_id":"gznjb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-title","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
+news_yc:
+  base: news.ycwb.com
+  locale: GZ
+  description: 金羊網/yangcheng web
+  sitemap: '{"_id":"ycwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span#pubtime_baidu","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":".fl div.main_article","multiple":false,"regex":"","delay":0}]}'
+news_nf:
+  base: news.southcn.com
+  locale: GZ
+  description: 南方網/Southcn
+  sitemap: '{"_id":"ycwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2#article_title","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.pub_time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
+news_xkb:
+  base: xkb.com.cn
+  locale: GZ
+  description: 快新網/kuaixinbao
+  sitemap: '{"_id":"ycwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsTitle h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.newsTitle","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
