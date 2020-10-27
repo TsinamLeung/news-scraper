@@ -321,7 +321,7 @@ news_szed:
   base: szsb.sznews.com/MB/content
   locale: SZ
   description: 深圳商報/Shenzhen Economic daily 
-  sitemap: '{"_id":"szed","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"szed","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.newsdatetext","multiple":false,"regex":"","delay":0}]}'
 news_szwb:
   base: wb.sznews.com/MB/content
   locale: SZ
