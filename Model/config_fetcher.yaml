@@ -312,3 +312,18 @@ gov_doj:
   locale: HK
   description: 律政局局長網誌/Blogs of Department of Justice
   sitemap: '{"_id":"gov_doj","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div#listing-format","multiple":false,"regex":"","delay":0}]}'
+news_sztqb:
+  base: sztqb.sznews.com/MB/content
+  locale: SZ
+  description: 深圳特區報/Shenzhen SEZ daily 
+  sitemap: '{"_id":"sztkb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
+news_szed:
+  base: szsb.sznews.com/MB/content
+  locale: SZ
+  description: 深圳商報/Shenzhen Economic daily 
+  sitemap: '{"_id":"szed","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
+news_szwb:
+  base: wb.sznews.com/MB/content
+  locale: SZ
+  description: 深圳晚報/Shenzhen Evening news 
+  sitemap: '{"_id":"szwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
