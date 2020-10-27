@@ -341,7 +341,7 @@ news_nf:
   base: news.southcn.com
   locale: GZ
   description: 南方網/Southcn
-  sitemap: '{"_id":"south","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2#article_title","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.pub_time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"south","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2#article_title,h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.pub_time,div.l-source","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content,div.l-cont","multiple":false,"regex":"","delay":0}]}'
 news_xkb:
   base: xkb.com.cn
   locale: GZ
