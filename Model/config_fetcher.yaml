@@ -341,9 +341,19 @@ news_nf:
   base: news.southcn.com
   locale: GZ
   description: 南方網/Southcn
-  sitemap: '{"_id":"ycwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2#article_title","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.pub_time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"south","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2#article_title","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.pub_time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
 news_xkb:
   base: xkb.com.cn
   locale: GZ
   description: 快新網/kuaixinbao
-  sitemap: '{"_id":"ycwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsTitle h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.newsTitle","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"kxb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsTitle h1,div.wordTitle","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.newsTitle,div.wordTitle","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content,div.fs14","multiple":false,"regex":"","delay":0}]}'
+news_exmo:
+  base: www.exmoo.com/article/
+  locale: MO
+  description: 澳門力報/exmoo news
+  sitemap: '{"_id":"exmoo","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.bgf","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article-pub-date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article-content","multiple":false,"regex":"","delay":0}]}'
+news_mo:
+  base: macautimes.cc
+  locale: MO
+  description: 澳門時報/Macau Times
+  sitemap: '{"_id":"mod","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-top-text-d","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-text-td","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-cd-text-e","multiple":false,"regex":"","delay":0}]}' 
