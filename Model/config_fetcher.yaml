@@ -271,7 +271,7 @@ ulifestyle:
   base: ulifestyle.com.hk
   locale: HK
   description: U港生活/U lifeStyle HK
-  sitemap: '{"_id":"ulifestyle","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"div.publish-time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.lazy","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"ulifestyle","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1,h2","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"div.publish-time,h5.date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.lazy,div.content","multiple":false,"regex":"","delay":0}]}'
 umagazine:
   base: umagazine.com.hk +article 
   locale: HK
