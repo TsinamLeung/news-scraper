@@ -59,6 +59,10 @@ function getDate(result, name) {
     case 'gov_doj':
       return result['link-href'].match(/\d+/g).shift()
       break
+    case 'news_gz':
+      return result['link-href'].match(/^https:\/\/gzdaily.dayoo.com\/pc\/html\/(\d+)-(\d+)\/(\d+)/).splice(1,3).join('/')
+      break
+      break
     default:
       return result.date
       //data via search engine
