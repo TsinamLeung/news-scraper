@@ -248,7 +248,7 @@ function parseContent(result, name) {
     default:
       break;
   }
-  result['content'] = getContent(result, name).replace(/\\n/g, '');
+  result['content'] = getContent(result, name).replace(/\n/g, '');
   //for csv splitling..
   result['content'] = getContent(result, name).replace(',', '');
 }
