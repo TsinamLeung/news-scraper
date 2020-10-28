@@ -112,6 +112,7 @@ class fetcher_url_bing extends Fetcher {
 
     function generatePagenationUrl(baseURL, resultLength) {
       // process the other page
+      if (!baseURL) return []
       const nextPage = new URL(baseURL)
       const rNumPerPage = (nextPage.searchParams.get('first') - 1) || 0
       const pageNum = Math.floor(resultLength / rNumPerPage)

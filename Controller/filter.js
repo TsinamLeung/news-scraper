@@ -15,6 +15,8 @@ exports.parseContent = parseContent;
  * @param {string} name 
  */
 function getUrl(result, name) {
+  if (!result)
+    return result
   switch (name) {
     default:
       return result['link-href']
@@ -41,6 +43,8 @@ function getContent(result, name) {
  * @return string
  */
 function getDate(result, name) {
+  if (!result)
+    return result
   switch (name) {
     case 'news_thaicn':
       return result['link-href'];
@@ -62,7 +66,6 @@ function getDate(result, name) {
     case 'news_gz':
       return result['link-href'].match(/^https:\/\/gzdaily.dayoo.com\/pc\/html\/(\d+)-(\d+)\/(\d+)/).splice(1,3).join('/')
       break
-      break
     default:
       return result.date
       //data via search engine
@@ -75,9 +78,13 @@ function getDate(result, name) {
  * @param {string} name 
  */
 function getTitle(result, name) {
+  if(!result) 
+    return result
   switch (name) {
     default:
-      return result.title
+      if(!result.title) 
+        return result.title
+      return result.title.replace(/[\n, ]/,' ')
       //data via search engine
       break;
   }
