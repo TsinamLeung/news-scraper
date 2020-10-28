@@ -64,6 +64,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     if (retrytime >= 0) {
       try {
         this.updateStartURL(url);
+        console.log("Retry Times Remains " + retrytime)
         let result = await super.run();
         if (result.length === 0) {
           return await this.fetchResultByUrl(url, retrytime - 1);
