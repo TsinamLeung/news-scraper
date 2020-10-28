@@ -84,7 +84,7 @@ function getTitle(result, name) {
     default:
       if(!result.title) 
         return result.title
-      return result.title.replace(/[\\n, ]/g,' ')
+      return result.title.replace(/[\n, ]/g,'')
       //data via search engine
       break;
   }
