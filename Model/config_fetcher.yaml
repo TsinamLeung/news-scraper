@@ -336,7 +336,7 @@ news_yc:
   base: news.ycwb.com
   locale: GZ
   description: 金羊網/yangcheng web
-  sitemap: '{"_id":"ycwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span#pubtime_baidu","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":".fl div.main_article,p#cd","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"ycwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span#pubtime_baidu","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":".fl div.maizn_article,p#cd","multiple":false,"regex":"","delay":0}]}'
 news_nf:
   base: news.southcn.com
   locale: GZ
