@@ -1,3 +1,4 @@
+# note: no upper letter for fetcher name
 news_01:
   base: www.hk01.com
   locale: HK
@@ -256,12 +257,12 @@ news_whb_hk:
   base: www.wenweipo.com/a/
   locale: HK
   description: 文匯報 香港/wenweipo
-  sitemap: '{"_id":"whb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".post-header h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.publish-date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.post-body","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_whb_hk","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".post-header h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.publish-date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.post-body","multiple":false,"regex":"","delay":0}]}'
 news_whb_cn:
   base: www.whb.cn/zhuzhan
   locale: CN
   description: 文匯報 大陸/wenhuibao
-  sitemap: '{"_id":"whb_cn","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_title","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_other","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_info","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_whb_cn","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_title","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_other","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content_info","multiple":false,"regex":"","delay":0}]}'
 weekendhk:
   base: www.weekendhk.com
   locale: HK
@@ -271,17 +272,17 @@ ulifestyle:
   base: ulifestyle.com.hk
   locale: HK
   description: U港生活/U lifeStyle HK
-  sitemap: '{"_id":"ulifestyle","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1,h2","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"div.publish-time,h5.date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.lazy,div.content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"ulifestyle","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1,h2","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.publish-time,h5.date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.lazy,div.content","multiple":false,"regex":"","delay":0}]}'
 umagazine:
   base: umagazine.com.hk +article 
   locale: HK
   description: U周刑/Umagazine
   sitemap: '{"_id":"umagazine","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.container","multiple":false,"regex":"","delay":0}]}'
-erpiceHK:
+erpicehk:
   base: www.eprice.com.hk +talk
   locale: HK
   description: ePrice HongKong
-  sitemap: '{"_id":"epricehk","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"span.publish","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"epriceHK","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.publish","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content","multiple":false,"regex":"","delay":0}]}'
 opentour:
   base: opentour.com.hk
   locale: HK
@@ -291,12 +292,12 @@ hket:
   base: hket.com/article/
   locale: HK
   description: 香港經清日報/HongKong Economic Time
-  sitemap: '{"_id":"hket","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"time","type":"SelectorText","parentSelectors":["_root"],"selector":"span.article-details-info-container_date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":".print div.article-detail-body-container","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"hket","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.article-details-info-container_date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":".print div.article-detail-body-container","multiple":false,"regex":"","delay":0}]}'
 gov_ceo:
   base: ceo.gov.hk +blog
   locale: HK
   description: 行政長官網誌/Blogs of Chief Executive
-  sitemap: '{"_id":"ceo","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"td[valign][bgcolor]","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"gov_ceo","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"td[valign][bgcolor]","multiple":false,"regex":"","delay":0}]}'
 gov_cso:
   base: cso.gov.hk + blog
   locale: HK
@@ -316,44 +317,44 @@ news_sztqb:
   base: sztqb.sznews.com/MB/content
   locale: SZ
   description: 深圳特區報/Shenzhen SEZ daily 
-  sitemap: '{"_id":"sztkb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_sztqb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
 news_szed:
   base: szsb.sznews.com/MB/content
   locale: SZ
   description: 深圳商報/Shenzhen Economic daily 
-  sitemap: '{"_id":"szed","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.newsdatetext","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_szed","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.newsdatetext","multiple":false,"regex":"","delay":0}]}'
 news_szwb:
   base: wb.sznews.com/MB/content
   locale: SZ
   description: 深圳晚報/Shenzhen Evening news 
-  sitemap: '{"_id":"szwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_szwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsdatetit h3","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"p.fanhui","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
 news_gz:
   base: gzdaily.dayoo.com/pc/html
   locale: GZ
   description: 廣州日報/Guangzhou Daily
-  sitemap: '{"_id":"gznjb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-title","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_gz","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-title","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"founder-content","multiple":false,"regex":"","delay":0}]}'
 news_yc:
   base: news.ycwb.com
   locale: GZ
   description: 金羊網/yangcheng web
-  sitemap: '{"_id":"ycwb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span#pubtime_baidu","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":".fl div.maizn_article,p#cd","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_yc","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span#pubtime_baidu","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":".fl div.maizn_article,p#cd","multiple":false,"regex":"","delay":0}]}'
 news_nf:
   base: news.southcn.com
   locale: GZ
   description: 南方網/Southcn
-  sitemap: '{"_id":"south","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2#article_title,h1,div#ScDetailTitle","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.time,span.pub_time,div.l-source","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content,div.l-cont","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_nf","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h2#article_title,h1,div#ScDetailTitle","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.time,span.pub_time,div.l-source","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content,div.l-cont","multiple":false,"regex":"","delay":0}]}'
 news_xkb:
   base: xkb.com.cn
   locale: GZ
   description: 快新網/kuaixinbao
-  sitemap: '{"_id":"kxb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsTitle h1,div.wordTitle","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.newsTitle,div.wordTitle","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content,div.fs14","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_xkb","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":".newsTitle h1,div.wordTitle","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.newsTitle,div.wordTitle","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.content,div.fs14","multiple":false,"regex":"","delay":0}]}'
 news_exmo:
   base: www.exmoo.com/article/
   locale: MO
   description: 澳門力報/exmoo news
-  sitemap: '{"_id":"exmoo","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.bgf","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article-pub-date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article-content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_exmo","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.bgf","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article-pub-date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article-content","multiple":false,"regex":"","delay":0}]}'
 news_mo:
   base: macautimes.cc
   locale: MO
   description: 澳門時報/Macau Times
-  sitemap: '{"_id":"mod","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-top-text-d","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-text-td","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-cd-text-e","multiple":false,"regex":"","delay":0}]}' 
+  sitemap: '{"_id":"news_mo","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-top-text-d","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-text-td","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-cd-text-e","multiple":false,"regex":"","delay":0}]}' 

@@ -245,10 +245,12 @@ function parseDate(result, name) {
 
 function parseContent(result, name) {
   switch (name) {
+    case 'epricehk':
+      result.content = getContent(result.name).replace(/^<a.*\/a>/g,'')
     default:
       break;
   }
-  result['content'] = getContent(result, name).replace(/\n/g, '');
+  result.content = getContent(result, name).replace(/\n/g, '');
   //for csv splitling..
-  result['content'] = getContent(result, name).replace(',', '');
+  result.content = getContent(result, name).replace(',', '');
 }

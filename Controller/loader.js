@@ -31,8 +31,10 @@ class Loader {
   }
   getFetcher(name, delay = 20, pageLoaddelay = 500, engine = 'bing', browser = 'jsdom') {
     const fetcher = this.fetchers[name]
-    if (!(!name)) {
+    if (!(!fetcher)) {
       return new fetcher_via_search_engine(JSON.parse(fetcher.sitemap), fetcher.delay || delay, fetcher.pageLoaddelay || pageLoaddelay, name, fetcher.locale, fetcher.base, engine, fetcher.browser || browser)
+    } else {
+      console.log('no fetcher for ' + name);
     }
   }
 }

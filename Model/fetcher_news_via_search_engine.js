@@ -55,7 +55,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
       console.info("there're " + urls.length + " url");
       return urls;
     } catch (error) {
-      console.error("Occured Error when fetching urls");
+      console.log("Occured Error when fetching urls");
       console.error(error);
       return [];
     }
@@ -76,7 +76,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
           return result;
         }
       } catch (error) {
-        console.error("Occured Error when fetching result via search engine " + url);
+        console.log("Occured Error when fetching result via search engine " + url);
         console.error(error);
       }
     }
@@ -91,13 +91,13 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
           let result = await this.fetchResultByUrl(list[i]['link-href'])
           results.push(result);
         } catch (error) {
-          console.error("Error Occured when fetching " + list[i]['link-href']);
+          console.log("Error Occured when fetching " + list[i]['link-href']);
           console.error(error);
         }
       }
       return results;
     } catch (error_eng) {
-      console.error("Error Occured when fetching lists of " + this.name + " via " + this.engine.name);
+      console.log("Error Occured when fetching lists of " + this.name + " via " + this.engine.name);
       console.error(error_eng);
       return undefined;
     }

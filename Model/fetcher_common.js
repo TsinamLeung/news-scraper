@@ -40,7 +40,7 @@ class fetcher_common {
       debug("Fetcher_common result: %O", results);
       return results;
     } catch (error) {
-      console.error("Occured Error when fetching %s", this.name);
+      console.log("Occured Error when fetching %s", this.name);
       console.error(error);
       return undefined;
     }
