@@ -53,7 +53,6 @@ router.get('/newsData', async (ctx, next) => {
   if (!(!qContent)) {
     qContent = new RegExp(qContent, "g")
   }
-
   ctx.response.body = appController.getNewsDataFromDB(qName, qTitle, qContent, qLocale);
 });
 
