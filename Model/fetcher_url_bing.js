@@ -143,9 +143,12 @@ class fetcher_url_bing extends Fetcher {
       return []
     }
     if (firstPage.length == 1) {
+      
       console.info('no result fetched on bing')
       if (firstPage[0].result_num == null) {
         return []
+      } else {
+        return firstPage
       }
     }
     const urls = generatePagenationUrl.call(this, firstPage[0]['next-href'], +(firstPage[0].result_num.replace(',', '')))
