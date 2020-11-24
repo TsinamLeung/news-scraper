@@ -15,6 +15,7 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     super(sitemap, delay, pageLoaddedlay, name, locale, browser);
     this.site = site;
     this.description = ''
+    this.retrytime = 3
     switch (search_engine) {
       case 'duckduckgo':
         const ddg = require("./fetcher_url_duckduckgo")
@@ -42,12 +43,16 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     this.engine.setSite(this.site);
     this.engine.setQuery(keyword)
   }
-  async fetchUrlList() {
+  async fetchUrlList(retrytime = 0) {
     if (this.keyword == '' || this.keyword == undefined) {
-      throw ('No keyword specfied!');
+      throw ('No keyword specfied!')
     }
     try {
       let urls = await this.engine.run()
+      for(let r = retrytime;r > 0 && urls.length === 0;r--){
+        urls = await this.engine.run()
+        console.log(`Retrying ${r} fetching list of ${this.name}`)
+      }
       urls = urls.map(it => ({
         ...it,
         newsName: this.name
@@ -85,7 +90,6 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     console.info("fetching " + this.name + " via " + this.engine.name);
     try {
       let results = [];
-      let list = await this.fetchUrlList();
       for (let i in list) {
         try {
           let result = await this.fetchResultByUrl(list[i]['link-href'])

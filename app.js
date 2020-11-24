@@ -61,8 +61,9 @@ router.post('/urlLists', async (ctx, next) => {
   ctx.response.type = 200
   let args = ctx.request.body.params
   for (each of args) {
-    if (!each.engine) args.engine = 'duckduckgo'
-    if (!each.timeLimit) args.timeLimit = 'any';
+    if (!each.engine) each.engine = 'duckduckgo'
+    if (!each.timeLimit) each.timeLimit = 'any'
+    if (!each.retryTime ) each.retryTime = 3
     if (!each.keyword) {
       ctx.response.body = [];
       console.info('no Keyword!')
@@ -76,7 +77,8 @@ router.post('/urlLists', async (ctx, next) => {
     console.info("getting url list of " + each.news);
     appController.fetchUrlList(each.keyword, each.news.toLowerCase(), {
       timeLimit: each.timeLimit.toLowerCase(),
-      resultLimit: +each.resultLimit
+      resultLimit: +each.resultLimit,
+      retry: +each.retryTime
     }, each.engine).then(res => {
       recoder.pushSearchResult(res)
     })
