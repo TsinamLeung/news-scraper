@@ -1,0 +1,7 @@
+# type keyword here 此處鍵入蒐尋關鍵字
+keyword: 你好
+# csv and text txt are supported now 目前支持csv 和 txt
+save_type: txt
+# output location 保存位置 
+# ./ represent current location ./ 表示目前位置
+save_location: ./

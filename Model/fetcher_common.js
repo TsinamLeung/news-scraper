@@ -32,11 +32,11 @@ class fetcher_common {
     }
     console.info("fetching " + this.name);
     try {
-      let results = await Scraper(this.sitemap, {
+      const results = await Scraper(this.sitemap, {
         delay: this.delay,
         pageLoaddelay: this.pageLoaddelay,
         browser: this.browser
-      });
+      })
       debug("Fetcher_common result: %O", results);
       return results;
     } catch (error) {

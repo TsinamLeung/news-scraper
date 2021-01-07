@@ -55,12 +55,9 @@ function scrape (sitemapInfo, options = {}) {
     }, {})
     s.run(function (err) {
       if (err) {
-        console.error("error Occured");
         console.error(err);
-        resolve(store.data)
-      } else {
-        resolve(store.data)
       }
+      resolve(store.data)
     })
   })
 }

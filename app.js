@@ -60,7 +60,7 @@ router.post('/urlLists', async (ctx, next) => {
   ctx.type = 'application/json'
   ctx.response.type = 200
   let args = ctx.request.body.params
-  for (each of args) {
+  for (let each of args) {
     if (!each.engine) each.engine = 'duckduckgo'
     if (!each.timeLimit) each.timeLimit = 'any'
     if (!each.retryTime ) each.retryTime = 3

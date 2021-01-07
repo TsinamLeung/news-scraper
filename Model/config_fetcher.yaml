@@ -358,3 +358,4 @@ news_mo:
   locale: MO
   description: 澳門時報/Macau Times
   sitemap: '{"_id":"news_mo","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-top-text-d","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-text-td","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.news-cd-text-e","multiple":false,"regex":"","delay":0}]}' 
+# fourm_thread_babykingdom:

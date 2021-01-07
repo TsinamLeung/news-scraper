@@ -54,10 +54,10 @@ function getDate(result, name) {
       return new Date(Date.now()).toISOString()
       break
     case 'gov_cso':
-      return result['content'].split('\n').shift()
+      return result.content.split('\n').shift()
       break
     case 'gov_ceo':
-      return result['content'].split('\n').pop()
+      return result.content.split('\n').pop()
       break
     case 'gov_fso':
     case 'gov_doj':
@@ -236,7 +236,7 @@ function parseDate(result, name) {
   try {
     let extract = date.match(reg)[0];
     debug("date after processing %O ", extract);
-    result['date'] = moment(extract, ['MMDDYYYY', 'YYYYMMDD', "DDMMYYYY"]).format('L');
+    result.date = moment(extract, ['MMDDYYYY', 'YYYYMMDD', "DDMMYYYY"]).format('L');
   } catch (error) {
     console.error('Error Occured When parsing date');
     console.error(error);
@@ -247,6 +247,7 @@ function parseContent(result, name) {
   switch (name) {
     case 'epricehk':
       result.content = getContent(result.name).replace(/^<a.*\/a>/g,'')
+      break
     default:
       break;
   }
