@@ -1,4 +1,22 @@
 # note: no upper letter for fetcher name
+news_scmp:
+  base: www.scmp.com +article
+  locale: HK (SG)
+  description: 南華早報/South China Morning Post
+  browser: jsdom
+  sitemap: '{"_id":"scmp","startUrl":[""],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.row__details","multiple":true,"regex":"","delay":0}]}'
+news_globaltimes:
+  base: www.globaltimes.cn/page/
+  locale: CN
+  description: 環球時報 /Global Times
+  browser: jsdom
+  sitemap: '{"_id":"scmp","startUrl":[""],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article_title","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.pub_time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article_content","multiple":true,"regex":"","delay":0}]}'
+news_china_daily:
+  base: www.chinadaily.com.cn/a/
+  description: 中國日報/China daily
+  locale: CN
+  browser: jsdom
+  sitemap: '{"_id":"scmp","startUrl":[""],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.info_l","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div#Content","multiple":true,"regex":"","delay":0}]}'
 news_01:
   base: www.hk01.com
   locale: HK

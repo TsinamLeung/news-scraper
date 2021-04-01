@@ -238,6 +238,7 @@ function parseDate(result, name) {
     debug("date after processing %O ", extract);
     result.date = moment(extract, ['MMDDYYYY', 'YYYYMMDD', "DDMMYYYY"]).format('L');
   } catch (error) {
+    result.date = moment().format("L")  // If error occurs replace the date with current time.
     console.error('Error Occured When parsing date');
     console.error(error);
   }

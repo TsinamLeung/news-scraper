@@ -9,24 +9,30 @@ const bodyParser = require('koa-bodyparser');
 const appController = require('./Controller/controller_app');
 const recoder = require('./Controller/controller_result')
 
-
-
 const port = 80;
 const app = new Koa();
 const router = new Router();
+
 app.use(cors())
-/**
-app.use(logger())
-// logger
- app.use(async (ctx, next) => {
-   const start = new Date()
-   await next()
-   // allow access
-   ctx.set('Access-Control-Allow-Origin', '*')
-   const ms = new Date() - start
-   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+
+errorBackup = console.error
+
+router.get('/allowLog', async (ctx, next) => {
+  app.use(logger())
+  // logger
+  app.use(async (ctx, next) => {
+    const start = new Date()
+    await next()
+    // allow access
+    ctx.set('Access-Control-Allow-Origin', '*')
+    const ms = new Date() - start
+    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
   })
-*/
+  console.error = errorBackup
+  console.error("This is error Report!")
+  await next()
+})
+
 
 appController.outputPath = function () {
   return {
@@ -63,7 +69,7 @@ router.post('/urlLists', async (ctx, next) => {
   for (let each of args) {
     if (!each.engine) each.engine = 'duckduckgo'
     if (!each.timeLimit) each.timeLimit = 'any'
-    if (!each.retryTime ) each.retryTime = 3
+    if (!each.retryTime) each.retryTime = 3
     if (!each.keyword) {
       ctx.response.body = [];
       console.info('no Keyword!')
@@ -152,9 +158,9 @@ router.get('/function/:name', async (ctx, next) => {
   ctx.response.body = appController[name]();
 });
 
-if (!global.consoleSwitch) {
-  console.error = () => {}
-}
+
+console.error = () => { }
+
 // appController.turnOnDebugMsg()
 app.use(bodyParser());
 app.use(serve('./static'));
