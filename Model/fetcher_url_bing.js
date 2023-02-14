@@ -151,7 +151,14 @@ class fetcher_url_bing extends Fetcher {
         return firstPage
       }
     }
-    const urls = generatePagenationUrl.call(this, firstPage[0]['next-href'], +(firstPage[0].result_num.replace(',', '')))
+    let pageEstimate = firstPage[0].result_num.replace(',', '').match(new RegExp("\\d+"))
+    if (!pageEstimate)
+    {
+      pageEstimate = 0
+    } else {
+      pageEstimate = +(pageEstimate[0])
+    }
+    const urls = generatePagenationUrl.call(this, firstPage[0]['next-href'], pageEstimate)
     if (urls.length > 0) {
       console.info("bing:fetching another page")
       let totalResult = []
