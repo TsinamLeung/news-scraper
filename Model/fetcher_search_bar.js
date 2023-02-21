@@ -2,11 +2,12 @@ const puppeteer = require('puppeteer')
 
 class fetcher_search_bar {
 
-  constructor(bar_selector, search_bar_url, timeout = 1200000, headless = false) {
+  constructor(bar_selector, search_bar_url, timeout = 1200000, headless = false, showLog = false) {
     this.bar_selector = bar_selector
     this.search_bar_url = search_bar_url
     this.timeout = timeout
     this.headless = headless
+    this.showLog = showLog
   }
   /**
    * 
@@ -14,11 +15,13 @@ class fetcher_search_bar {
    * @param {string} keyword 
    */
   async excuteSearch(keyword) {
-    console.log("Starting browser 正在啟動瀏覽器")
-    console.log("Do not operate the Browser within 120 Sesconds, Otherwise unexcepted error would occured")
-    console.log("瀏覽器啟動後 在2分鐘內請不要操控 否則可能導致不可預料的錯誤")
-    console.log("You could stop fetching by terminate browser or terminal")
-    console.log("你可關閉瀏覽器或終端窗口以停止爬取")
+    if(this.showLog) {
+      console.log("Starting browser 正在啟動瀏覽器")
+      console.log("Do not operate the Browser within 120 Sesconds, Otherwise unexcepted error would occured")
+      console.log("瀏覽器啟動後 在2分鐘內請不要操控 否則可能導致不可預料的錯誤")
+      console.log("You could stop fetching by terminate browser or terminal")
+      console.log("你可關閉瀏覽器或終端窗口以停止爬取")
+    }
     const browser = await puppeteer.launch({
       timeout: this.timeout,
       headless: this.headless

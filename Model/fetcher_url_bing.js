@@ -7,7 +7,12 @@ class fetcher_url_bing extends Fetcher {
    * @param {number} delay 
    * @param {number} pageLoaddedlay 
    */
-  constructor(delay, pageLoaddedlay) {
+  constructor(delay, pageLoaddedlay, useBrowser = false) {
+    let browser = 'jsdom'
+    if (useBrowser) {
+      browser = 'headless'
+    }
+    console.info(`using ${browser} for BING`)
     super({
         "_id": "url_bing",
         "startUrl": [],
@@ -61,7 +66,7 @@ class fetcher_url_bing extends Fetcher {
       delay,
       pageLoaddedlay,
       'url_bing',
-      'jsdom',
+      browser,
       'https://www.bing.com/search?q=')
   }
   resolveTimeLimit(timeLimit = 'any') {

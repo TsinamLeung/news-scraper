@@ -16,7 +16,6 @@
     "lowdb": "^1.0.0",
     "moment": "^2.27.0",
     "node-html-parser": "^2.0.1",
-    "puppeteer": "^5.5.0",
     "web-scraper-headless": "^1.0.7",
     "yaml": "^1.10.0"
   },

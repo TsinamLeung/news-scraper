@@ -16,14 +16,17 @@ class fetcher_news_via_search_engine extends fetcher_news_common {
     this.site = site;
     this.description = ''
     this.retrytime = 3
+    const ddg = require("./fetcher_url_duckduckgo")
+    const bing = require('./fetcher_url_bing')
     switch (search_engine) {
       case 'duckduckgo':
-        const ddg = require("./fetcher_url_duckduckgo")
         this.engine = new ddg(20, 5000);
         break;
       case 'bing':
-        const bing = require('./fetcher_url_bing')
-        this.engine = new bing(20, 100)
+        this.engine = new bing(20, 500, false)
+        break
+      case 'bing_slow':
+        this.engine = new bing(20, 500, true)
         break
       default:
         this.engine = undefined;
