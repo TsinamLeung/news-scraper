@@ -22,7 +22,7 @@ news_01:
   locale: HK
   description: 香港01/Hongkong 01
   browser: jsdom
-  sitemap: '{"_id":"news_01","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":".pubdate time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"article","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_01","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"time:nth-of-type(n+0)","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"article","multiple":false,"regex":"","delay":0}]}'
 news_apple_daily:
   base: hk.appledaily.com
   locale: HK
