@@ -1,3 +1,3 @@
 echo off
-npm start
+cmd /c "npm start"
 pause
