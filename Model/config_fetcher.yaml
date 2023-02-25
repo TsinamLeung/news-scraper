@@ -188,13 +188,13 @@ news_people_cn:
   locale: CN
   description: 人民網/people cn
   browser: jsdom
-  sitemap: '{"_id":"news_people_cn","startUrl":[],"selectors":[{"id":"title","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"h3.pre,col.h1","type":"SelectorText"},{"id":"date","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.channel","type":"SelectorText"},{"id":"content","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.rm_txt_con,div.artDet,div.article,#ozoom,div.box_con","type":"SelectorText"}]}'
+  sitemap: '{"_id":"news_people_cn","startUrl":[],"selectors":[{"id":"title","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"h2,h3.pre,col.h1","type":"SelectorText"},{"id":"date","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.artOri,div.channel","type":"SelectorText"},{"id":"content","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.rm_txt_con,div.artDet,div.article,#ozoom,div.box_con","type":"SelectorText"}]}'
 news_sanwah:
   base: xinhuanet.com
   locale: CN
   description: 新華網/news xinhua
   browser: jsdom
-  sitemap: '{"_id":"news_sanwah","startUrl":[],"selectors":[{"id":"title","multiple":false,"parentSelectors":["_root"],"regex":"","selector":".head-line h1,div.h-title,div#ArticleTit,div#Title ","type":"SelectorText"},{"id":"content","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.header-time","type":"SelectorText"},{"id":"date","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.laiyuan,span.h-time,div.header-time","type":"SelectorText"}]}'
+  sitemap: '{"_id":"news_sanwah","startUrl":[],"selectors":[{"id":"title","multiple":false,"parentSelectors":["_root"],"regex":"","selector":".head-line h1,div.h-title,div#ArticleTit,div#Title ","type":"SelectorText"},{"id":"content","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"p","type":"SelectorText"},{"id":"date","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.laiyuan,span.h-time,div.header-time","type":"SelectorText"}]}'
 news_sggp:
   base: cn.sggp.org.vn
   locale: VN

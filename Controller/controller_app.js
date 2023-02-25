@@ -45,7 +45,7 @@ async function fetchUrlList(keyword, newsName, options = {
   fetcher.setOptions(options)
   fetcher.setKeyword(keyword)
   const results = await fetcher.fetchUrlList(options.retry)
-  console.log(newsName + " Fetching Over")
+  console.log(newsName + " Fetching Overed")
   listFetcherManager.releaseResource()
   return results.filter((each, index, self) => self.findIndex(t => t['link-href'] === each['link-href']) === index)
 }
