@@ -22,7 +22,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js && echo 'starting server'"
+    "start": "echo 'starting server' && node app.js"
   },
   "author": "",
   "license": "ISC",

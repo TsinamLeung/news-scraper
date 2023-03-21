@@ -8,8 +8,8 @@ const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const appController = require('./Controller/controller_app');
 const recoder = require('./Controller/controller_result')
-
-const port = 80;
+// port from --port 8080
+const port = process.argv[2] || 80
 const app = new Koa();
 const router = new Router();
 
@@ -101,7 +101,7 @@ router.get('/urlLists', async (ctx, next) => {
 /**
  * post request
  * an json
- * {url: string,newsName: 'news_aNews.js'}
+ * {jobs: [{link-href: string,newsName: 'news_aNews.js'}]}
  */
 router.post('/fetchJob', async (ctx, next) => {
   let req = ctx.request.body;
