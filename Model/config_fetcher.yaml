@@ -6,17 +6,17 @@ news_scmp:
   browser: jsdom
   sitemap: '{"_id":"scmp","startUrl":[""],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.row__details","multiple":true,"regex":"","delay":0}]}'
 news_globaltimes:
-  base: www.globaltimes.cn/page/
+  base: huanqiu.com/article/
   locale: CN
   description: 環球時報 /Global Times
-  browser: jsdom
-  sitemap: '{"_id":"scmp","startUrl":[""],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article_title","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.pub_time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article_content","multiple":true,"regex":"","delay":0}]}'
+  browser: headless
+  sitemap: '{"_id":"scmp","startUrl":[""],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"article,div.article","multiple":true,"regex":"","delay":0}]}'
 news_china_daily:
-  base: www.chinadaily.com.cn/a/
+  base: chinadaily.com.cn/a/
   description: 中國日報/China daily
   locale: CN
   browser: jsdom
-  sitemap: '{"_id":"scmp","startUrl":[""],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.info_l","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div#Content","multiple":true,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"scmp","startUrl":[""],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"div.fenx,p.main_title3","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article,div.mian_txt","multiple":true,"regex":"","delay":0}]}'
 news_01:
   base: www.hk01.com
   locale: HK
@@ -52,7 +52,7 @@ news_cna:
   locale: TW
   description: 中央社/CNA
   browser: jsdom
-  sitemap: '{"_id":"cna","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1 span","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":".updatetime span","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.paragraph","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"cna","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":".updatetime span,div.updatetimes","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.paragraph,article","multiple":false,"regex":"","delay":0}]}'
 news_govhk:
   base: www.news.gov.hk/chi
   locale: HK
@@ -188,13 +188,13 @@ news_people_cn:
   locale: CN
   description: 人民網/people cn
   browser: jsdom
-  sitemap: '{"_id":"news_people_cn","startUrl":[],"selectors":[{"id":"title","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"h2,h3.pre,col.h1","type":"SelectorText"},{"id":"date","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.artOri,div.channel","type":"SelectorText"},{"id":"content","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.rm_txt_con,div.artDet,div.article,#ozoom,div.box_con","type":"SelectorText"}]}'
+  sitemap: '{"_id":"news_people_cn","startUrl":[],"selectors":[{"id":"title","multiple":false,"parentSelectors":["_root"],"regex":"","selector":".col h1,h2,h3.pre,h1 .col","type":"SelectorText"},{"id":"date","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"p.sou,div.artOri,div.channel","type":"SelectorText"},{"id":"content","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.show_text,div.rm_txt_con,div.artDet,div.article,#ozoom,div.box_con","type":"SelectorText"}]}'
 news_sanwah:
   base: xinhuanet.com
   locale: CN
   description: 新華網/news xinhua
   browser: jsdom
-  sitemap: '{"_id":"news_sanwah","startUrl":[],"selectors":[{"id":"title","multiple":false,"parentSelectors":["_root"],"regex":"","selector":".head-line h1,div.h-title,div#ArticleTit,div#Title ","type":"SelectorText"},{"id":"content","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"p","type":"SelectorText"},{"id":"date","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.laiyuan,span.h-time,div.header-time","type":"SelectorText"}]}'
+  sitemap: '{"_id":"news_sanwah","startUrl":[],"selectors":[{"id":"title","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.article_title,.head-line h1,div.h-title,div#ArticleTit,div#Title,h1 ","type":"SelectorText"},{"id":"content","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.article,div.article_info,p,div#detail,div#p-detail,div.content,[cellspacing=15] td","type":"SelectorText"},{"id":"date","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"td[width=224],div.laiyuan,span.h-time,div.header-time","type":"SelectorText"}]}'
 news_sggp:
   base: cn.sggp.org.vn
   locale: VN
@@ -208,11 +208,11 @@ news_shinmin:
   browser: jsdom
   sitemap: '{"_id":"news_shinimn","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.datestamp","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.group-content-body","multiple":false,"regex":"","delay":0}]}'
 news_singtao:
-  base: std.stheadline.com article
+  base: www.stheadline.com
   locale: HK
   description: 星島日報/singtao daily
   browser: jsdom
-  sitemap: '{"_id":"news_singtao","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span.date","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":".paragraphs","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_singtao","startUrl":[],"selectors":[{"id":"title","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.article-title,h1","type":"SelectorText"},{"id":"date","multiple":false,"parentSelectors":["_root"],"regex":"","selector":".time span,span.date","type":"SelectorText"},{"id":"content","multiple":false,"parentSelectors":["_root"],"regex":"","selector":"div.content-body,.paragraphs","type":"SelectorText"}]}'
 news_thaicn:
   base: www.thaicn.net/news
   locale: TH
@@ -246,7 +246,7 @@ news_udn:
   locale: TW
   description: 聯合新聞網/udn
   browser: jsdom
-  sitemap: '{"_id":"news_udn","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":".shareBar__info--author span,time.article-content__time,time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div.article,section.article-content__editor,main,div#story_body_content","multiple":false,"regex":"","delay":0}]}'
+  sitemap: '{"_id":"news_udn","startUrl":[],"selectors":[{"id":"title","type":"SelectorText","parentSelectors":["_root"],"selector":"h1,div.article_topic,span#maintopic","multiple":false,"regex":"","delay":0},{"id":"date","type":"SelectorText","parentSelectors":["_root"],"selector":"span#mainbody,div.article_datatime,.shareBar__info--author span,time.article-content__time,time","multiple":false,"regex":"","delay":0},{"id":"content","type":"SelectorText","parentSelectors":["_root"],"selector":"div#article_show_content,div.article,section.article-content__editor,main,div#story_body_content","multiple":false,"regex":"","delay":0}]}'
 news_udnbkk:
   base: www.udnbkk.com
   locale: TH
