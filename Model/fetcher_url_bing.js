@@ -12,7 +12,7 @@ class fetcher_url_bing extends Fetcher {
     if (useBrowser) {
       browser = 'headless'
     }
-    console.debug(`using ${browser}`)
+    console.info(`using ${browser}`)
     super({
         "_id": "url_bing",
         "startUrl": [],

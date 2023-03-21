@@ -156,6 +156,10 @@ function turnOnResultFeedback() {
 function turnOffDebugMsg() {
   debug.disable()
 }
+
+function reload() {
+  loader.loadConfig()
+}
 exports.fetchSingleResultByUrl = fetchSingleResultByUrl
 exports.fetchUrlList = fetchUrlList
 exports.listAllNews = listAllSource
@@ -165,3 +169,4 @@ exports.turnOnResultFeedback = turnOnResultFeedback
 exports.db = db
 exports.tracer = tracer
 exports.getNewsDataFromDB = getNewsDataFromDB
+exports.reload = reload
